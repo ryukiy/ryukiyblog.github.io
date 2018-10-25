@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on ryukiy.github.io</title>
+    <link>https://ryukiy.github.io/categories/</link>
+    <description>Recent content in Categories on ryukiy.github.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    
+	<atom:link href="https://ryukiy.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Microsoft Azure</title>
+      <link>https://ryukiy.github.io/categories/microsoft-azure/</link>
+      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
+      
+      <guid>https://ryukiy.github.io/categories/microsoft-azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtual Network</title>
+      <link>https://ryukiy.github.io/categories/virtual-network/</link>
+      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
+      
+      <guid>https://ryukiy.github.io/categories/virtual-network/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
