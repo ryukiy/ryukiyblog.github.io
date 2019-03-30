@@ -15,8 +15,8 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bash on Windows のアーキテクチャーを妄想してみる">
 <meta name="twitter:title" content="Bash on Windows のアーキテクチャーを妄想してみる">
-<meta property="og:url" content="http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
-<meta property="twitter:url" content="http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+<meta property="og:url" content="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+<meta property="twitter:url" content="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
 <meta property="og:site_name" content="RyukiY&#39;s Blog">
 <meta property="og:description" content="本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。">
 <meta name="twitter:description" content="本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。">
@@ -53,25 +53,25 @@
 
 
 
-  <meta property="og:image" content="http://blog.ryukiy.net/img/icons/Windows.png">
-  <meta property="twitter:image" content="http://blog.ryukiy.net/img/icons/Windows.png">
+  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Windows.png">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Windows.png">
 
 
 
 
 
-  <meta property="og:image" content="http://blog.ryukiy.net/img/dat/ryukiy.jpg">
-  <meta property="twitter:image" content="http://blog.ryukiy.net/img/dat/ryukiy.jpg">
+  <meta property="og:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
 
 
     <title>Bash on Windows のアーキテクチャーを妄想してみる</title>
 
-    <link rel="icon" href="http://blog.ryukiy.net/favicon.ico">
+    <link rel="icon" href="https://blog.ryukiy.net/favicon.ico">
     
 
     
 
-    <link rel="canonical" href="http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+    <link rel="canonical" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -79,11 +79,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="http://blog.ryukiy.net/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
     
       
-        <link rel="stylesheet"  href="http://blog.ryukiy.net/css/mystyle.css">
+        <link rel="stylesheet"  href="https://blog.ryukiy.net/css/mystyle.css">
       
     
 
@@ -111,17 +111,17 @@ if (!doNotTrack) {
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="http://blog.ryukiy.net/">RyukiY&#39;s Blog</a>
+    <a class="header-title-link" href="https://blog.ryukiy.net/">RyukiY&#39;s Blog</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="http://blog.ryukiy.net/about">
+         href="https://blog.ryukiy.net/about">
     
     
     
       
-        <img class="header-picture" src="http://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+        <img class="header-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
       
     
     </a>
@@ -132,8 +132,8 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="http://blog.ryukiy.net/about">
-          <img class="sidebar-profile-picture" src="http://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+        <a href="https://blog.ryukiy.net/about">
+          <img class="sidebar-profile-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Ryuki Yoshimatsu</h4>
         
@@ -145,7 +145,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://blog.ryukiy.net/">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -155,7 +155,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://blog.ryukiy.net/categories">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -165,7 +165,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://blog.ryukiy.net/tags">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -175,7 +175,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://blog.ryukiy.net/archives">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -185,7 +185,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://blog.ryukiy.net/about">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -223,7 +223,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="http://blog.ryukiy.net/index.xml">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -270,7 +270,7 @@ if (!doNotTrack) {
   
     <span>カテゴリー: </span>
     
-      <a class="category-link" href="http://blog.ryukiy.net/categories/windows">Windows</a>
+      <a class="category-link" href="https://blog.ryukiy.net/categories/windows">Windows</a>
     
   
 
@@ -311,11 +311,11 @@ if (!doNotTrack) {
 
 <p>コマンド プロンプトから tree コマンドを実行した時の様子をデバッグしてみました。tree は、フォルダーの中身をツリー構造で表示してくれるコマンドです。こんな感じ。</p>
 
-<p><img src="http://blog.ryukiy.net/img/post/2016/04/201603311.png" alt="201603311" /></p>
+<p><img src="https://blog.ryukiy.net/img/post/2016/04/201603311.png" alt="201603311" /></p>
 
 <p>tree を実行した時のコマンド プロンプトの様子をデバッグしてみます。すると、以下のように、コマンド プロンプトの中では CreateProcessW という API を呼んでいることが分かります。この CreateProcessW に与えられている引数を見ると、&#8221;C:\Windows\System32\tree.com&#8221; というファイルのパスが与えられています。つまり、tree コマンドを実行すると、&#8221;C:\Windows\System32\tree.com&#8221; というファイルから tree のプロセスが作られるということですね。</p>
 
-<p><img src="http://blog.ryukiy.net/img/post/2016/04/201603312.png" alt="201603312" /></p>
+<p><img src="https://blog.ryukiy.net/img/post/2016/04/201603312.png" alt="201603312" /></p>
 
 <p>ここで Csrss というプロセスをデバッグしてみます。この Csrss というのが Windows サブシステムです。ここ重要です。</p>
 
@@ -323,7 +323,7 @@ if (!doNotTrack) {
 
 <p>Csrss をデバッグしてみると、コマンド プロンプトから CreateProcessW を呼び出した直後に、Csrss の中では BaseSrvCreateProcess という API を呼び出しています。どうやら、Csrss の中でもプロセスを作る処理をしているようです。</p>
 
-<p><img src="http://blog.ryukiy.net/img/post/2016/04/201603313.png" alt="201603313" /></p>
+<p><img src="https://blog.ryukiy.net/img/post/2016/04/201603313.png" alt="201603313" /></p>
 
 <p>Csrss が BaseSrvCreateProcess の処理を行っている間、コマンド プロンプトは何をしているのか見てみましょう。時系列で言うと、以下の 3 番目の状態をデバッグしてみます。</p>
 
@@ -337,7 +337,7 @@ if (!doNotTrack) {
 
 <p>最初のコマンド プロンプトの状態と比べると、CreateProcessW の上の方に、何やらいろんな API が増えていますね。これの見方ですが、CreateProcessW の中で CreateProcessInternalW を呼び、さらに CreateProcessInternalW の中では CsrClientCallServer を呼び、さらに CsrClientCallServer の中では・・・ という見方をします。一言でいうと「スタック」です。このスタックの中を見てみると、CreateProcessW の処理が進み、<span style="color: #ff0000;">Csr</span>ClientCallServer の先で NtRequest<span style="color: #ff0000;">WaitReplyPort</span> というような API が呼ばれています。API に Csr なんて名前が付いていて、さらに WaitReplyPort という API を呼んでいるので、どうやらコマンド プロンプトは Csrss が実行している BaseSrvCreateProcess の処理が終わるのを待っているようです。</p>
 
-<p><img src="http://blog.ryukiy.net/img/post/2016/04/201603314.png" alt="201603314" /></p>
+<p><img src="https://blog.ryukiy.net/img/post/2016/04/201603314.png" alt="201603314" /></p>
 
 <p>というわけで、コマンド プロンプトは、Csrss に助けてもらわないと tree のプロセスを作ることができないことが分かりました。</p>
 
@@ -353,7 +353,7 @@ Flow of CreateProcess<br>
 
 <p>上のページの中に、以下のようなフロー図が掲載されています。今回デバッグしたのは、このフローのうちの Stage 5 の辺りになります。”Creating Process” のフローがコマンド プロンプトで実行されていて、”Windows subsystem” のフローが Csrss で実行されています。</p>
 
-<p><img src="http://blog.ryukiy.net/img/post/2016/04/201603315.png" alt="201603315" /></p>
+<p><img src="https://blog.ryukiy.net/img/post/2016/04/201603315.png" alt="201603315" /></p>
 
 <h2 id="linux-のための-windows-サブシステム">Linux のための Windows サブシステム</h2>
 
@@ -391,11 +391,11 @@ Flow of CreateProcess<br>
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">タグ</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="http://blog.ryukiy.net/tags/bash/">Bash</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/bash/">Bash</a>
 
-  <a class="tag tag--primary tag--small" href="http://blog.ryukiy.net/tags/lxss/">LXSS</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/lxss/">LXSS</a>
 
-  <a class="tag tag--primary tag--small" href="http://blog.ryukiy.net/tags/debugging/">Debugging</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/debugging/">Debugging</a>
 
                   </div>
                 
@@ -408,7 +408,7 @@ Flow of CreateProcess<br>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Next</span>
@@ -416,7 +416,7 @@ Flow of CreateProcess<br>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
                   <i class="fa fa-angle-right"></i>
@@ -435,7 +435,7 @@ Flow of CreateProcess<br>
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
                   <i class="fa fa-facebook-official"></i>
                 </a>
               
@@ -443,7 +443,7 @@ Flow of CreateProcess<br>
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=http://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
                   <i class="fa fa-twitter"></i>
                 </a>
               
@@ -482,7 +482,7 @@ Flow of CreateProcess<br>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Next</span>
@@ -490,7 +490,7 @@ Flow of CreateProcess<br>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
                   <i class="fa fa-angle-right"></i>
@@ -509,7 +509,7 @@ Flow of CreateProcess<br>
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
                   <i class="fa fa-facebook-official"></i>
                 </a>
               
@@ -517,7 +517,7 @@ Flow of CreateProcess<br>
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=http://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
                   <i class="fa fa-twitter"></i>
                 </a>
               
@@ -543,22 +543,22 @@ Flow of CreateProcess<br>
     
       <li class="share-option">
           
-           <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=&#43;=http%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F">
+           <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=&#43;=https%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F">
              <i class="fa fa-facebook-official"></i><span>Facebook で共有</span>
            </a>
          
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F">
           <i class="fa fa-facebook-official"></i><span>Facebook で共有</span>
         </a>
       </li>
     
       <li class="share-option">
           
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=&#43;=http%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F&amp;text==Bash&#43;on&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E3%82%92%E5%A6%84%E6%83%B3%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=&#43;=https%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F&amp;text==Bash&#43;on&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E3%82%92%E5%A6%84%E6%83%B3%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B">
               <i class="fa fa-twitter"></i><span>Twitter で共有</span>
             </a>
          
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F&amp;text=%25!s%28MISSING%29">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2016%2F04%2F01%2Fbash-on-windows%2F&amp;text=%25!s%28MISSING%29">
           <i class="fa fa-twitter"></i><span>Twitter で共有</span>
         </a>
       </li>
@@ -574,7 +574,7 @@ Flow of CreateProcess<br>
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="http://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+      <img id="about-card-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
     
     <h4 id="about-card-name">Ryuki Yoshimatsu</h4>
     
@@ -619,7 +619,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
                 <h3 class="media-heading">Azure Virtual Network TAP の利用によるメリット</h3>
               </a>
               <span class="media-meta">
@@ -636,7 +636,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
                 <h3 class="media-heading">Azure VM シングル インスタンスに SLA が適用されるようになりました</h3>
               </a>
               <span class="media-meta">
@@ -653,7 +653,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
                 <h3 class="media-heading">Windows Server 2016 に WordPress を手動でインストールしてみた</h3>
               </a>
               <span class="media-meta">
@@ -670,7 +670,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
                 <h3 class="media-heading">Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です</h3>
               </a>
               <span class="media-meta">
@@ -687,7 +687,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
                 <h3 class="media-heading">Bash on Windows のアーキテクチャーを妄想してみる</h3>
               </a>
               <span class="media-meta">
@@ -704,7 +704,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</h3>
               </a>
               <span class="media-meta">
@@ -721,7 +721,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</h3>
               </a>
               <span class="media-meta">
@@ -738,7 +738,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～IOPS とスループットの関係～</h3>
               </a>
               <span class="media-meta">
@@ -755,7 +755,7 @@ Flow of CreateProcess<br>
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～まずは性能をチェック～</h3>
               </a>
               <span class="media-meta">
@@ -784,7 +784,7 @@ Flow of CreateProcess<br>
     
   
     
-    <div id="cover" style="background-image:url('http://blog.ryukiy.net/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
   
 
 
@@ -796,7 +796,7 @@ Flow of CreateProcess<br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="http://blog.ryukiy.net/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://blog.ryukiy.net/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 <script lang="javascript">

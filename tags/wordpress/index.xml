@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wordpress on RyukiY&#39;s Blog</title>
-    <link>http://blog.ryukiy.net/tags/wordpress/</link>
+    <link>https://blog.ryukiy.net/tags/wordpress/</link>
     <description>Recent content in Wordpress on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 21 Nov 2016 15:42:58 +0900</lastBuildDate>
     
-	<atom:link href="http://blog.ryukiy.net/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.ryukiy.net/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Windows Server 2016 に WordPress を手動でインストールしてみた</title>
-      <link>http://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</link>
+      <link>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</link>
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
       
-      <guid>http://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</guid>
+      <guid>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</guid>
       <description>&lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;</description>
     </item>
     
