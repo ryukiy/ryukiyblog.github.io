@@ -1,23 +1,95 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on ryukiy.github.io</title>
-    <link>https://ryukiy.github.io/post/</link>
-    <description>Recent content in Posts on ryukiy.github.io</description>
+    <title>Posts on RyukiY&#39;s Blog</title>
+    <link>https://blog.ryukiy.net/post/</link>
+    <description>Recent content in Posts on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Thu, 25 Oct 2018 10:33:32 +0900</lastBuildDate>
     
-	<atom:link href="https://ryukiy.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.ryukiy.net/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure Virtual Network TAP の利用によるメリット</title>
-      <link>https://ryukiy.github.io/2018/10/azure-virtual-network-tap-%E3%81%AE%E5%88%A9%E7%94%A8%E3%81%AB%E3%82%88%E3%82%8B%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88/</link>
+      <link>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</link>
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
-      <guid>https://ryukiy.github.io/2018/10/azure-virtual-network-tap-%E3%81%AE%E5%88%A9%E7%94%A8%E3%81%AB%E3%82%88%E3%82%8B%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88/</guid>
-      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34; target=&#34;_blank&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。本稿では、VTAP を使用する目的や効果について触れてみたいと思います。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</guid>
+      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34; target=&#34;_blank&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Azure VM シングル インスタンスに SLA が適用されるようになりました</title>
+      <link>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</link>
+      <pubDate>Tue, 22 Nov 2016 00:57:09 +0000</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</guid>
+      <description>&lt;p&gt;Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows Server 2016 に WordPress を手動でインストールしてみた</title>
+      <link>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</link>
+      <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</guid>
+      <description>&lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です</title>
+      <link>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</link>
+      <pubDate>Mon, 21 Nov 2016 05:03:46 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</guid>
+      <description>&lt;p&gt;Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bash on Windows のアーキテクチャーを妄想してみる</title>
+      <link>https://blog.ryukiy.net/2016/04/01/bash-on-windows/</link>
+      <pubDate>Fri, 01 Apr 2016 18:49:17 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2016/04/01/bash-on-windows/</guid>
+      <description>&lt;p&gt;本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</title>
+      <link>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</link>
+      <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.ryukiy.net/2015/06/18/premium-storage-part3/&#34; target=&#34;_blank&#34;&gt;前回の記事&lt;/a&gt;の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</title>
+      <link>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</link>
+      <pubDate>Thu, 18 Jun 2015 15:16:29 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.ryukiy.net/2015/06/12/premium-storage-part2/&#34; target=&#34;_blank&#34;&gt;前回の記事&lt;/a&gt;の続きです。アプリケーションが必要とする IO の測定について説明します。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Premium Storage を使ってみよう ～IOPS とスループットの関係～</title>
+      <link>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</link>
+      <pubDate>Fri, 12 Jun 2015 12:40:15 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.ryukiy.net/2015/06/10/premium-storage-part1/&#34; target=&#34;_blank&#34;&gt;前回の記事&lt;/a&gt;の続きです。IOPS とスループットの関係について見てみます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Premium Storage を使ってみよう ～まずは性能をチェック～</title>
+      <link>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</link>
+      <pubDate>Wed, 10 Jun 2015 16:13:38 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</guid>
+      <description>&lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium Storage がリリースされました。&lt;/p&gt;</description>
     </item>
     
   </channel>
