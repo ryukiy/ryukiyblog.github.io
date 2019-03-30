@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Ryuki Yoshimatsu">
+<meta name="keywords" content="Microsoft Azure, Premium Storage, Virtual Machine, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
+<meta name="description" content="前回の記事の続きです。IOPS とスループットの関係について見てみます。">
+
+
+<meta property="og:description" content="前回の記事の続きです。IOPS とスループットの関係について見てみます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Premium Storage を使ってみよう ～IOPS とスループットの関係～">
+<meta name="twitter:title" content="Premium Storage を使ってみよう ～IOPS とスループットの関係～">
+<meta property="og:url" content="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+<meta property="twitter:url" content="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+<meta property="og:site_name" content="RyukiY&#39;s Blog">
+<meta property="og:description" content="前回の記事の続きです。IOPS とスループットの関係について見てみます。">
+<meta name="twitter:description" content="前回の記事の続きです。IOPS とスループットの関係について見てみます。">
+<meta property="og:locale" content="ja">
+
+  
+    <meta property="article:published_time" content="2015-06-12T12:40:15">
+  
+  
+    <meta property="article:modified_time" content="2015-06-12T12:40:15">
+  
+  
+  
+    
+      <meta property="article:section" content="Microsoft Azure">
+    
+      <meta property="article:section" content="Storage">
+    
+  
+  
+    
+      <meta property="article:tag" content="Virtual Machine">
+    
+      <meta property="article:tag" content="Premium Storage">
+    
+      <meta property="article:tag" content="IOPS">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Azure%20Storage.png">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Azure%20Storage.png">
+
+
+
+
+
+  <meta property="og:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
+
+
+    <title>Premium Storage を使ってみよう ～IOPS とスループットの関係～</title>
+
+    <link rel="icon" href="https://blog.ryukiy.net/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://blog.ryukiy.net/css/mystyle.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-58121217-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://blog.ryukiy.net/">RyukiY&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://blog.ryukiy.net/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://blog.ryukiy.net/about">
+          <img class="sidebar-profile-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Ryuki Yoshimatsu</h4>
+        
+          <h5 class="sidebar-profile-bio">Microsoft Cloud Solution Architect, CISSP</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/ryukiyoshimatsu" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ryukiy" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Premium Storage を使ってみよう ～IOPS とスループットの関係～
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2015-06-12T12:40:15&#43;09:00">
+        
+  
+  
+  
+  
+    2015-6-12
+  
+
+      </time>
+    
+    
+  
+  
+    <span>カテゴリー: </span>
+    
+      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>, 
+    
+      <a class="category-link" href="https://blog.ryukiy.net/categories/storage">Storage</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+                
+                  <div class="alert warning">  
+                    この記事は公開されてから 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                  </div>
+                
+              <p><a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>の続きです。IOPS とスループットの関係について見てみます。</p>
+
+<h2 id="iops-の数値は高いのにスループットが低いんですけど">IOPS の数値は高いのにスループットが低いんですけど？</h2>
+
+<p>前回の記事では、Premium Storage の IOPS を計測して、ディスク一台あたり最大 5,000 IOPS まで引き出せることを確認しました。ではスループットの性能はどうなのか実験してみます。<a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>では Azure VM に DS2 Standard を使用しましたが、今回の記事では DS4 Standard を使用しています。</p>
+
+<p>前回と同じように、<a href="http://www.iometer.org/" target="_blank">Iometer</a> を使って、9 個の Worker で 4 KB 100% Read / 0% Random の負荷を Premium Storage のディスクにかけます。</p>
+
+<p>結果はご覧のとおり、スループットは約 21 MB/s です。低いですね。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/06/ltp20150610.png" alt="21MB" /></p>
+
+<p>「IO がスタックしてるんじゃないの？ちゃんと高い IOPS 出てる？」という方、IOPS はキッチリ 5,000 以上出ています。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/06/ltp220150610.png" alt="5000 IOPS" /></p>
+
+<p>つまり、「高い IOPS の数値が得られている状態」と「高いスループットが得られている状態」はイコールではないということです。</p>
+
+<h2 id="os-の中は-バケツリレー-水よこせー-な状態">OS の中は「バケツリレー、水よこせー」な状態</h2>
+
+<p>「バケツリレー、水よこせー」を見て、「お、<a href="https://youtu.be/IrH2ItY8aJM?t=1m7s" target="_blank">Metallica/Blackened の空耳</a>じゃね？」と思ったあなたはメタル通です。</p>
+
+<p>メタル通なあなたも、そうじゃないあなたも、OS の 中でどのように IO をハンドリングしているのか見てみましょう。IO と一言で言ってもいろいろな IO がありますが、今回のテーマであるディスクの IO がハンドリングされる様子を簡単な図にすると以下のようになります。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/06/irp20150610.png" alt="IRP" /></p>
+
+<p>アプリケーション、ファイル システム、ディスク ドライバ、ハード ディスクなどの各モジュール間で IO のやり取りが行われていますが、この図の中に書かれている「I/O Request Packet（略して IRP）」と呼ばれるものが IO を受け渡しするためのバケツです。OS の中では IRP のバケツリレーが常に行われており、今回の実験で使っている Iometer からの負荷もバケツリレーで処理されます。</p>
+
+<p>このバケツリレー、今回の記事ではさくっと簡単に書いていますが、もっとディープに仕組みを知りたい方は下のページをご覧ください。少し古い記事ですが、基本的な考え方は最近のバージョンの Windows でも同じです。上で書いた図は、下のページの「Basic Disk and Volume Input/Output (I/O) Processes」を簡略化したものです。そこそこディープな内容ですので、心してかかってください。</p>
+
+<p>How Basic Disks and Volumes Work<br>
+<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)" target="_blank">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)</a></p>
+
+<h2 id="io-を入れるバケツの大きさは">IO を入れるバケツの大きさは？</h2>
+
+<p>最初の実験結果に話を戻します。Iometer で 4 KB 100% Read / 0% Random の負荷を Premium Storage のディスクにかけたら、5,000 IOPS で スループット 21 MB/s という結果が出ました。今度は 64 KB 100% Read / 0% Random の負荷をかけてみます。すると、結果は以下の通り。スループットが 200 MB/s という結果が出ました。充分なスループットが得られています。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/06/tp20150612.png" alt="200MB" /></p>
+
+<p>ちなみにこの時、IOPS の数値は 3,100 IOPS です。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/06/tp220150612.png" alt="3100 IOPS" /></p>
+
+<p>他のテストケースも実験してみましたが、まとめると以下のようになります。テストケースで設定を変更しているのは読み込みサイズだけですが、読み込みサイズが大きい方がスループットは良好です。64 KB と 256 KB でスループットの結果が同じなのはなぜ？については後述します。</p>
+
+<p><br></p>
+
+<table>
+<thead>
+<tr>
+<th>テストケース</th>
+<th>IOPS</th>
+<th>スループット</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4 KB 100% Read / 0% Random</td>
+<td>約 5,000</td>
+<td>約 21 MB/s</td>
+</tr>
+
+<tr>
+<td>16 KB 100% Read / 0% Random</td>
+<td>約 4,900</td>
+<td>約 80 MB/s</td>
+</tr>
+
+<tr>
+<td>32 KB 100% Read / 0% Random</td>
+<td>約 4,100</td>
+<td>約 135 MB/s</td>
+</tr>
+
+<tr>
+<td>64 KB 100% Read / 0% Random</td>
+<td>約 3,100</td>
+<td>約 200 MB/s</td>
+</tr>
+
+<tr>
+<td>256 KB 100% Read / 0% Random</td>
+<td>約 780</td>
+<td>約 200 MB/s</td>
+</tr>
+</tbody>
+</table>
+
+<p>上で書いた通り、OS の中では IO がバケツリレーで渡されます。上の表の結果をバケツリレーで表現すると、こうなります。</p>
+
+<ul>
+<li>おちょこ（書き込みサイズ 4KB）でバケツリレーをすると、一度に運ぶ水の量が軽い分だけバケツリレーの受け渡しのスピード（IOPS）は上がるが、運べる水の総量（スループット）は少ない</li>
+<li>牛乳びん（書き込みサイズ 16KB/32KB）でバケツリレーすると、バケツリレーの受け渡しのスピードも運べる水の総量も、そこそこの数字が得られる</li>
+<li>バケツ（書き込みサイズ 64 KB/256 KB）でバケツリレーすると、一度に運ぶ水の量が重いのでバケツリレーの受け渡しのスピードは落ちるが、運べる水の総量は一番多い</li>
+</ul>
+
+<p>つまり、ディスクのスループットを出すには、ディスクのスピードも重要ですが、書き込みや読み込みを行う際のサイズも重要だということです。Premium Storage を使えば無条件にスループットが上がる！という認識で使うと、実際に試した結果、あれっ？ということになる可能性もあるので要注意です。</p>
+
+<h2 id="アプリが使っているバケツのサイズを確認してください">アプリが使っているバケツのサイズを確認してください</h2>
+
+<p>データベースのように高いディスク パフォーマンスを必要とするアプリは、大抵の場合はディスクの書き込み・読み込みに関するチューニング ガイドが提供されています。例えば、SQL Server の場合は以下のような情報が公開されています。</p>
+
+<p>SQL Server 2008 のためのディスク パーティション アライメント ベスト プラクティス<br>
+<a href="https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)" target="_blank">https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)</a></p>
+
+<p>この部分のチューニングはなかなか奥が深いです。ディスクのスループットが大きければアプリのパフォーマンスが必ず上がるというわけでもありません。例えば、サイズが 4KB 以下のファイルを大量に書き込みするようなアプリを使う場合には、スループットよりも書き込み回数（IOPS の数値）を重視した方がパフォーマンスが上がるでしょうし、逆に一度の書き込みが GB 単位のようなアプリではスループットを重視した方がパフォーマンスが上がるでしょう。今回の記事では触れていませんが、ファイル システムのチューニングが必要になる場合もあります。</p>
+
+<p>クラウドの良いところの一つに、実験のための環境を簡単に作ることができるという点があります。書き込み・読み込みサイズの理論的な数字を机上で計算するのも良いのですが、クラウドでテスト環境を構築し、実際に試してデータを得ることで時間もコストも工数もおさえてしまいましょう。</p>
+
+<h2 id="64-kb-と-256-kb-の実験結果について">64 KB と 256 KB の実験結果について</h2>
+
+<p>上の方で書いた実験結果ですが、64 KB と 256 KB のテストケースでスループットが両方とも約 200 MB/s になっています。こういう実験をした場合、一般的には 256 KB の方が高いスループットが得られます。今回、64 KB と 256 KB でスループットが同じになった原因は、Premium Storage で、ディスク一台あたりの最大スループットに 200 MB/s という上限を設けているためです。Premium Storage の挙動の詳細については下記をご覧ください。</p>
+
+<p>Azure Premium Storage: 高パフォーマンス用に設計する<br>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/premium-storage-performance" target="_blank">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/premium-storage-performance</a></p>
+
+<p>加えて、Azure VM のスペックに対しても IOPS とスループットの上限が設けられています。今回の実験では DS4 Standard の VM を使っています。<a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>でも紹介した、Azure VM のサイズに関するページで DS4 Standard の部分を見てみましょう。</p>
+
+<p>Azure の Windows 仮想マシンのサイズ<br>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes" target="_blank">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
+
+<p>DS4 Standard の「最大ディスク IOPS および帯域幅 」を見ると、最大 IOPS は 25,600、スループットは 256 MB/s と書かれています。<a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>では DS2 Standard を使っているのに、今回の記事で DS4 Standard を使っているのはなんでだろう？」と思われた方、理由は Azure VM のスペックのためです。DS2 Standard は最大スループットが 64 MB/s なので、今回の実験をしても、64 KB 100% Read / 0% Random の負荷をかけた時に 200 MB/s というスループットは得られないのです。</p>
+
+<p>オンプレミス環境の感覚で IOPS の設定を行うと、あれっ？となることがあるかもしれません。Premium Storage および Azure VM のスペックに注意しながら、ご自身の環境に合うベストな組み合わせを探してみてください。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<ul>
+<li>「高い IOPS の数値が得られている状態」と「高いスループットが得られている状態」はイコールではない</li>
+<li>OS の中では、バケツリレーで IO を受け渡ししている</li>
+<li>アプリのパフォーマンスを考慮する時、バケツリレーの受け渡しのスピード（IOPS）を重視するのか、運ぶ水の総量（スループット）を重視するのかを検討する</li>
+<li>Premium Storage、Azure VM はスペックに応じて IOPS/スループットの上限が決まっているので、必要とするパフォーマンスが引き出せるスペックを選ぶ必要がある</li>
+</ul>
+
+<p>次回はアプリの視点からの IO について書いてみようと思います。</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">タグ</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-storage/">Premium Storage</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/" data-tooltip="Premium Storage を使ってみよう ～まずは性能をチェック～">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+              
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+                  <i class="fa fa-facebook-official"></i>
+                </a>
+              
+          </li>
+        
+          <li class="post-action hide-xs">
+              
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/12/premium-storage-part2/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9eIOPS%20%e3%81%a8%e3%82%b9%e3%83%ab%e3%83%bc%e3%83%97%e3%83%83%e3%83%88%e3%81%ae%e9%96%a2%e4%bf%82%ef%bd%9e">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ryuki Yoshimatsu. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/" data-tooltip="Premium Storage を使ってみよう ～まずは性能をチェック～">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+              
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+                  <i class="fa fa-facebook-official"></i>
+                </a>
+              
+          </li>
+        
+          <li class="post-action hide-xs">
+              
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/12/premium-storage-part2/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9eIOPS%20%e3%81%a8%e3%82%b9%e3%83%ab%e3%83%bc%e3%83%97%e3%83%83%e3%83%88%e3%81%ae%e9%96%a2%e4%bf%82%ef%bd%9e">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+          
+           <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=&#43;=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F12%2Fpremium-storage-part2%2F">
+             <i class="fa fa-facebook-official"></i><span>Facebook で共有</span>
+           </a>
+         
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F12%2Fpremium-storage-part2%2F">
+          <i class="fa fa-facebook-official"></i><span>Facebook で共有</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+          
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=&#43;=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F12%2Fpremium-storage-part2%2F&amp;text==Premium&#43;Storage&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86&#43;%EF%BD%9EIOPS&#43;%E3%81%A8%E3%82%B9%E3%83%AB%E3%83%BC%E3%83%97%E3%83%83%E3%83%88%E3%81%AE%E9%96%A2%E4%BF%82%EF%BD%9E">
+              <i class="fa fa-twitter"></i><span>Twitter で共有</span>
+            </a>
+         
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F12%2Fpremium-storage-part2%2F&amp;text=%25!s%28MISSING%29">
+          <i class="fa fa-twitter"></i><span>Twitter で共有</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Ryuki Yoshimatsu</h4>
+    
+      <div id="about-card-bio">Microsoft Cloud Solution Architect, CISSP</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Cloud Solution Architect, CISSP
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Tokyo, Japan
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
+                <h3 class="media-heading">Azure Virtual Network TAP の利用によるメリット</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Microsoft Ignite 2018 において、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview" target="_blank">Azure Virtual Network TAP (VTAP)</a> のプレビューが発表されました。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
+                <h3 class="media-heading">Azure VM シングル インスタンスに SLA が適用されるようになりました</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2016
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
+                <h3 class="media-heading">Windows Server 2016 に WordPress を手動でインストールしてみた</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2016
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Windows Server 2016 に WordPress を手動でインストールする方法について説明します。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+                <h3 class="media-heading">Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2016
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+                <h3 class="media-heading">Bash on Windows のアーキテクチャーを妄想してみる</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2016
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+                <h3 class="media-heading">Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/" target="_blank">前回の記事</a>の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+                <h3 class="media-heading">Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" target="_blank">前回の記事</a>の続きです。アプリケーションが必要とする IO の測定について説明します。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+                <h3 class="media-heading">Premium Storage を使ってみよう ～IOPS とスループットの関係～</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>の続きです。IOPS とスループットの関係について見てみます。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+                <h3 class="media-heading">Premium Storage を使ってみよう ～まずは性能をチェック～</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Azure VM で利用可能な高パフォーマンスのディスクとして、Premium Storage がリリースされました。</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         9 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://blog.ryukiy.net/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
