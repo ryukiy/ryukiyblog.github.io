@@ -15,8 +15,8 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～">
 <meta name="twitter:title" content="Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～">
-<meta property="og:url" content="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-<meta property="twitter:url" content="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+<meta property="og:url" content="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+<meta property="twitter:url" content="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
 <meta property="og:site_name" content="RyukiY&#39;s Blog">
 <meta property="og:description" content="前回の記事の続きです。アプリケーションが必要とする IO の測定について説明します。">
 <meta name="twitter:description" content="前回の記事の続きです。アプリケーションが必要とする IO の測定について説明します。">
@@ -55,25 +55,25 @@
 
 
 
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Azure%20Storage.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Azure%20Storage.png">
+  <meta property="og:image" content="http://blog.ryukiy.net/img/icons/Azure%20Storage.png">
+  <meta property="twitter:image" content="http://blog.ryukiy.net/img/icons/Azure%20Storage.png">
 
 
 
 
 
-  <meta property="og:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
+  <meta property="og:image" content="http://blog.ryukiy.net/img/dat/ryukiy.jpg">
+  <meta property="twitter:image" content="http://blog.ryukiy.net/img/dat/ryukiy.jpg">
 
 
     <title>Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</title>
 
-    <link rel="icon" href="https://blog.ryukiy.net/favicon.ico">
+    <link rel="icon" href="http://blog.ryukiy.net/favicon.ico">
     
 
     
 
-    <link rel="canonical" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+    <link rel="canonical" href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -81,11 +81,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="https://blog.ryukiy.net/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="http://blog.ryukiy.net/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
     
       
-        <link rel="stylesheet"  href="https://blog.ryukiy.net/css/mystyle.css">
+        <link rel="stylesheet"  href="http://blog.ryukiy.net/css/mystyle.css">
       
     
 
@@ -113,17 +113,17 @@ if (!doNotTrack) {
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://blog.ryukiy.net/">RyukiY&#39;s Blog</a>
+    <a class="header-title-link" href="http://blog.ryukiy.net/">RyukiY&#39;s Blog</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="https://blog.ryukiy.net/about">
+         href="http://blog.ryukiy.net/about">
     
     
     
       
-        <img class="header-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+        <img class="header-picture" src="http://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
       
     
     </a>
@@ -134,8 +134,8 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="https://blog.ryukiy.net/about">
-          <img class="sidebar-profile-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+        <a href="http://blog.ryukiy.net/about">
+          <img class="sidebar-profile-picture" src="http://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Ryuki Yoshimatsu</h4>
         
@@ -147,7 +147,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/">
+      <a class="sidebar-button-link " href="http://blog.ryukiy.net/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -157,7 +157,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories">
+      <a class="sidebar-button-link " href="http://blog.ryukiy.net/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -167,7 +167,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/tags">
+      <a class="sidebar-button-link " href="http://blog.ryukiy.net/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -177,7 +177,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/archives">
+      <a class="sidebar-button-link " href="http://blog.ryukiy.net/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -187,7 +187,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about">
+      <a class="sidebar-button-link " href="http://blog.ryukiy.net/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -225,7 +225,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/index.xml">
+      <a class="sidebar-button-link " href="http://blog.ryukiy.net/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -272,9 +272,9 @@ if (!doNotTrack) {
   
     <span>カテゴリー: </span>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>, 
+      <a class="category-link" href="http://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>, 
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/storage">Storage</a>
+      <a class="category-link" href="http://blog.ryukiy.net/categories/storage">Storage</a>
     
   
 
@@ -297,7 +297,7 @@ if (!doNotTrack) {
 
 <p>見出しに書いた質問、Web サーバーに関わらず、「SQL Server を使いたいんだけど IOPS はいくつ？」とか、「スマホゲームのバックエンドに Azure を使うと IOPS は？」など、いろいろなケースで聞かれるのですが、いつも正確な回答ができずにいます。理由は、<a href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" target="_blank">二回目の記事</a>に書いたバケツリレーにあります。詳細は二回目の記事を読んでいただきたいのですが、OS の中では、IO は 下の図のようにバケツリレーで渡されます。</p>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/irp20150610.png" alt="IRP" /></p>
+<p><img src="http://blog.ryukiy.net/img/post/2015/06/irp20150610.png" alt="IRP" /></p>
 
 <p>このバケツリレーで使われるバケツの数が分からないと、ディスクに必要な IOPS の見積もりができません。バケツを最初に渡すのはアプリケーションです。なので、IOPS をいくつに設定するのかは、アプリケーションがどれだけのバケツをファイル システムに渡すのか、つまりどれほどの IO をアプリが発生させるのかに依存します。そう考えると、「Web サーバーの場合は、ざっくり 2,000 IOPS くらい用意しとけば良いですよ」のような回答は、Web アプリの構成やアクセス数などを無視した適当な回答ということになってしまいます。</p>
 
@@ -319,7 +319,7 @@ if (!doNotTrack) {
 
 <p>というわけで、早速前回までと同じように <a href="http://www.iometer.org/" target="_blank">Iometer</a> を使って、4 KB 75% Read (25% Write) / 0% Random の負荷を Premium Storage のディスクにかけます。この状態で Iometer が発生させている IO の数を測定してみます。Performance Monitor で上に書いた 3 つのカウンターを監視すると、以下のようなグラフが表示されます。</p>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/perfl20150617.png" alt="Perfmon" /></p>
+<p><img src="http://blog.ryukiy.net/img/post/2015/06/perfl20150617.png" alt="Perfmon" /></p>
 
 <p>Iometer で Read 75%/Write 25% と設定して、Premium Storage の最大 IOPS である 5,000 IOPS が出るように負荷をかけてみました。Iometer で設定した Read 75%/Write 25% という負荷の割り振りが、Performance Monitor から見ても正しく割り振りされていることが確認できます。</p>
 
@@ -329,11 +329,11 @@ if (!doNotTrack) {
 
 <p>サーバー全体で使用されている IO の傾向を見るには、Performance Monitor の Process のカウンターから上記した 3 つのカウンターを選択しますが、監視対象には「_Total」を選択します。_Total を選択すると、特定のアプリではなく、サーバーで動いている全てのアプリの IO を合計した値を示してくれます。以下は、監視対象に _Total が選択されている例です。</p>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/perfc20150617.png" alt="PerfCounter" /></p>
+<p><img src="http://blog.ryukiy.net/img/post/2015/06/perfc20150617.png" alt="PerfCounter" /></p>
 
 <p>_Total を監視してサーバー全体の IO の傾向を確認した後ですが、次はどのアプリが IO を消費しているのかを確認します。今度は、先ほど選んだ _Total の下に表示されている「&lt;All instances&gt;」を選択して IO を測定します。&lt;All instances&gt; を選択すると、全てのアプリに対して IO を測定するためのカウンターが設定されます。全てのアプリが使っている IO の測定を行うと、以下のような画面が表示されます。これは Iometer で負荷をかけながら Performance Monitor で測定した時の画面です。</p>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/perfd20150617.png" alt="PerfInst" /></p>
+<p><img src="http://blog.ryukiy.net/img/post/2015/06/perfd20150617.png" alt="PerfInst" /></p>
 
 <p>「Dynamo」というアプリ（プロセス）が IO を大量に使って、他のプロセスが使っている IO はほぼ 0 であることが分かります。「Dynamo ってなんだ？」と思われた方、Iometer を実行した時に負荷を発生させるプロセスが Dynamo です。「Iometer っていうアプリ名なんだから、Performance Monitor でも Iometer って名前で表示されるんじゃないの？」と思われがちですが、Performance Monitor にはアプリ名ではなく、プロセス名で表示されますのでご注意ください。</p>
 
@@ -361,11 +361,11 @@ if (!doNotTrack) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">タグ</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+  <a class="tag tag--primary tag--small" href="http://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-storage/">Premium Storage</a>
+  <a class="tag tag--primary tag--small" href="http://blog.ryukiy.net/tags/premium-storage/">Premium Storage</a>
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
+  <a class="tag tag--primary tag--small" href="http://blog.ryukiy.net/tags/iops/">IOPS</a>
 
                   </div>
                 
@@ -378,7 +378,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Next</span>
@@ -386,7 +386,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="Premium Storage を使ってみよう ～IOPS とスループットの関係～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="Premium Storage を使ってみよう ～IOPS とスループットの関係～">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
                   <i class="fa fa-angle-right"></i>
@@ -405,7 +405,7 @@ if (!doNotTrack) {
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
                   <i class="fa fa-facebook-official"></i>
                 </a>
               
@@ -413,7 +413,7 @@ if (!doNotTrack) {
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/18/premium-storage-part3/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%82%a2%e3%83%97%e3%83%aa%e3%81%8c%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%20IO%20%e3%82%92%e6%b8%ac%e5%ae%9a%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%ef%bd%9e">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=http://blog.ryukiy.net/2015/06/18/premium-storage-part3/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%82%a2%e3%83%97%e3%83%aa%e3%81%8c%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%20IO%20%e3%82%92%e6%b8%ac%e5%ae%9a%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%ef%bd%9e">
                   <i class="fa fa-twitter"></i>
                 </a>
               
@@ -452,7 +452,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">Next</span>
@@ -460,7 +460,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="Premium Storage を使ってみよう ～IOPS とスループットの関係～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="Premium Storage を使ってみよう ～IOPS とスループットの関係～">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
                   <i class="fa fa-angle-right"></i>
@@ -479,7 +479,7 @@ if (!doNotTrack) {
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
                   <i class="fa fa-facebook-official"></i>
                 </a>
               
@@ -487,7 +487,7 @@ if (!doNotTrack) {
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/18/premium-storage-part3/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%82%a2%e3%83%97%e3%83%aa%e3%81%8c%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%20IO%20%e3%82%92%e6%b8%ac%e5%ae%9a%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%ef%bd%9e">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=http://blog.ryukiy.net/2015/06/18/premium-storage-part3/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%82%a2%e3%83%97%e3%83%aa%e3%81%8c%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%20IO%20%e3%82%92%e6%b8%ac%e5%ae%9a%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%ef%bd%9e">
                   <i class="fa fa-twitter"></i>
                 </a>
               
@@ -513,22 +513,22 @@ if (!doNotTrack) {
     
       <li class="share-option">
           
-           <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=&#43;=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F">
+           <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=&#43;=http%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F">
              <i class="fa fa-facebook-official"></i><span>Facebook で共有</span>
            </a>
          
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F">
           <i class="fa fa-facebook-official"></i><span>Facebook で共有</span>
         </a>
       </li>
     
       <li class="share-option">
           
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=&#43;=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F&amp;text==Premium&#43;Storage&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86&#43;%EF%BD%9E%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B&#43;IO&#43;%E3%82%92%E6%B8%AC%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B%EF%BD%9E">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=&#43;=http%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F&amp;text==Premium&#43;Storage&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86&#43;%EF%BD%9E%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B&#43;IO&#43;%E3%82%92%E6%B8%AC%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B%EF%BD%9E">
               <i class="fa fa-twitter"></i><span>Twitter で共有</span>
             </a>
          
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F&amp;text=%25!s%28MISSING%29">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fblog.ryukiy.net%2F2015%2F06%2F18%2Fpremium-storage-part3%2F&amp;text=%25!s%28MISSING%29">
           <i class="fa fa-twitter"></i><span>Twitter で共有</span>
         </a>
       </li>
@@ -544,7 +544,7 @@ if (!doNotTrack) {
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
+      <img id="about-card-picture" src="http://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="Author&#39;s picture" />
     
     <h4 id="about-card-name">Ryuki Yoshimatsu</h4>
     
@@ -589,7 +589,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
                 <h3 class="media-heading">Azure Virtual Network TAP の利用によるメリット</h3>
               </a>
               <span class="media-meta">
@@ -606,7 +606,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
                 <h3 class="media-heading">Azure VM シングル インスタンスに SLA が適用されるようになりました</h3>
               </a>
               <span class="media-meta">
@@ -623,7 +623,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
                 <h3 class="media-heading">Windows Server 2016 に WordPress を手動でインストールしてみた</h3>
               </a>
               <span class="media-meta">
@@ -640,7 +640,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
                 <h3 class="media-heading">Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です</h3>
               </a>
               <span class="media-meta">
@@ -657,7 +657,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2016/04/01/bash-on-windows/">
                 <h3 class="media-heading">Bash on Windows のアーキテクチャーを妄想してみる</h3>
               </a>
               <span class="media-meta">
@@ -674,7 +674,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</h3>
               </a>
               <span class="media-meta">
@@ -691,7 +691,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</h3>
               </a>
               <span class="media-meta">
@@ -708,7 +708,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～IOPS とスループットの関係～</h3>
               </a>
               <span class="media-meta">
@@ -725,7 +725,7 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+              <a class="link-unstyled" href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
                 <h3 class="media-heading">Premium Storage を使ってみよう ～まずは性能をチェック～</h3>
               </a>
               <span class="media-meta">
@@ -754,7 +754,7 @@ if (!doNotTrack) {
     
   
     
-    <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('http://blog.ryukiy.net/images/cover.jpg');"></div>
   
 
 
@@ -766,7 +766,7 @@ if (!doNotTrack) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="https://blog.ryukiy.net/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="http://blog.ryukiy.net/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 <script lang="javascript">

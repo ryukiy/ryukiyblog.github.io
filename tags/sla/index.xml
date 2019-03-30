@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sla on RyukiY&#39;s Blog</title>
-    <link>https://blog.ryukiy.net/tags/sla/</link>
+    <link>http://blog.ryukiy.net/tags/sla/</link>
     <description>Recent content in Sla on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 22 Nov 2016 00:57:09 +0000</lastBuildDate>
     
-	<atom:link href="https://blog.ryukiy.net/tags/sla/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.ryukiy.net/tags/sla/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure VM シングル インスタンスに SLA が適用されるようになりました</title>
-      <link>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</link>
+      <link>http://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</link>
       <pubDate>Tue, 22 Nov 2016 00:57:09 +0000</pubDate>
       
-      <guid>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</guid>
+      <guid>http://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</guid>
       <description>&lt;p&gt;Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。&lt;/p&gt;</description>
     </item>
     
