@@ -5,28 +5,28 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.55.5 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content="Microsoft Azure, Premium Storage, Virtual Machine, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
-<meta name="description" content="前回の記事の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。">
+<meta name="keywords" content="Azure VM, Premium SSD, Virtual Machine, ディスク, スループット, IOPS, レイテンシー, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
+<meta name="description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
 
 
-<meta property="og:description" content="前回の記事の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。">
+<meta property="og:description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
-<meta name="twitter:title" content="Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～">
+<meta property="og:title" content="Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～">
+<meta name="twitter:title" content="Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～">
 <meta property="og:url" content="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
 <meta property="twitter:url" content="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
 <meta property="og:site_name" content="RyukiY&#39;s Blog">
-<meta property="og:description" content="前回の記事の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。">
-<meta name="twitter:description" content="前回の記事の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。">
+<meta property="og:description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
+<meta name="twitter:description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
 <meta property="og:locale" content="ja">
 
   
     <meta property="article:published_time" content="2015-07-01T08:40:02">
   
   
-    <meta property="article:modified_time" content="2015-07-01T08:40:02">
+    <meta property="article:modified_time" content="2019-06-03T10:06:38">
   
   
   
@@ -40,9 +40,15 @@
     
       <meta property="article:tag" content="Virtual Machine">
     
-      <meta property="article:tag" content="Premium Storage">
+      <meta property="article:tag" content="Premium SSD">
+    
+      <meta property="article:tag" content="Standard SSD">
+    
+      <meta property="article:tag" content="Standard HDD">
     
       <meta property="article:tag" content="IOPS">
+    
+      <meta property="article:tag" content="Level 300">
     
   
 
@@ -55,8 +61,8 @@
 
 
 
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Azure%20Storage.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Azure%20Storage.png">
+  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
 
 
 
@@ -66,7 +72,7 @@
   <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
 
 
-    <title>Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</title>
+    <title>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</title>
 
     <link rel="icon" href="https://blog.ryukiy.net/favicon.ico">
     
@@ -257,19 +263,29 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～
+      Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2015-07-01T08:40:02&#43;09:00">
-        
+        公開日 
   
   
   
   
     2015-7-1
+  
+
+      </time>
+      <time itemprop="lastModified" datetime="2019-06-03T10:06:38&#43;09:00">
+        最終更新日 
+  
+  
+  
+  
+    2019-6-3
   
 
       </time>
@@ -292,91 +308,153 @@ if (!doNotTrack) {
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
                 
-                  <div class="alert warning">  
-                    この記事は公開されてから 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                  </div>
-                
-              <p><a href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/" target="_blank">前回の記事</a>の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。</p>
+              <p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p>
 
-<h2 id="アプリのパフォーマンスが出ない-ディスクが怪しい">アプリのパフォーマンスが出ない、ディスクが怪しい？</h2>
+<h2 id="目次">目次</h2>
 
-<p>Premium Storage の話、最終回です。<a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">一回目</a>は概要の話、<a href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" target="_blank">二回目</a>は IOPS とスループットの話、<a href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/" target="_blank">三回目</a>はアプリと IO に関する話、今回はディスクのレスポンスに関する話です。</p>
+<p></p>
 
-<p>アプリのパフォーマンスが出ないという相談を受ける際、「ディスクが怪しいと思ってるんですけど、どうやって調べたら良いですかね？」という質問を受けることが多々あります。ディスクがボトルネックになっているかどうかは、ディスクのレスポンス タイムを確認することで判断できます。今回はその方法について書いてみます。</p>
+<ol>
+<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">Premium SSD を使ってみよう ～IOPS とスループットの関係～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</a></li>
+<li>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～（本記事）</li>
+</ol>
 
-<h2 id="ディスクのレスポンス-タイムを確認してみよう">ディスクのレスポンス タイムを確認してみよう</h2>
+<h2 id="ディスクの応答時間がパフォーマンスの判断指標となる">ディスクの応答時間がパフォーマンスの判断指標となる</h2>
 
-<p><a href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/" target="_blank">前回の記事</a>では、Performance Monitor を使ってプロセスが使用する IO を測定する方法を紹介しましたが、Performance Monitor でディスクのレスポンス タイムも確認することができます。レスポンス タイムを確認する際には以下のカウンターを使います。</p>
+<p>システムのパフォーマンスが低下している原因がディスクの場合、ディスクの応答時間が長くなります。</p>
+
+<p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、パフォーマンス モニターを使ってアプリケーションの稼働に必要な IO 操作の数を測定する方法を紹介しましたが、パフォーマンス モニターでディスクの応答時間も確認することができます。応答時間を確認するためには以下のカウンターを使います。
+<p></p></p>
 
 <ul>
 <li>LogicalDisk\Avg. Disk sec/Read</li>
 <li>LogicalDisk\Avg. Disk sec/Write</li>
 </ul>
 
-<p>もしくは</p>
+<p>もしくは
+<p></p></p>
 
 <ul>
 <li>PhysicalDisk\Avg. Disk sec/Read</li>
 <li>PhysicalDisk\Avg. Disk sec/Write</li>
 </ul>
 
-<p>同じカウンターが論理ディスク（LogicalDisk）と物理ディスク（PhysicalDisk）に対してそれぞれ用意されていて、「Avg. Disk sec/Read」はディスクの平均読み取り時間、「Avg. Disk sec/Write」はディスクの平均書き込み時間になります。今回は LogicalDisk の方を使います。例えば、1 本の論理ディスクが 10 本の物理ディスクで構成されているような場合、LogicalDisk のカウンターから得られるデータと PhysicalDisk のカウンターから得られるデータは異なるので注意してください。アプリからは論理ディスクの単位でディスクを参照しますが、ディスクのボトルネックを調査する時には、最終的には論理ディスクを構成する物理ディスクを個別に調査するケースもあります。</p>
+<p>似たようなカウンターが論理ディスク（LogicalDisk）と物理ディスク（PhysicalDisk）のそれぞれに対して用意されており、「Avg. Disk sec/Read」はディスクの平均読み取り時間、「Avg. Disk sec/Write」はディスクの平均書き込み時間を示します。本記事では LogicalDisk を使ってディスクの応答時間を測定します。</p>
 
-<h2 id="iometer-で実験してみよう">Iometer で実験してみよう</h2>
+<p>例えば、1 本の論理ディスクが 16 本の物理ディスクで構成されている場合、LogicalDisk のカウンターから得られるデータと PhysicalDisk のカウンターから得られるデータは異なるので注意してください。LogicalDisk のデータを参照した際には、16 本の物理ディスクを 1 つの論理ディスクとして束ねた結果のパフォーマンス データが得られます。PhysicalDisk を参照した際には、個別の物理ディスクのパフォーマンス データが得られます。</p>
 
-<p><a href="http://www.iometer.org/" target="_blank">Iometer</a> を使って、4 KB 100% Read / 0% Random の負荷を Premium Storage のディスクにかけながら、LogicalDisk\Avg. Disk sec/Read の測定をしてみます。この時、5,000 IOPS が出るまできっちり回します。結果は以下の通り。</p>
+<p>アプリケーションからは論理ディスクの単位でディスクを参照しますので、ディスクのボトルネックを調査する時には最初に LogicalDisk で論理ディスクの応答時間を測定し、その後に PhysicalDisk で物理ディスクを個別に調査するケースが一般的だと思います。</p>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/07/perf20150701.png" alt="Iometer" /></p>
+<h2 id="iometer-で負荷をかけた際のディスクの応答時間を測定">Iometer で負荷をかけた際のディスクの応答時間を測定</h2>
 
-<p>Performance Monitor で得られる数字ですが、最新の値（Last）、平均値（Average）、最小値（Minimum）、最大値（Maximum）が取得できます。この例では 0.002 と表示されていますが、これはディスクの読み取りに関するレスポンス タイムが 2ms であることを意味しています。今回の実験では、Premium Storage に Iometer で 5,000 IOPS まで負荷をかけた場合、ディスクが平均 2ms 以下で応答してくれることが確認できました。</p>
+<p><a href="http://www.iometer.org/" target="_blank">Iometer</a> を使って、4 KB 100% Read / 0% Random の負荷をサイズ 1TB の Premium SSD のディスクにかけながら、LogicalDisk\Avg. Disk sec/Read の測定をします。この時、Iometer からは 5,000 IOPS の負荷がディスクに対して発生しています。</p>
 
-<h2 id="レスポンス-タイムはどれくらいだと問題ないと言えるの">レスポンス タイムはどれくらいだと問題ないと言えるの？</h2>
+<p>パフォーマンス モニターで計測したディスクの平均読み取り時間として、約 3.5 ミリ秒付近でグラフが一定化していることが分かります。</p>
 
-<p>今回の実験では 2ms 以下のレスポンス タイムという結果が得られましたが、2ms って速いのか？遅いのか？という話をします。</p>
+<p><img src="https://blog.ryukiy.net/img/post/2015/07/perflatency.png" alt="PerfLatency" /></p>
 
-<p>マイクロソフトの製品の場合、ディスクのレスポンス タイムに関するガイドラインを提供しています。例えば以下のような情報が公開されています。</p>
+<p>また、Iometer の画面からは、応答時間を数字で確認することが可能です。パフォーマンス モニターで計測できた数値と同じ数値が Iometer からも確認できます。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/07/iolatency.png" alt="IoLatency" /></p>
+
+<h2 id="許容できるディスクの応答時間はどの程度か">許容できるディスクの応答時間はどの程度か？</h2>
+
+<p>Premium SSD の場合、IO 操作の応答時間が 10 ミリ秒未満となるように設計されています。そのため、Premium SSD を使っているにもかかわらず、ディスクの応答時間が常に数十ミリ秒を超えるようなシステムの場合、ディスクが原因でパフォーマンス遅延が発生しているということが言えます。</p>
+
+<p>また、OS やミドルウェアの観点からディスクの応答時間に関するガイドラインが提供されています。以下のページをご参照ください。</p>
 
 <p>サーバーのパフォーマンスを測定する<br>
 <a href="https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)" target="_blank">https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)</a></p>
 
-<p>Windows 環境の場合、一般的にはレスポンス タイムは 25ms を下回る数値が許容できる値になります。25ms を超えるとディスクのパフォーマンスについて見直す必要があります。ですが、25ms という数値はあくまで目安です。例えば、SQL Server に超高速なレスポンスを求めるという要件がある場合、10ms 以下のレスポンス タイムを目標にディスクのチューニングを行うケースもあります。</p>
+<p>Windows 環境の場合、応答時間が 25 ミリ秒以内におさまる設計を推奨しています。ですが、 25 ミリ秒という数値は一般的な目安です。例えば、SQL Server に超高速なレスポンスを求めるという要件があるような場合には、10 ミリ秒以下の応答時間を目標にディスクのチューニングを行うケースもあります。</p>
 
-<p>また、日中の業務時間は 25ms 以下におさまっているけど、夜間のバックアップ ジョブを実行すると、一時的にレスポンス タイムが 100ms を超える、というようなケースはよくあります。レスポンス タイムが 100ms を超えることで、バックアップ ジョブが期待通りの時間内に終了しないというようなケースではディスクのパフォーマンスの見直しが必要になりますが、バックアップの負荷が日中の業務に影響を与えないレベルであれば、バックアップ ジョブ実行時のレスポンス タイムは例外的に許容する、というケースも多くあります。ご自身のシステム要件に応じて、ディスクのレスポンス タイムの期待値を設定してみてください。</p>
+<p>また、日中の業務時間中は 25 ミリ秒以内で処理を実行することができる環境で、夜間のバックアップ処理の実行中に一時的に応答時間が 100 ミリ秒を超える、というようなケースはよくあります。応答時間が 100 ミリ秒を超えることでバックアップ処理が業務の開始時間前までに終了しないというようなケースではディスクのパフォーマンスの見直しが必要になりますが、夜間のバックアップの負荷が日中の業務に影響を与えないレベルであれば、バックアップ処理実行時の 100 ミリ秒という応答時間は許容する、というケースも多くあります。</p>
 
-<p>そういうわけで、Premium Storage の 2ms というレスポンス タイムは、一般的なしきい値から見たら相当速いと言うことができます。</p>
+<p>システム要件に応じて、ディスクの応答時間の期待値を調整していただくことをお勧めします。</p>
 
-<h2 id="premium-storage-を使った場合-使わない場合の比較">Premium Storage を使った場合、使わない場合の比較</h2>
+<h2 id="standard-ssd-standard-hdd-の比較">Standard SSD/Standard HDD の比較</h2>
 
-<p>上の実験は、Azure VM の DS4 Standard + Premium Storage で実施しました。同じ実験を、Azure VM の D4 Standard + Standard Storage（10 本の VHD を、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739(v=ws.11)" target="_blank">記憶域プール</a>を使って 1 本の論理ディスクとして構成）でも実施してみました。結果は以下の通り。以下は Iometer の画面ですが、赤い枠で囲った部分が注目ポイントです。</p>
+<p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a>で説明した通り、Azure VM で使用できるディスクには以下の三種類のディスクがあり、それぞれの性能は以下の通りです。
+<p></p></p>
 
-<ul>
-<li>DS4 Standard + Premium Storage の結果（平均レスポンス タイム 1.76ms、最大レスポンス タイム 12.1ms）</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>ディスクの種類</th>
+<th>1TB あたりの IOPS</th>
+<th>1TB あたりのスループット</th>
+<th>東日本リージョンでの月額</th>
+</tr>
+</thead>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/07/psio20150701.png" alt="Premium" /></p>
+<tbody>
+<tr>
+<td>Premium SSD</td>
+<td>5,000</td>
+<td>200 MB/秒</td>
+<td>¥17,409.28</td>
+</tr>
 
-<ul>
-<li>D4 Standard + Standard Storage の結果（平均レスポンス タイム 10.5ms、最大レスポンス タイム 168.3ms）</li>
-</ul>
+<tr>
+<td>Standard SSD</td>
+<td>500</td>
+<td>60 MB/秒</td>
+<td>¥8,601.60</td>
+</tr>
 
-<p><img src="https://blog.ryukiy.net/img/post/2015/07/sio20150701.png" alt="Standard" /></p>
+<tr>
+<td>Standard HDD</td>
+<td>500</td>
+<td>60 MB/秒</td>
+<td>¥4,587.52</td>
+</tr>
+</tbody>
+</table>
 
-<p>負荷は、両方のケースで 5,000 IOPS が出るようにかけていますが、レスポンス タイムが異なります。</p>
+<p>今まで Premium SSD に着目して説明してきましたが、他の二種類のディスク、Standard SSD と Standard HDD の応答時間について説明します。この二種類のディスクは、サイズ 1TB あたりの IOPS およびスループットの期待値はそれぞれ 5,000 IOPS、60 MB/秒となり、同じ性能値を示しています。両者の違いは、ディスクの応答時間にあります。</p>
 
-<p>全体的に D4 Standard + Standard Storage の方が遅いです。Standard Storage を利用した場合、平均レスポンス タイムは 10ms をちょっと超えるという結果です。この数字は許容範囲ではないかと思いますが、最大レスポンス タイムの 168.3ms は許容できないかもしれません。Premium Storage を使用した場合には、最大レスポンス タイムが 12.1ms という値になっており、ディスクへの負荷がスパイクした場合でもレスポンス タイムがそこそこ速いという結果になります。</p>
+<p>Iometer を使って、サイズ 1TB の Standard SSD および Standard HDD に対して 4 KB 100% Read / 0% Random の負荷をかけます。この時、500 IOPS の負荷がディスクにかかるように Iometer を実行します。</p>
 
-<p>Premium Storage を使った場合と使わない場合とでは、IOPS の数値は同じ結果が得られていますが、ディスクのレスポンス タイムは異なります。システム要件とコストのバランスを見ながら、構築しようとするシステムに適したディスクは何か？というところを探ってみるのがポイントになります。</p>
+<p>ディスクの平均読み取り時間は、両者とも約 3～4 ミリ秒になります。大きく異なるのは、読み取り時間のピーク値になります。通常より高い負荷がかけられた状況では、IO の応答時間は平均の読み取り時間内におさまらず、やや高めの応答時間を記録します。IO を処理するため、一時的に応答時間がピークに達した時の値の履歴をトレースし、Standard SSD と Standard HDD とで比較します。</p>
+
+<p>以下は Standard SSD にディスク性能以上の過負荷をかけた場合の、ディスクの読み取り時間のピーク値の履歴をトレースしたものです。メーターの中に青い線がありますが、この青い線がピーク値の履歴を表します。今回の計測では、最大で 25 ミリ秒以内にピーク値がおさまっていることが分かります。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/07/standardssd.png" alt="StandardSSD" /></p>
+
+<p>一方で、以下は Standard HDD にディスク性能以上の過負荷をかけた場合の、ディスクの読み取り時間のピーク値の履歴をトレースしたものです。メーターの中の青い線に着目すると、ピーク値は最大で 50 ミリ秒ほどに達していることが分かります。</p>
+
+<p><img src="https://blog.ryukiy.net/img/post/2015/07/standardhdd.png" alt="StandardHDD" /></p>
+
+<p>つまり、Standard SSD の方が応答時間が短く、パフォーマンスも安定していると言うことができます。Standard HDD はパフォーマンスにばらつきが見られますが、Azure Storage の製品チームからのアナウンスとして、各ストレージの比較について説明された記事が公開されています。詳細は以下をご参照ください。</p>
+
+<p>Azure 仮想マシンのワークロードを対象とする Standard SSD ディスクの一般提供のお知らせ
+<a href="https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/" target="_blank">https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/</a></p>
+
+<p>同じ IOPS/スループット性能を提供するディスクでも、ディスクの種類によって応答時間が異なるため、システム全体のパフォーマンスに影響します。システム要件とコストのバランスを見ながら、最適なディスクを選択していただくことをお勧めします。</p>
 
 <h2 id="まとめ">まとめ</h2>
 
+<p></p>
+
 <ul>
-<li>アプリで期待したパフォーマンスが出ない時、それがディスクのせいかどうかを確認するためには、ディスクのレスポンス タイムを測定する</li>
-<li>ディスクのレスポンス タイムの測定には Performance Monitor を使う</li>
-<li>一般的な Windows 環境では、 レスポンス タイムが 25ms を超えない状態が望ましい</li>
-<li>同じ IOPS が得られても、Premium Storage と Standard Storage とではレスポンス タイムが異なるので、求める条件に適したディスクを選択する</li>
+<li>ディスクがシステムのパフォーマンス低下の原因かどうかを判断するためには、ディスクの応答時間を確認します</li>
+<li>Windows 環境の場合、ディスクの応答時間は OS に標準で付属されているパフォーマンス モニターで測定が可能です</li>
+<li>一般的な Windows 環境では、応答時間は 25 ミリ秒以内におさまっているのが望ましい状態です</li>
+<li>Standard SSD と Standard HDD を比較した場合、IOPS/スループット性能の数値が同じ場合でも、ディスクの応答時間が異なります</li>
 </ul>
 
-<p>Premium Storage の記事を計四回書きましたが、このシリーズは今回で終了です。また Premium Storage で違うネタが見つかったら記事を追加していきます。</p>
+<h2 id="関連記事">関連記事</h2>
+
+<p></p>
+
+<ol>
+<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">Premium SSD を使ってみよう ～IOPS とスループットの関係～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</a></li>
+<li>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～（本記事）</li>
+</ol>
               
             </div>
           </div>
@@ -390,9 +468,15 @@ if (!doNotTrack) {
                     
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-storage/">Premium Storage</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-ssd/">Standard SSD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-hdd/">Standard HDD</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/level-300/">Level 300</a>
 
                   </div>
                 
@@ -413,7 +497,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
                   <i class="fa fa-angle-right"></i>
@@ -440,7 +524,7 @@ if (!doNotTrack) {
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%83%9c%e3%83%88%e3%83%ab%e3%83%8d%e3%83%83%e3%82%af%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%e3%81%ae%e3%81%af%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%a7%e3%81%99%e3%81%8b%ef%bc%9f%ef%bd%9e">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%83%9c%e3%83%88%e3%83%ab%e3%83%8d%e3%83%83%e3%82%af%e3%81%ae%e5%8e%9f%e5%9b%a0%e3%81%8c%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%aa%e3%81%ae%e3%81%8b%e3%81%a9%e3%81%86%e3%81%8b%e3%82%92%e7%89%b9%e5%ae%9a%e3%81%99%e3%82%8b%ef%bd%9e">
                   <i class="fa fa-twitter"></i>
                 </a>
               
@@ -487,7 +571,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～">
               
                   <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
                   <i class="fa fa-angle-right"></i>
@@ -514,7 +598,7 @@ if (!doNotTrack) {
         
           <li class="post-action hide-xs">
               
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=Premium%20Storage%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%83%9c%e3%83%88%e3%83%ab%e3%83%8d%e3%83%83%e3%82%af%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%e3%81%ae%e3%81%af%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%a7%e3%81%99%e3%81%8b%ef%bc%9f%ef%bd%9e">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%83%9c%e3%83%88%e3%83%ab%e3%83%8d%e3%83%83%e3%82%af%e3%81%ae%e5%8e%9f%e5%9b%a0%e3%81%8c%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%aa%e3%81%ae%e3%81%8b%e3%81%a9%e3%81%86%e3%81%8b%e3%82%92%e7%89%b9%e5%ae%9a%e3%81%99%e3%82%8b%ef%bd%9e">
                   <i class="fa fa-twitter"></i>
                 </a>
               
@@ -548,7 +632,7 @@ if (!doNotTrack) {
     
       <li class="share-option">
         
-          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F07%2F01%2Fpremium-storage-part4%2F&amp;text=Premium&#43;Storage&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86&#43;%EF%BD%9E%E3%83%9C%E3%83%88%E3%83%AB%E3%83%8D%E3%83%83%E3%82%AF%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%AE%E3%81%AF%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%A7%E3%81%99%E3%81%8B%EF%BC%9F%EF%BD%9E">
+          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F07%2F01%2Fpremium-storage-part4%2F&amp;text=Premium&#43;SSD&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86&#43;%EF%BD%9E%E3%83%9C%E3%83%88%E3%83%AB%E3%83%8D%E3%83%83%E3%82%AF%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%81%8C%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%AA%E3%81%AE%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B%EF%BD%9E">
             <i class="fa fa-twitter"></i><span>Twitter で共有</span>
           </a>
         
@@ -696,14 +780,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jul 7, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/" target="_blank">前回の記事</a>の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -713,14 +797,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jun 6, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" target="_blank">前回の記事</a>の続きです。アプリケーションが必要とする IO の測定について説明します。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">前回の記事</a>では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -730,14 +814,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～IOPS とスループットの関係～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～IOPS とスループットの関係～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jun 6, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>の続きです。IOPS とスループットの関係について見てみます。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -747,14 +831,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～まずは性能をチェック～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～性能と注意点をチェック～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jun 6, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Azure VM で利用可能な高パフォーマンスのディスクとして、Premium Storage がリリースされました。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p>Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

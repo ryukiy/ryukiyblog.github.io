@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.55.5 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="Windows, Virtual Machine, SLA, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。">
@@ -262,7 +262,17 @@ if (!doNotTrack) {
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2016-11-22T00:57:09Z">
-        
+        公開日 
+  
+  
+  
+  
+    2016-11-22
+  
+
+      </time>
+      <time itemprop="lastModified" datetime="2016-11-22T00:57:09Z">
+        最終更新日 
   
   
   
@@ -291,7 +301,7 @@ if (!doNotTrack) {
             <div class="main-content-wrap">
                 
                   <div class="alert warning">  
-                    この記事は公開されてから 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                    この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
                   </div>
                 
               <p>Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。</p>
@@ -656,14 +666,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jul 7, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/18/premium-storage-part3/" target="_blank">前回の記事</a>の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -673,14 +683,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jun 6, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/12/premium-storage-part2/" target="_blank">前回の記事</a>の続きです。アプリケーションが必要とする IO の測定について説明します。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">前回の記事</a>では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -690,14 +700,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～IOPS とスループットの関係～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～IOPS とスループットの関係～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jun 6, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p><a href="http://blog.ryukiy.net/2015/06/10/premium-storage-part1/" target="_blank">前回の記事</a>の続きです。IOPS とスループットの関係について見てみます。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -707,14 +717,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
-                <h3 class="media-heading">Premium Storage を使ってみよう ～まずは性能をチェック～</h3>
+                <h3 class="media-heading">Premium SSD を使ってみよう ～性能と注意点をチェック～</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jun 6, 2015
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Azure VM で利用可能な高パフォーマンスのディスクとして、Premium Storage がリリースされました。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p>Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

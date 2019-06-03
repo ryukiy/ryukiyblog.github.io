@@ -8,86 +8,14 @@
   </url>
   
   <url>
-    <loc>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</loc>
-    <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</loc>
-    <lastmod>2016-11-21T15:42:58+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</loc>
-    <lastmod>2016-11-21T05:03:46+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2016/04/01/bash-on-windows/</loc>
-    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</loc>
-    <lastmod>2015-07-01T08:40:02+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</loc>
-    <lastmod>2015-06-18T15:16:29+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</loc>
-    <lastmod>2015-06-12T12:40:15+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</loc>
-    <lastmod>2015-06-10T16:13:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/about/</loc>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/archives/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/bash/</loc>
-    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.ryukiy.net/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/debugging/</loc>
-    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/iops/</loc>
-    <lastmod>2015-07-01T08:40:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/lxss/</loc>
-    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/categories/microsoft-azure/</loc>
-    <lastmod>2018-10-25T10:33:32+09:00</lastmod>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -99,19 +27,13 @@
   
   <url>
     <loc>https://blog.ryukiy.net/post/</loc>
-    <lastmod>2018-10-25T10:33:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/premium-storage/</loc>
-    <lastmod>2015-07-01T08:40:02+09:00</lastmod>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/</loc>
-    <lastmod>2018-10-25T10:33:32+09:00</lastmod>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -122,38 +44,14 @@
   </url>
   
   <url>
-    <loc>https://blog.ryukiy.net/tags/sla/</loc>
-    <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/categories/storage/</loc>
-    <lastmod>2015-07-01T08:40:02+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/</loc>
-    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.ryukiy.net/tags/tap/</loc>
     <lastmod>2018-10-25T10:33:32+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.ryukiy.net/categories/virtual-machine/</loc>
-    <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/virtual-machine/</loc>
-    <lastmod>2015-07-01T08:40:02+09:00</lastmod>
+    <loc>https://blog.ryukiy.net/tags/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,8 +62,19 @@
   </url>
   
   <url>
-    <loc>https://blog.ryukiy.net/categories/windows/</loc>
-    <lastmod>2016-11-21T15:42:58+09:00</lastmod>
+    <loc>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</loc>
+    <lastmod>2016-11-22T00:57:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/sla/</loc>
+    <lastmod>2016-11-22T00:57:09+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/categories/virtual-machine/</loc>
+    <lastmod>2016-11-22T00:57:09+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -176,14 +85,124 @@
   </url>
   
   <url>
+    <loc>https://blog.ryukiy.net/categories/windows/</loc>
+    <lastmod>2016-11-21T15:42:58+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.ryukiy.net/tags/windows-server-2016/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</loc>
+    <lastmod>2016-11-21T15:42:58+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.ryukiy.net/tags/wordpress/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</loc>
+    <lastmod>2016-11-21T05:03:46+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/bash/</loc>
+    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/2016/04/01/bash-on-windows/</loc>
+    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/debugging/</loc>
+    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/lxss/</loc>
+    <lastmod>2016-04-01T18:49:17+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/iops/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/level-300/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/premium-ssd/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/standard-hdd/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/standard-ssd/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/categories/storage/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/virtual-machine/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/archives/</loc>
     <priority>0</priority>
   </url>
   

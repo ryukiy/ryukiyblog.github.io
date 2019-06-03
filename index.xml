@@ -57,39 +57,39 @@
     </item>
     
     <item>
-      <title>Premium Storage を使ってみよう ～ボトルネックになっているのはディスクですか？～</title>
+      <title>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</title>
       <link>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</link>
       <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://blog.ryukiy.net/2015/06/18/premium-storage-part3/&#34; target=&#34;_blank&#34;&gt;前回の記事&lt;/a&gt;の続きです。システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを確認する方法について触れたいと思います。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/18/premium-storage-part3/&#34;&gt;前回の記事&lt;/a&gt;では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Premium Storage を使ってみよう ～アプリが使っている IO を測定してみる～</title>
+      <title>Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</title>
       <link>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</link>
       <pubDate>Thu, 18 Jun 2015 15:16:29 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://blog.ryukiy.net/2015/06/12/premium-storage-part2/&#34; target=&#34;_blank&#34;&gt;前回の記事&lt;/a&gt;の続きです。アプリケーションが必要とする IO の測定について説明します。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/12/premium-storage-part2/&#34;&gt;前回の記事&lt;/a&gt;では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Premium Storage を使ってみよう ～IOPS とスループットの関係～</title>
+      <title>Premium SSD を使ってみよう ～IOPS とスループットの関係～</title>
       <link>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</link>
       <pubDate>Fri, 12 Jun 2015 12:40:15 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://blog.ryukiy.net/2015/06/10/premium-storage-part1/&#34; target=&#34;_blank&#34;&gt;前回の記事&lt;/a&gt;の続きです。IOPS とスループットの関係について見てみます。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&#34;&gt;前回の記事&lt;/a&gt;では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Premium Storage を使ってみよう ～まずは性能をチェック～</title>
+      <title>Premium SSD を使ってみよう ～性能と注意点をチェック～</title>
       <link>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</link>
       <pubDate>Wed, 10 Jun 2015 16:13:38 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</guid>
-      <description>&lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium Storage がリリースされました。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。&lt;/p&gt;</description>
     </item>
     
     <item>

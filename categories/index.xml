@@ -6,6 +6,7 @@
     <description>Recent content in Categories on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
+    <lastBuildDate>Thu, 25 Oct 2018 10:33:32 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.ryukiy.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,11 +21,11 @@
     </item>
     
     <item>
-      <title>Storage</title>
-      <link>https://blog.ryukiy.net/categories/storage/</link>
-      <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
+      <title>Virtual Network</title>
+      <link>https://blog.ryukiy.net/categories/virtual-network/</link>
+      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/categories/storage/</guid>
+      <guid>https://blog.ryukiy.net/categories/virtual-network/</guid>
       <description></description>
     </item>
     
@@ -38,20 +39,20 @@
     </item>
     
     <item>
-      <title>Virtual Network</title>
-      <link>https://blog.ryukiy.net/categories/virtual-network/</link>
-      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
-      
-      <guid>https://blog.ryukiy.net/categories/virtual-network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Windows</title>
       <link>https://blog.ryukiy.net/categories/windows/</link>
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/categories/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Storage</title>
+      <link>https://blog.ryukiy.net/categories/storage/</link>
+      <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/categories/storage/</guid>
       <description></description>
     </item>
     
