@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -10,55 +10,46 @@
   <url>
     <loc>https://blog.ryukiy.net/categories/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/categories/microsoft-azure/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/network/</loc>
     <lastmod>2018-10-25T10:33:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/post/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/security/</loc>
     <lastmod>2018-10-25T10:33:32+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.ryukiy.net/tags/tap/</loc>
-    <lastmod>2018-10-25T10:33:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.ryukiy.net/tags/tap/</loc>
+    <lastmod>2018-10-25T10:33:32+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/categories/virtual-network/</loc>
     <lastmod>2018-10-25T10:33:32+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -69,31 +60,26 @@
   <url>
     <loc>https://blog.ryukiy.net/tags/sla/</loc>
     <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/categories/virtual-machine/</loc>
     <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/windows/</loc>
     <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/categories/windows/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/windows-server-2016/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -104,7 +90,6 @@
   <url>
     <loc>https://blog.ryukiy.net/tags/wordpress/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -115,7 +100,6 @@
   <url>
     <loc>https://blog.ryukiy.net/tags/bash/</loc>
     <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -126,31 +110,26 @@
   <url>
     <loc>https://blog.ryukiy.net/tags/debugging/</loc>
     <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/lxss/</loc>
     <lastmod>2016-04-01T18:49:17+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/iops/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/level-300/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/premium-ssd/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -161,25 +140,21 @@
   <url>
     <loc>https://blog.ryukiy.net/tags/standard-hdd/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/standard-ssd/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/categories/storage/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.ryukiy.net/tags/virtual-machine/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -203,7 +178,6 @@
   
   <url>
     <loc>https://blog.ryukiy.net/archives/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

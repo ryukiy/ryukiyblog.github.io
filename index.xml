@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>RyukiY&#39;s Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</guid>
-      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34; target=&#34;_blank&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -98,9 +98,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://blog.ryukiy.net/about/</guid>
-      <description>吉松 龍輝（よしまつ りゅうき） Cloud Solution Architect at Microsoft Japan
-CISSP (Certified Information Systems Security Professional)
-日本マイクロソフトに入社後、Windows Server/Client の高度障害解析エンジニアおよび緊急案件専任チームのテクニカル リードとして活動。アメリカ本社の R&amp;amp;D と協力して Windows のバグ修正や、OS モジュールのデバッグ・ダンプ解析などによる障害解析を担当。その後、プリセールス部門での技術提案活動やオンサイト サポート部門で技術トレーニングのデリバリー経験などを経て、AWS Japan、Palo Alto Networks Japan でクラウド アーキテクトとして活動。 現在は、日本マイクロソフトでMicrosoft Azure のアーキテクトを担当。
+      <description>吉松 龍輝（よしまつ りゅうき） Cross Technology Architect at Microsoft JapanCISSP (Certified Information Systems Security Professional)
+日本マイクロソフトに入社後、Windows Server/Client の高度障害解析エンジニアおよび緊急案件専任チームのテクニカル リードとして活動。アメリカ本社の R&amp;amp;D と協力して Windows のバグ修正や、OS モジュールのデバッグ・ダンプ解析などによる障害解析を担当。その後、プリセールス部門での技術提案活動やオンサイト サポート部門で技術トレーニングのデリバリー経験などを経て、AWS Japan、Palo Alto Networks Japan でクラウド アーキテクトとして活動。 現在は、日本マイクロソフトで Microsoft Azure を始めとしたクロス ソリューションのアーキテクトを担当。
 趣味はギター、バンド、ヘヴィ メタル。クラウドのコミュニティ活動の中では「メタル先輩」などと呼ばれています。 このブログの内容に関してご指摘やご質問などがありましたら、GitHub で Issue をオープンしていただくか、Twitter でご連絡ください。
 【免責事項】本ブログでの発言やコメントは、私が所属する組織・団体の正式な見解またはコメントではなく、私個人の見解を述べたものになります。本ブログに掲載された内容によって生じた損害等の一切の責任を負いかねますので、ご了承ください。本ブログの情報を利用する場合は、各自の責任においてご利用ください。</description>
     </item>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.55.5 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.69.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="Windows, Built-in Administrator, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。">
@@ -142,7 +142,7 @@ if (!doNotTrack) {
         </a>
         <h4 class="sidebar-profile-name">Ryuki Yoshimatsu</h4>
         
-          <h5 class="sidebar-profile-bio">Microsoft Cloud Solution Architect, CISSP</h5>
+          <h5 class="sidebar-profile-bio">Microsoft Cross Technology Architect, CISSP</h5>
         
       </div>
     
@@ -204,7 +204,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://twitter.com/ryukiyoshimatsu" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="https://twitter.com/MetalPaisen" target="_blank" rel="noopener">
     
       <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
       
@@ -303,50 +303,28 @@ if (!doNotTrack) {
                   </div>
                 
               <p>Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。</p>
-
 <h2 id="azure-vm-で-windows-vm-を作成する時の管理者">Azure VM で Windows VM を作成する時の管理者</h2>
-
 <p>Azure ポータルから Windows の VM を作成すると、以下のように管理者名を指定するところがあります。</p>
-
 <p>通常、ここで指定した管理者名で Windows にログオンします。</p>
-
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/adminname.png" alt="adminname" /></p>
-
+<p><img src="https://blog.ryukiy.net/img/post/2016/11/adminname.png" alt="adminname"></p>
 <h2 id="指定したユーザーが-administrator-であることの証">指定したユーザーが Administrator であることの証</h2>
-
 <p>Windows のユーザーには、SID と呼ばれる ID が割り当てられています。</p>
-
 <p>いわゆる Administrator は、Built-in Administrator と呼ばれています。</p>
-
 <p>Built-in Administrator の SID は末尾が 500 と決められており、以下のサポート技術情報にもそのことが記載されています。</p>
-
-<p>Windows オペレーティング システムの既知のセキュリティ識別子<br>
-<a href="https://support.microsoft.com/ja-jp/kb/243330" target="_blank">https://support.microsoft.com/ja-jp/kb/243330</a></p>
-
+<p>Windows オペレーティング システムの既知のセキュリティ識別子<!-- raw HTML omitted -->
+<a href="https://support.microsoft.com/ja-jp/kb/243330">https://support.microsoft.com/ja-jp/kb/243330</a></p>
 <p>ユーザーの SID を確認するには、whoami コマンドを実行します。</p>
-
 <p>VM 作成時に指定したユーザーで whoami を実行すると、以下のように SID の末尾が 500 であることが分かります。</p>
-
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/whoami.png" alt="whoami" /></p>
-
+<p><img src="https://blog.ryukiy.net/img/post/2016/11/whoami.png" alt="whoami"></p>
 <p>つまり、VM 作成時に指定したユーザーは Built-in Administrator として作成されているということが分かります。</p>
-
-<h2 id="built-in-administrator-と-その他の管理者の挙動の違い">Built-in Administrator と、その他の管理者の挙動の違い</h2>
-
+<h2 id="built-in-administrator-とその他の管理者の挙動の違い">Built-in Administrator と、その他の管理者の挙動の違い</h2>
 <p>Azure で Windows VM を作成すると、既定で UAC（ユーザーアカウント制御）が有効になっています。</p>
-
 <p>UAC が有効な状態で Built-in Administrator で「コマンド プロンプト（管理者）」を実行すると、普通にコマンド プロンプトが起動されます。</p>
-
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/uac500.png" alt="UAC500" /></p>
-
+<p><img src="https://blog.ryukiy.net/img/post/2016/11/uac500.png" alt="UAC500"></p>
 <p>Built-in Administrator 以外の管理者ユーザーで「コマンド プロンプト（管理者）」を実行すると、以下のプロンプトが表示されます。</p>
-
 <p>この表示が出たら、その管理者は Built-in Administrator ではない管理者ユーザーとして作成されています。</p>
-
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/uacother.png" alt="UACother" /></p>
-
+<p><img src="https://blog.ryukiy.net/img/post/2016/11/uacother.png" alt="UACother"></p>
 <h2 id="まとめ">まとめ</h2>
-
 <p>Built-in Administrator とその他の管理者を意識して Azure VM を使いましょう。</p>
               
             </div>
@@ -433,7 +411,7 @@ if (!doNotTrack) {
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2019 Ryuki Yoshimatsu. All Rights Reserved
+    &copy; 2020 Ryuki Yoshimatsu. All Rights Reserved
   </span>
 </footer>
 
@@ -536,13 +514,13 @@ if (!doNotTrack) {
     
     <h4 id="about-card-name">Ryuki Yoshimatsu</h4>
     
-      <div id="about-card-bio">Microsoft Cloud Solution Architect, CISSP</div>
+      <div id="about-card-bio">Microsoft Cross Technology Architect, CISSP</div>
     
     
       <div id="about-card-job">
         <i class="fa fa-briefcase"></i>
         <br/>
-        Cloud Solution Architect, CISSP
+        Cross Technology Architect, CISSP
       </div>
     
     
@@ -585,7 +563,7 @@ if (!doNotTrack) {
                   Oct 10, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Microsoft Ignite 2018 において、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview" target="_blank">Azure Virtual Network TAP (VTAP)</a> のプレビューが発表されました。</p></div>
+              <div class="media-content hide-xs font-merryweather"><p>Microsoft Ignite 2018 において、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview">Azure Virtual Network TAP (VTAP)</a> のプレビューが発表されました。</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
