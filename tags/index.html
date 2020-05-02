@@ -229,7 +229,7 @@ if (!doNotTrack) {
 
         <div id="tags-archives" class="main-content-wrap">
           <form id="filter-form" action="#">
-            <input name="tag" type="text" class="form-control input--xlarge" placeholder="タグで検索" autofocus="autofocus">
+            <input name="tag" type="text" class="form-control input--xlarge" placeholder="タグ検索" autofocus="autofocus">
           </form>
           <h4 class="archive-result text-color-base text-xlarge"
               data-message-zero=""
@@ -238,12 +238,12 @@ if (!doNotTrack) {
 
             <section>
               
-                <a class="tag tag--primary tag--small" href="#iops-list" data-tag="iops">
-                  iops
+                <a class="tag tag--primary tag--small" href="#virtual-machine-list" data-tag="virtual-machine">
+                  virtual-machine
                 </a>
               
-                <a class="tag tag--primary tag--small" href="#level-300-list" data-tag="level-300">
-                  level-300
+                <a class="tag tag--primary tag--small" href="#iops-list" data-tag="iops">
+                  iops
                 </a>
               
                 <a class="tag tag--primary tag--small" href="#premium-ssd-list" data-tag="premium-ssd">
@@ -258,12 +258,12 @@ if (!doNotTrack) {
                   standard-ssd
                 </a>
               
-                <a class="tag tag--primary tag--small" href="#virtual-machine-list" data-tag="virtual-machine">
-                  virtual-machine
+                <a class="tag tag--primary tag--small" href="#storage-list" data-tag="storage">
+                  storage
                 </a>
               
-                <a class="tag tag--primary tag--small" href="#windows-list" data-tag="windows">
-                  windows
+                <a class="tag tag--primary tag--small" href="#windows-os-list" data-tag="windows-os">
+                  windows-os
                 </a>
               
                 <a class="tag tag--primary tag--small" href="#bash-list" data-tag="bash">
@@ -282,6 +282,10 @@ if (!doNotTrack) {
                   network
                 </a>
               
+                <a class="tag tag--primary tag--small" href="#nva-list" data-tag="nva">
+                  nva
+                </a>
+              
                 <a class="tag tag--primary tag--small" href="#security-list" data-tag="security">
                   security
                 </a>
@@ -294,16 +298,107 @@ if (!doNotTrack) {
                   tap
                 </a>
               
-                <a class="tag tag--primary tag--small" href="#windows-server-2016-list" data-tag="windows-server-2016">
-                  windows-server-2016
-                </a>
-              
                 <a class="tag tag--primary tag--small" href="#wordpress-list" data-tag="wordpress">
                   wordpress
                 </a>
               
             </section>
             <section class="boxes">
+              
+                <div id="virtual-machine-list" class="archive box" data-tag="virtual-machine">
+                  <h4 class="archive-title">
+                    <a class="link-unstyled" href="virtual-machine">
+                      virtual-machine (6)
+                    </a>
+                  </h4>
+                  <ul class="archive-posts">
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+                          Premium SSD を使ってみよう ～性能と注意点をチェック～
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2015-6-10
+  
+</span>
+                      </li>
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+                          IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2015-6-12
+  
+</span>
+                      </li>
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+                          システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2015-6-18
+  
+</span>
+                      </li>
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+                          ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2015-7-1
+  
+</span>
+                      </li>
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+                          Azure Windows VM の管理者は Built-in Administrator です
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2016-11-21
+  
+</span>
+                      </li>
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
+                          Azure VM のシングル インスタンスは SLA が適用されます
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2016-11-22
+  
+</span>
+                      </li>
+                    
+                  </ul>
+                </div>
               
                 <div id="iops-list" class="archive box" data-tag="iops">
                   <h4 class="archive-title">
@@ -329,7 +424,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                          Premium SSD を使ってみよう ～IOPS とスループットの関係～
+                          IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -343,7 +438,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                          Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～
+                          システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -357,74 +452,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                          Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
-                        </a>
-                        <span class="archive-post-date"> - 
-  
-  
-  
-  
-    2015-7-1
-  
-</span>
-                      </li>
-                    
-                  </ul>
-                </div>
-              
-                <div id="level-300-list" class="archive box" data-tag="level-300">
-                  <h4 class="archive-title">
-                    <a class="link-unstyled" href="level-300">
-                      level-300 (4)
-                    </a>
-                  </h4>
-                  <ul class="archive-posts">
-                    
-                      <li class="archive-post">
-                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
-                          Premium SSD を使ってみよう ～性能と注意点をチェック～
-                        </a>
-                        <span class="archive-post-date"> - 
-  
-  
-  
-  
-    2015-6-10
-  
-</span>
-                      </li>
-                    
-                      <li class="archive-post">
-                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                          Premium SSD を使ってみよう ～IOPS とスループットの関係～
-                        </a>
-                        <span class="archive-post-date"> - 
-  
-  
-  
-  
-    2015-6-12
-  
-</span>
-                      </li>
-                    
-                      <li class="archive-post">
-                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                          Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～
-                        </a>
-                        <span class="archive-post-date"> - 
-  
-  
-  
-  
-    2015-6-18
-  
-</span>
-                      </li>
-                    
-                      <li class="archive-post">
-                        <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                          Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
+                          ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -463,7 +491,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                          Premium SSD を使ってみよう ～IOPS とスループットの関係～
+                          IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -477,7 +505,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                          Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～
+                          システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -491,7 +519,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                          Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
+                          ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -530,7 +558,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                          Premium SSD を使ってみよう ～IOPS とスループットの関係～
+                          IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -544,7 +572,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                          Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～
+                          システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -558,7 +586,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                          Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
+                          ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -597,7 +625,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                          Premium SSD を使ってみよう ～IOPS とスループットの関係～
+                          IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -611,7 +639,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                          Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～
+                          システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -625,7 +653,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                          Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
+                          ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -640,10 +668,10 @@ if (!doNotTrack) {
                   </ul>
                 </div>
               
-                <div id="virtual-machine-list" class="archive box" data-tag="virtual-machine">
+                <div id="storage-list" class="archive box" data-tag="storage">
                   <h4 class="archive-title">
-                    <a class="link-unstyled" href="virtual-machine">
-                      virtual-machine (4)
+                    <a class="link-unstyled" href="storage">
+                      storage (4)
                     </a>
                   </h4>
                   <ul class="archive-posts">
@@ -664,7 +692,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
-                          Premium SSD を使ってみよう ～IOPS とスループットの関係～
+                          IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -678,7 +706,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
-                          Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～
+                          システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -692,7 +720,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                          Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
+                          ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -707,17 +735,31 @@ if (!doNotTrack) {
                   </ul>
                 </div>
               
-                <div id="windows-list" class="archive box" data-tag="windows">
+                <div id="windows-os-list" class="archive box" data-tag="windows-os">
                   <h4 class="archive-title">
-                    <a class="link-unstyled" href="windows">
-                      windows (2)
+                    <a class="link-unstyled" href="windows-os">
+                      windows-os (3)
                     </a>
                   </h4>
                   <ul class="archive-posts">
                     
                       <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+                          Bash on Windows のアーキテクチャーを妄想してみる
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2016-4-1
+  
+</span>
+                      </li>
+                    
+                      <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
-                          Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です
+                          Azure Windows VM の管理者は Built-in Administrator です
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -730,15 +772,15 @@ if (!doNotTrack) {
                       </li>
                     
                       <li class="archive-post">
-                        <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
-                          Azure VM シングル インスタンスに SLA が適用されるようになりました
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
+                          WordPress on Windows Server 2016 のインストール手順を解説
                         </a>
                         <span class="archive-post-date"> - 
   
   
   
   
-    2016-11-22
+    2016-11-21
   
 </span>
                       </li>
@@ -831,7 +873,32 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
-                          Azure Virtual Network TAP の利用によるメリット
+                          Azure Virtual Network TAP のメリットを解説
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    2018-10-25
+  
+</span>
+                      </li>
+                    
+                  </ul>
+                </div>
+              
+                <div id="nva-list" class="archive box" data-tag="nva">
+                  <h4 class="archive-title">
+                    <a class="link-unstyled" href="nva">
+                      nva (1)
+                    </a>
+                  </h4>
+                  <ul class="archive-posts">
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
+                          Azure Virtual Network TAP のメリットを解説
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -856,7 +923,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
-                          Azure Virtual Network TAP の利用によるメリット
+                          Azure Virtual Network TAP のメリットを解説
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -881,7 +948,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
-                          Azure VM シングル インスタンスに SLA が適用されるようになりました
+                          Azure VM のシングル インスタンスは SLA が適用されます
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -906,7 +973,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/">
-                          Azure Virtual Network TAP の利用によるメリット
+                          Azure Virtual Network TAP のメリットを解説
                         </a>
                         <span class="archive-post-date"> - 
   
@@ -914,31 +981,6 @@ if (!doNotTrack) {
   
   
     2018-10-25
-  
-</span>
-                      </li>
-                    
-                  </ul>
-                </div>
-              
-                <div id="windows-server-2016-list" class="archive box" data-tag="windows-server-2016">
-                  <h4 class="archive-title">
-                    <a class="link-unstyled" href="windows-server-2016">
-                      windows-server-2016 (1)
-                    </a>
-                  </h4>
-                  <ul class="archive-posts">
-                    
-                      <li class="archive-post">
-                        <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
-                          Windows Server 2016 に WordPress を手動でインストールしてみた
-                        </a>
-                        <span class="archive-post-date"> - 
-  
-  
-  
-  
-    2016-11-21
   
 </span>
                       </li>
@@ -956,7 +998,7 @@ if (!doNotTrack) {
                     
                       <li class="archive-post">
                         <a class="archive-post-title" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
-                          Windows Server 2016 に WordPress を手動でインストールしてみた
+                          WordPress on Windows Server 2016 のインストール手順を解説
                         </a>
                         <span class="archive-post-date"> - 
   

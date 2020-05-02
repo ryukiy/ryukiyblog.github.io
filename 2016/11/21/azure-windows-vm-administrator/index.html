@@ -7,14 +7,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content="Windows, Built-in Administrator, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
+<meta name="keywords" content="Windows, Virtual Machine, Built-in Administrator, ビルトイン Administrator, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。">
 
 
 <meta property="og:description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
-<meta name="twitter:title" content="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
+<meta property="og:title" content="Azure Windows VM の管理者は Built-in Administrator です">
+<meta name="twitter:title" content="Azure Windows VM の管理者は Built-in Administrator です">
 <meta property="og:url" content="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
 <meta property="twitter:url" content="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
 <meta property="og:site_name" content="RyukiY&#39;s Blog">
@@ -31,14 +31,14 @@
   
   
     
-      <meta property="article:section" content="Microsoft Azure">
-    
-      <meta property="article:section" content="Virtual Machine">
+      <meta property="article:section" content="Azure Virtual Machines">
     
   
   
     
-      <meta property="article:tag" content="Windows">
+      <meta property="article:tag" content="Virtual Machine">
+    
+      <meta property="article:tag" content="Windows OS">
     
   
 
@@ -62,7 +62,7 @@
   <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
 
 
-    <title>Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です</title>
+    <title>Azure Windows VM の管理者は Built-in Administrator です</title>
 
     <link rel="icon" href="https://blog.ryukiy.net/favicon.ico">
     
@@ -253,14 +253,14 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です
+      Azure Windows VM の管理者は Built-in Administrator です
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2016-11-21T05:03:46&#43;09:00">
-        公開日 
+        <b>公開日:</b> 
   
   
   
@@ -270,24 +270,38 @@ if (!doNotTrack) {
 
       </time>
       <time itemprop="lastModified" datetime="2016-11-21T05:03:46&#43;09:00">
-        最終更新日 
+        &nbsp;&nbsp;&nbsp;<b>最終更新日:</b> 
   
   
   
   
     2016-11-21
   
-
+&nbsp;&nbsp;
       </time>
     
     
   
   
-    <span>カテゴリー: </span>
+    <b><span>カテゴリー: </span></b>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>, 
+      <a class="category-link" href="https://blog.ryukiy.net/categories/azure-virtual-machines">Azure Virtual Machines</a>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/virtual-machine">Virtual Machine</a>
+  
+
+    
+    
+      
+      
+        <div class="post-footer-tags">
+          <b><span class="text-color-light text-small">タグ: </span></b>
+          
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/windows-os/">Windows OS</a>
+
+        </div>
+      
     
   
 
@@ -297,11 +311,11 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-                
-                  <div class="alert warning">  
-                    この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                  </div>
-                
+              
+                <div class="alert warning">  
+                  この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                </div>
+              
               <p>Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。</p>
 <h2 id="azure-vm-で-windows-vm-を作成する時の管理者">Azure VM で Windows VM を作成する時の管理者</h2>
 <p>Azure ポータルから Windows の VM を作成すると、以下のように管理者名を指定するところがあります。</p>
@@ -311,7 +325,7 @@ if (!doNotTrack) {
 <p>Windows のユーザーには、SID と呼ばれる ID が割り当てられています。</p>
 <p>いわゆる Administrator は、Built-in Administrator と呼ばれています。</p>
 <p>Built-in Administrator の SID は末尾が 500 と決められており、以下のサポート技術情報にもそのことが記載されています。</p>
-<p>Windows オペレーティング システムの既知のセキュリティ識別子<!-- raw HTML omitted -->
+<p>Windows オペレーティング システムの既知のセキュリティ識別子<br>
 <a href="https://support.microsoft.com/ja-jp/kb/243330">https://support.microsoft.com/ja-jp/kb/243330</a></p>
 <p>ユーザーの SID を確認するには、whoami コマンドを実行します。</p>
 <p>VM 作成時に指定したユーザーで whoami を実行すると、以下のように SID の末尾が 500 であることが分かります。</p>
@@ -327,6 +341,16 @@ if (!doNotTrack) {
 <h2 id="まとめ">まとめ</h2>
 <p>Built-in Administrator とその他の管理者を意識して Azure VM を使いましょう。</p>
               
+              
+
+<h2>関連記事</h2>
+<ul>
+	
+	<li><a href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">Azure VM のシングル インスタンスは SLA が適用されます</a></li>
+	
+</ul>
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -337,7 +361,9 @@ if (!doNotTrack) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">タグ</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/windows/">Windows</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/windows-os/">Windows OS</a>
 
                   </div>
                 
@@ -350,17 +376,17 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/" data-tooltip="Windows Server 2016 に WordPress を手動でインストールしてみた">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/" data-tooltip="WordPress on Windows Server 2016 のインストール手順を解説">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
                 <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/" data-tooltip="Bash on Windows のアーキテクチャーを妄想してみる">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -376,19 +402,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/&amp;text=Azure%20Windows%20VM%20%e3%81%a7%e6%9c%80%e5%88%9d%e3%81%ab%e4%bd%9c%e3%82%89%e3%82%8c%e3%82%8b%e7%ae%a1%e7%90%86%e8%80%85%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%81%af%20Built-in%20Administrator%20%e3%81%a7%e3%81%99">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/&amp;text=Azure%20Windows%20VM%20%e3%81%ae%e7%ae%a1%e7%90%86%e8%80%85%e3%81%af%20Built-in%20Administrator%20%e3%81%a7%e3%81%99">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       
@@ -424,17 +450,17 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/" data-tooltip="Windows Server 2016 に WordPress を手動でインストールしてみた">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/" data-tooltip="WordPress on Windows Server 2016 のインストール手順を解説">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
                 <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/" data-tooltip="Bash on Windows のアーキテクチャーを妄想してみる">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -450,19 +476,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/&amp;text=Azure%20Windows%20VM%20%e3%81%a7%e6%9c%80%e5%88%9d%e3%81%ab%e4%bd%9c%e3%82%89%e3%82%8c%e3%82%8b%e7%ae%a1%e7%90%86%e8%80%85%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%81%af%20Built-in%20Administrator%20%e3%81%a7%e3%81%99">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/&amp;text=Azure%20Windows%20VM%20%e3%81%ae%e7%ae%a1%e7%90%86%e8%80%85%e3%81%af%20Built-in%20Administrator%20%e3%81%a7%e3%81%99">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       
@@ -493,7 +519,7 @@ if (!doNotTrack) {
     
       <li class="share-option">
         
-          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2016%2F11%2F21%2Fazure-windows-vm-administrator%2F&amp;text=Azure&#43;Windows&#43;VM&#43;%E3%81%A7%E6%9C%80%E5%88%9D%E3%81%AB%E4%BD%9C%E3%82%89%E3%82%8C%E3%82%8B%E7%AE%A1%E7%90%86%E8%80%85%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%AF&#43;Built-in&#43;Administrator&#43;%E3%81%A7%E3%81%99">
+          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2016%2F11%2F21%2Fazure-windows-vm-administrator%2F&amp;text=Azure&#43;Windows&#43;VM&#43;%E3%81%AE%E7%AE%A1%E7%90%86%E8%80%85%E3%81%AF&#43;Built-in&#43;Administrator&#43;%E3%81%A7%E3%81%99">
             <i class="fa fa-twitter"></i><span>Twitter で共有</span>
           </a>
         

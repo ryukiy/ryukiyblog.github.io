@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content="Azure VM, Premium SSD, Virtual Machine, ディスク, スループット, IOPS, レイテンシー, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
+<meta name="keywords" content="Azure Virtual Machines, Azure Storage, Azure VM, Premium SSD, Standard SSD, Standard HDD, IOPS, ディスク, スループット, レイテンシー, 応答時間, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。">
 
 
@@ -31,12 +31,12 @@
   
   
     
-      <meta property="article:section" content="Microsoft Azure">
-    
-      <meta property="article:section" content="Storage">
+      <meta property="article:section" content="Azure Storage">
     
   
   
+    
+      <meta property="article:tag" content="Storage">
     
       <meta property="article:tag" content="Virtual Machine">
     
@@ -47,8 +47,6 @@
       <meta property="article:tag" content="Standard HDD">
     
       <meta property="article:tag" content="IOPS">
-    
-      <meta property="article:tag" content="Level 300">
     
   
 
@@ -270,7 +268,7 @@ if (!doNotTrack) {
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2015-06-10T16:13:38&#43;09:00">
-        公開日 
+        <b>公開日:</b> 
   
   
   
@@ -280,24 +278,46 @@ if (!doNotTrack) {
 
       </time>
       <time itemprop="lastModified" datetime="2019-06-03T10:06:38&#43;09:00">
-        最終更新日 
+        &nbsp;&nbsp;&nbsp;<b>最終更新日:</b> 
   
   
   
   
     2019-6-3
   
-
+&nbsp;&nbsp;
       </time>
     
     
   
   
-    <span>カテゴリー: </span>
+    <b><span>カテゴリー: </span></b>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>, 
+      <a class="category-link" href="https://blog.ryukiy.net/categories/azure-storage">Azure Storage</a>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/storage">Storage</a>
+  
+
+    
+    
+      
+      
+        <div class="post-footer-tags">
+          <b><span class="text-color-light text-small">タグ: </span></b>
+          
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/storage/">Storage</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-ssd/">Standard SSD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-hdd/">Standard HDD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
+
+        </div>
+      
     
   
 
@@ -307,15 +327,15 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-                
+              
               <p>Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。</p>
 <h2 id="目次">目次</h2>
 <!-- raw HTML omitted -->
 <ol>
 <li>Premium SSD を使ってみよう ～性能と注意点をチェック～（本記事）</li>
-<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">Premium SSD を使ってみよう ～IOPS とスループットの関係～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
 </ol>
 <h2 id="azure-vm-で利用できるディスクの種類">Azure VM で利用できるディスクの種類</h2>
 <p>Azure VM で利用できるディスクには以下の三種類があり、ディスク一台あたりのそれぞれの性能は以下の通りです。</p>
@@ -350,10 +370,10 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table>
-<p>参考情報：<!-- raw HTML omitted -->
-管理対象の仮想マシン ディスク<!-- raw HTML omitted -->
+<p>参考情報：<br>
+管理対象の仮想マシン ディスク<br>
 <a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks</a></p>
-<p>Managed Disks の価格<!-- raw HTML omitted -->
+<p>Managed Disks の価格<br>
 <a href="https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/">https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/</a></p>
 <p>性能が高い順に、Premium SSD、Standard SSD、Standard HDD となります。</p>
 <p>また、IOPS/スループットの性能はディスクのサイズに応じて変化します。例えば、ディスク サイズが 1TB の Premium SSD の場合、IOPS 性能の期待値は 5,000 になります。5,000 を超えた IOPS が必要になった場合、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739(v=ws.11)">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS を確保します。</p>
@@ -369,10 +389,10 @@ if (!doNotTrack) {
 <p>Azure の場合、ディスク自体の性能に加えて、Azure VM のサイズがディスク性能に影響します。Azure VM のサイズが適切でない場合、Premium SSD を利用して高速なディスク構成を展開しても、思うような性能が引き出せないケースがありますので、ご注意ください。</p>
 <p>ディスク性能を引き出すための Azure VM の適切なサイズですが、まず SSD に対応しているサイズを選択します。例えば、D v3 シリーズの D2 を利用する場合、同じ D2 v3 でも Standard_D2_v3 と Standard_D2<strong><!-- raw HTML omitted -->s<!-- raw HTML omitted --></strong>_v3 という、サイズ名に「<strong><!-- raw HTML omitted -->s<!-- raw HTML omitted --></strong>」が付与されているものがあります。SSD に対応しているサイズは「s」が付与されているものになります。Premium SSD/Standard SSD を利用する際には、「s」付きのサイズを選択します。</p>
 <p>次に、サイズに応じて設定された IOPS/スループットの性能を確認します。以下の参考情報をご覧ください。</p>
-<p>参考情報：<!-- raw HTML omitted -->
-Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
+<p>参考情報：<br>
+Azure の Windows 仮想マシンのサイズ<br>
 <a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
-<p>汎用仮想マシンのサイズ<!-- raw HTML omitted -->
+<p>汎用仮想マシンのサイズ<br>
 <a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
 <p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general">汎用仮想マシンのサイズ</a>に記載の表を見ると、IOPS/スループット性能に関する列があります。例えば、Standard_D2s_v3 のキャッシュ無効時の IOPS/スループット性能はそれぞれ、3,200 IOPS/48 MB/秒 になります。</p>
 <p>サイズが 1TB の Premium SSD のディスク一台あたりの性能は 5,000 IOPS/200 MB/秒 になります。従って、Standard_D2s_v3 でサイズ 1TB の Premium SSD を利用した場合、Azure VM のサイズに設けられた IOPS/スループットの上限によって Premium SSD の性能をフルに引き出すことができません。</p>
@@ -391,15 +411,21 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
 <li>Azure VM のディスク性能は、ディスク自体の性能に加えて Azure VM のサイズが影響します</li>
 <li>サイズが 1TB の Premium SSD を利用した場合、ディスク一台あたりの IOPS 性能の期待値は 5,000 IOPS です</li>
 </ul>
-<h2 id="関連記事">関連記事</h2>
-<!-- raw HTML omitted -->
-<ol>
-<li>Premium SSD を使ってみよう ～性能と注意点をチェック～（本記事）</li>
-<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">Premium SSD を使ってみよう ～IOPS とスループットの関係～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</a></li>
-</ol>
               
+              
+
+<h2>関連記事</h2>
+<ul>
+	
+	<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+	
+	<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+	
+	<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+	
+</ul>
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -410,6 +436,8 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">タグ</span><br/>
                     
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/storage/">Storage</a>
+
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
@@ -419,8 +447,6 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-hdd/">Standard HDD</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/level-300/">Level 300</a>
 
                   </div>
                 
@@ -433,17 +459,17 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="Premium SSD を使ってみよう ～IOPS とスループットの関係～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
                 <a class="post-action-btn btn btn--disabled">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -459,19 +485,19 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e6%80%a7%e8%83%bd%e3%81%a8%e6%b3%a8%e6%84%8f%e7%82%b9%e3%82%92%e3%83%81%e3%82%a7%e3%83%83%e3%82%af%ef%bd%9e">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e6%80%a7%e8%83%bd%e3%81%a8%e6%b3%a8%e6%84%8f%e7%82%b9%e3%82%92%e3%83%81%e3%82%a7%e3%83%83%e3%82%af%ef%bd%9e">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       
@@ -507,17 +533,17 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="Premium SSD を使ってみよう ～IOPS とスループットの関係～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/" data-tooltip="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
                 <a class="post-action-btn btn btn--disabled">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -533,19 +559,19 @@ Azure の Windows 仮想マシンのサイズ<!-- raw HTML omitted -->
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e6%80%a7%e8%83%bd%e3%81%a8%e6%b3%a8%e6%84%8f%e7%82%b9%e3%82%92%e3%83%81%e3%82%a7%e3%83%83%e3%82%af%ef%bd%9e">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e6%80%a7%e8%83%bd%e3%81%a8%e6%b3%a8%e6%84%8f%e7%82%b9%e3%82%92%e3%83%81%e3%82%a7%e3%83%83%e3%82%af%ef%bd%9e">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       

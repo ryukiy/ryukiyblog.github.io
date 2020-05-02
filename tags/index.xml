@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>NVA</title>
+      <link>https://blog.ryukiy.net/tags/nva/</link>
+      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/tags/nva/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Security</title>
       <link>https://blog.ryukiy.net/tags/security/</link>
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
@@ -48,20 +57,20 @@
     </item>
     
     <item>
-      <title>Windows</title>
-      <link>https://blog.ryukiy.net/tags/windows/</link>
+      <title>Virtual Machine</title>
+      <link>https://blog.ryukiy.net/tags/virtual-machine/</link>
       <pubDate>Tue, 22 Nov 2016 00:57:09 +0000</pubDate>
       
-      <guid>https://blog.ryukiy.net/tags/windows/</guid>
+      <guid>https://blog.ryukiy.net/tags/virtual-machine/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Windows Server 2016</title>
-      <link>https://blog.ryukiy.net/tags/windows-server-2016/</link>
+      <title>Windows OS</title>
+      <link>https://blog.ryukiy.net/tags/windows-os/</link>
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/tags/windows-server-2016/</guid>
+      <guid>https://blog.ryukiy.net/tags/windows-os/</guid>
       <description></description>
     </item>
     
@@ -111,15 +120,6 @@
     </item>
     
     <item>
-      <title>Level 300</title>
-      <link>https://blog.ryukiy.net/tags/level-300/</link>
-      <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
-      
-      <guid>https://blog.ryukiy.net/tags/level-300/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Premium SSD</title>
       <link>https://blog.ryukiy.net/tags/premium-ssd/</link>
       <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
@@ -147,11 +147,11 @@
     </item>
     
     <item>
-      <title>Virtual Machine</title>
-      <link>https://blog.ryukiy.net/tags/virtual-machine/</link>
+      <title>Storage</title>
+      <link>https://blog.ryukiy.net/tags/storage/</link>
       <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/tags/virtual-machine/</guid>
+      <guid>https://blog.ryukiy.net/tags/storage/</guid>
       <description></description>
     </item>
     

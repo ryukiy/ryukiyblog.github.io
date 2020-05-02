@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Azure Virtual Network TAP の利用によるメリット</title>
+      <title>Azure Virtual Network TAP のメリットを解説</title>
       <link>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</link>
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Azure VM シングル インスタンスに SLA が適用されるようになりました</title>
+      <title>Azure VM のシングル インスタンスは SLA が適用されます</title>
       <link>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</link>
       <pubDate>Tue, 22 Nov 2016 00:57:09 +0000</pubDate>
       
@@ -30,7 +30,7 @@
     </item>
     
     <item>
-      <title>Windows Server 2016 に WordPress を手動でインストールしてみた</title>
+      <title>WordPress on Windows Server 2016 のインストール手順を解説</title>
       <link>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</link>
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
       
@@ -39,7 +39,7 @@
     </item>
     
     <item>
-      <title>Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です</title>
+      <title>Azure Windows VM の管理者は Built-in Administrator です</title>
       <link>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</link>
       <pubDate>Mon, 21 Nov 2016 05:03:46 +0900</pubDate>
       
@@ -57,7 +57,7 @@
     </item>
     
     <item>
-      <title>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</title>
+      <title>ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</title>
       <link>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</link>
       <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
       
@@ -66,7 +66,7 @@
     </item>
     
     <item>
-      <title>Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</title>
+      <title>システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</title>
       <link>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</link>
       <pubDate>Thu, 18 Jun 2015 15:16:29 +0900</pubDate>
       
@@ -75,7 +75,7 @@
     </item>
     
     <item>
-      <title>Premium SSD を使ってみよう ～IOPS とスループットの関係～</title>
+      <title>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</title>
       <link>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</link>
       <pubDate>Fri, 12 Jun 2015 12:40:15 +0900</pubDate>
       

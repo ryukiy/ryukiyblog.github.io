@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content="Bash on Windows, Build 2016, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
+<meta name="keywords" content="Bash on Windows, Build 2016, LXSS, カーネルデバッガー, windbg, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。">
 
 
@@ -31,7 +31,7 @@
   
   
     
-      <meta property="article:section" content="Windows">
+      <meta property="article:section" content="Windows OS">
     
   
   
@@ -41,6 +41,8 @@
       <meta property="article:tag" content="LXSS">
     
       <meta property="article:tag" content="Debugging">
+    
+      <meta property="article:tag" content="Windows OS">
     
   
 
@@ -262,7 +264,7 @@ if (!doNotTrack) {
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2016-04-01T18:49:17&#43;09:00">
-        公開日 
+        <b>公開日:</b> 
   
   
   
@@ -272,22 +274,42 @@ if (!doNotTrack) {
 
       </time>
       <time itemprop="lastModified" datetime="2016-04-01T18:49:17&#43;09:00">
-        最終更新日 
+        &nbsp;&nbsp;&nbsp;<b>最終更新日:</b> 
   
   
   
   
     2016-4-1
   
-
+&nbsp;&nbsp;
       </time>
     
     
   
   
-    <span>カテゴリー: </span>
+    <b><span>カテゴリー: </span></b>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/windows">Windows</a>
+      <a class="category-link" href="https://blog.ryukiy.net/categories/windows-os">Windows OS</a>
+    
+  
+
+    
+    
+      
+      
+        <div class="post-footer-tags">
+          <b><span class="text-color-light text-small">タグ: </span></b>
+          
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/bash/">Bash</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/lxss/">LXSS</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/debugging/">Debugging</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/windows-os/">Windows OS</a>
+
+        </div>
+      
     
   
 
@@ -297,21 +319,21 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-                
-                  <div class="alert warning">  
-                    この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                  </div>
-                
+              
+                <div class="alert warning">  
+                  この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                </div>
+              
               <p>本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。</p>
 <h2 id="bash-on-windows-が発表されました">Bash on Windows が発表されました</h2>
 <p>いま開催中のイベント <a href="https://channel9.msdn.com/Events/Build/2016">Build 2016</a> の初日に、Windows で Bash を実行できるようにするよ、という発表がありました。この記事を書いている時点では、以下のような公開情報がありますね。</p>
-<p>Run Bash on Ubuntu on Windows<!-- raw HTML omitted -->
+<p>Run Bash on Ubuntu on Windows<br>
 <a href="https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/">https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/</a></p>
-<p>Running Bash on Ubuntu on Windows!<!-- raw HTML omitted -->
+<p>Running Bash on Ubuntu on Windows!<br>
 <a href="https://channel9.msdn.com/Events/Build/2016/P488">https://channel9.msdn.com/Events/Build/2016/P488</a></p>
-<p>Linux Command Line on Windows<!-- raw HTML omitted -->
+<p>Linux Command Line on Windows<br>
 <a href="https://channel9.msdn.com/Events/Build/2016/C906">https://channel9.msdn.com/Events/Build/2016/C906</a></p>
-<p>Developers can run Bash Shell and user-mode Ubuntu Linux binaries on Windows 10<!-- raw HTML omitted -->
+<p>Developers can run Bash Shell and user-mode Ubuntu Linux binaries on Windows 10<br>
 <a href="https://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx">https://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx</a></p>
 <p>何やら、「Linux のための Windows サブシステム」 というものを Windows に実装するそうです。</p>
 <h2 id="windows-サブシステムって何ですかね">Windows サブシステムって何ですかね？</h2>
@@ -343,7 +365,7 @@ if (!doNotTrack) {
 <p>もうちょっとつっこんで Windows サブシステムの仕組みを知りたい方は、Azure CTO Mark Russinovich の著書、<a href="http://www.amazon.co.jp/Windows-Internals-Part-Developer-Reference/dp/0735648735/">Windows Internals Part 1</a> を読んでみてください。Windows サブシステムがどれほど重要なものなのか、詳細に詳細に詳細に説明されています。</p>
 <p>また、一部の章はインターネットで公開されています。今回デバッグした Windows の中でプロセスが作成されるフローについては、以下で説明されています。</p>
 <p>Processes, Threads, and Jobs in the Windows Operating System<br>
-Flow of CreateProcess<!-- raw HTML omitted -->
+Flow of CreateProcess<br>
 <a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=3">https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=3</a></p>
 <p>上のページの中に、以下のようなフロー図が掲載されています。今回デバッグしたのは、このフローのうちの Stage 5 の辺りになります。”Creating Process” のフローがコマンド プロンプトで実行されていて、”Windows subsystem” のフローが Csrss で実行されています。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/04/201603315.png" alt="201603315"></p>
@@ -364,6 +386,16 @@ Flow of CreateProcess<!-- raw HTML omitted -->
 <li>Microsoft loves Linux。Linux のためなら Windows のアーキテクチャーに大幅な変更を加えるくらい Linux が好きです。</li>
 </ul>
               
+              
+
+<h2>関連記事</h2>
+<ul>
+	
+	<li><a href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">WordPress on Windows Server 2016 のインストール手順を解説</a></li>
+	
+</ul>
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -380,6 +412,8 @@ Flow of CreateProcess<!-- raw HTML omitted -->
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/debugging/">Debugging</a>
 
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/windows-os/">Windows OS</a>
+
                   </div>
                 
               
@@ -391,17 +425,17 @@ Flow of CreateProcess<!-- raw HTML omitted -->
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM の管理者は Built-in Administrator です">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -417,19 +451,19 @@ Flow of CreateProcess<!-- raw HTML omitted -->
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       
@@ -465,17 +499,17 @@ Flow of CreateProcess<!-- raw HTML omitted -->
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM で最初に作られる管理者ユーザーは Built-in Administrator です">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/" data-tooltip="Azure Windows VM の管理者は Built-in Administrator です">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/" data-tooltip="ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -491,19 +525,19 @@ Flow of CreateProcess<!-- raw HTML omitted -->
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2016/04/01/bash-on-windows/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2016/04/01/bash-on-windows/&amp;text=Bash%20on%20Windows%20%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a6%84%e6%83%b3%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       

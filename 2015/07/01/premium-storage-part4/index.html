@@ -7,14 +7,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content="Azure VM, Premium SSD, Virtual Machine, ディスク, スループット, IOPS, レイテンシー, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
+<meta name="keywords" content="Azure Virtual Machines, Azure Storage, Azure VM, Premium SSD, Standard SSD, Standard HDD, IOPS, ディスク, スループット, レイテンシー, 応答時間, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
 
 
 <meta property="og:description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～">
-<meta name="twitter:title" content="Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～">
+<meta property="og:title" content="ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～">
+<meta name="twitter:title" content="ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～">
 <meta property="og:url" content="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
 <meta property="twitter:url" content="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
 <meta property="og:site_name" content="RyukiY&#39;s Blog">
@@ -31,12 +31,12 @@
   
   
     
-      <meta property="article:section" content="Microsoft Azure">
-    
-      <meta property="article:section" content="Storage">
+      <meta property="article:section" content="Azure Storage">
     
   
   
+    
+      <meta property="article:tag" content="Storage">
     
       <meta property="article:tag" content="Virtual Machine">
     
@@ -47,8 +47,6 @@
       <meta property="article:tag" content="Standard HDD">
     
       <meta property="article:tag" content="IOPS">
-    
-      <meta property="article:tag" content="Level 300">
     
   
 
@@ -72,7 +70,7 @@
   <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/ryukiy.jpg">
 
 
-    <title>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～</title>
+    <title>ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</title>
 
     <link rel="icon" href="https://blog.ryukiy.net/favicon.ico">
     
@@ -263,14 +261,14 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～
+      ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2015-07-01T08:40:02&#43;09:00">
-        公開日 
+        <b>公開日:</b> 
   
   
   
@@ -280,24 +278,46 @@ if (!doNotTrack) {
 
       </time>
       <time itemprop="lastModified" datetime="2019-06-03T10:06:38&#43;09:00">
-        最終更新日 
+        &nbsp;&nbsp;&nbsp;<b>最終更新日:</b> 
   
   
   
   
     2019-6-3
   
-
+&nbsp;&nbsp;
       </time>
     
     
   
   
-    <span>カテゴリー: </span>
+    <b><span>カテゴリー: </span></b>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>, 
+      <a class="category-link" href="https://blog.ryukiy.net/categories/azure-storage">Azure Storage</a>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/storage">Storage</a>
+  
+
+    
+    
+      
+      
+        <div class="post-footer-tags">
+          <b><span class="text-color-light text-small">タグ: </span></b>
+          
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/storage/">Storage</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-ssd/">Standard SSD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-hdd/">Standard HDD</a>
+
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
+
+        </div>
+      
     
   
 
@@ -307,15 +327,15 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-                
+              
               <p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p>
 <h2 id="目次">目次</h2>
 <!-- raw HTML omitted -->
 <ol>
 <li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">Premium SSD を使ってみよう ～IOPS とスループットの関係～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</a></li>
-<li>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～（本記事）</li>
+<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+<li>ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～（本記事）</li>
 </ol>
 <h2 id="ディスクの応答時間がパフォーマンスの判断指標となる">ディスクの応答時間がパフォーマンスの判断指標となる</h2>
 <p>システムのパフォーマンスが低下している原因がディスクの場合、ディスクの応答時間が長くなります。</p>
@@ -343,7 +363,7 @@ if (!doNotTrack) {
 <h2 id="許容できるディスクの応答時間はどの程度か">許容できるディスクの応答時間はどの程度か？</h2>
 <p>Premium SSD の場合、IO 操作の応答時間が 10 ミリ秒未満となるように設計されています。そのため、Premium SSD を使っているにもかかわらず、ディスクの応答時間が常に数十ミリ秒を超えるようなシステムの場合、ディスクが原因でパフォーマンス遅延が発生しているということが言えます。</p>
 <p>また、OS やミドルウェアの観点からディスクの応答時間に関するガイドラインが提供されています。以下のページをご参照ください。</p>
-<p>サーバーのパフォーマンスを測定する<!-- raw HTML omitted -->
+<p>サーバーのパフォーマンスを測定する<br>
 <a href="https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)">https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)</a></p>
 <p>Windows 環境の場合、応答時間が 25 ミリ秒以内におさまる設計を推奨しています。ですが、 25 ミリ秒という数値は一般的な目安です。例えば、SQL Server に超高速なレスポンスを求めるという要件があるような場合には、10 ミリ秒以下の応答時間を目標にディスクのチューニングを行うケースもあります。</p>
 <p>また、日中の業務時間中は 25 ミリ秒以内で処理を実行することができる環境で、夜間のバックアップ処理の実行中に一時的に応答時間が 100 ミリ秒を超える、というようなケースはよくあります。応答時間が 100 ミリ秒を超えることでバックアップ処理が業務の開始時間前までに終了しないというようなケースではディスクのパフォーマンスの見直しが必要になりますが、夜間のバックアップの負荷が日中の業務に影響を与えないレベルであれば、バックアップ処理実行時の 100 ミリ秒という応答時間は許容する、というケースも多くあります。</p>
@@ -400,15 +420,21 @@ if (!doNotTrack) {
 <li>一般的な Windows 環境では、応答時間は 25 ミリ秒以内におさまっているのが望ましい状態です</li>
 <li>Standard SSD と Standard HDD を比較した場合、IOPS/スループット性能の数値が同じ場合でも、ディスクの応答時間が異なります</li>
 </ul>
-<h2 id="関連記事">関連記事</h2>
-<!-- raw HTML omitted -->
-<ol>
-<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">Premium SSD を使ってみよう ～IOPS とスループットの関係～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～</a></li>
-<li>Premium SSD を使ってみよう ～ボトルネックの原因がディスクなのかどうかを特定する～（本記事）</li>
-</ol>
               
+              
+
+<h2>関連記事</h2>
+<ul>
+	
+	<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+	
+	<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+	
+	<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+	
+</ul>
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -419,6 +445,8 @@ if (!doNotTrack) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">タグ</span><br/>
                     
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/storage/">Storage</a>
+
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
@@ -428,8 +456,6 @@ if (!doNotTrack) {
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-hdd/">Standard HDD</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/level-300/">Level 300</a>
 
                   </div>
                 
@@ -445,14 +471,14 @@ if (!doNotTrack) {
                 <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/" data-tooltip="Bash on Windows のアーキテクチャーを妄想してみる">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -468,19 +494,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%83%9c%e3%83%88%e3%83%ab%e3%83%8d%e3%83%83%e3%82%af%e3%81%ae%e5%8e%9f%e5%9b%a0%e3%81%8c%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%aa%e3%81%ae%e3%81%8b%e3%81%a9%e3%81%86%e3%81%8b%e3%82%92%e7%89%b9%e5%ae%9a%e3%81%99%e3%82%8b%ef%bd%9e">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%ae%e9%81%a9%e5%88%87%e3%81%aa%e5%bf%9c%e7%ad%94%e6%99%82%e9%96%93%e3%81%ae%e7%9b%ae%e5%ae%89%e3%82%92%e8%a7%a3%e8%aa%ac%20%ef%bd%9ePremium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%ef%bd%9e">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       
@@ -519,14 +545,14 @@ if (!doNotTrack) {
                 <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2016/04/01/bash-on-windows/" data-tooltip="Bash on Windows のアーキテクチャーを妄想してみる">
               
                   <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">Next</span>
+                  <span class="hide-xs hide-sm text-small icon-ml">次の記事</span>
                 </a>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="Premium SSD を使ってみよう ～システムが生成する IOPS の計測方法～">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/" data-tooltip="システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～">
               
-                  <span class="hide-xs hide-sm text-small icon-mr">Previous</span>
+                  <span class="hide-xs hide-sm text-small icon-mr">前の記事</span>
                   <i class="fa fa-angle-right"></i>
                 </a>
             </li>
@@ -542,19 +568,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+                <i class="fa fa-facebook-official"></i>
+              </a>
+            
           </li>
         
           <li class="post-action hide-xs">
-              
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=Premium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%20%ef%bd%9e%e3%83%9c%e3%83%88%e3%83%ab%e3%83%8d%e3%83%83%e3%82%af%e3%81%ae%e5%8e%9f%e5%9b%a0%e3%81%8c%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%aa%e3%81%ae%e3%81%8b%e3%81%a9%e3%81%86%e3%81%8b%e3%82%92%e7%89%b9%e5%ae%9a%e3%81%99%e3%82%8b%ef%bd%9e">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              
+            
+              <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/2015/07/01/premium-storage-part4/&amp;text=%e3%83%87%e3%82%a3%e3%82%b9%e3%82%af%e3%81%ae%e9%81%a9%e5%88%87%e3%81%aa%e5%bf%9c%e7%ad%94%e6%99%82%e9%96%93%e3%81%ae%e7%9b%ae%e5%ae%89%e3%82%92%e8%a7%a3%e8%aa%ac%20%ef%bd%9ePremium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%ef%bd%9e">
+                <i class="fa fa-twitter"></i>
+              </a>
+            
           </li>
         
       
@@ -585,7 +611,7 @@ if (!doNotTrack) {
     
       <li class="share-option">
         
-          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F07%2F01%2Fpremium-storage-part4%2F&amp;text=Premium&#43;SSD&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86&#43;%EF%BD%9E%E3%83%9C%E3%83%88%E3%83%AB%E3%83%8D%E3%83%83%E3%82%AF%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%81%8C%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%AA%E3%81%AE%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B%EF%BD%9E">
+          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2F2015%2F07%2F01%2Fpremium-storage-part4%2F&amp;text=%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%AE%E9%81%A9%E5%88%87%E3%81%AA%E5%BF%9C%E7%AD%94%E6%99%82%E9%96%93%E3%81%AE%E7%9B%AE%E5%AE%89%E3%82%92%E8%A7%A3%E8%AA%AC&#43;%EF%BD%9EPremium&#43;SSD&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86%EF%BD%9E">
             <i class="fa fa-twitter"></i><span>Twitter で共有</span>
           </a>
         
