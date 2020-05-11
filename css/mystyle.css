@@ -3,11 +3,13 @@ Theme URI: https://ryukiy.github.io/
 */
 
 * {
-	font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: #515151;
 }
 
 body, h1, h2, h3, h4, h5, h6, html {
-	font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: #515151;
 }
 
 .post h2 {
@@ -15,4 +17,12 @@ body, h1, h2, h3, h4, h5, h6, html {
     padding: 0.8em;
     border-left: 7px solid #00BCF2;
     border-bottom: 1px dashed #00BCF2;
+}
+
+.sidebar-button-icon {
+    color: #ebebeb;
+}
+
+.sidebar-button-desc {
+    color: #ebebeb;
 }

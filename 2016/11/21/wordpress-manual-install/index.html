@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.70.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="WordPress, Windows Server, インストール, セットアップ, ワードプレス, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="Windows Server 2016 に WordPress を手動でインストールする方法について説明します。">
@@ -323,7 +323,7 @@ if (!doNotTrack) {
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image.png" alt="WPIerror"></p>
 <p>しょうがないので、Web Platform Installer が何をやっているのか調べながら、手動で WordPress をインストールしてみました。</p>
 <h2 id="いろいろとインストール">いろいろとインストール</h2>
-<p><strong><!-- raw HTML omitted -->まずは IIS の設定<!-- raw HTML omitted --></strong>。</p>
+<p><strong><span style="color: #0000ff;">まずは IIS の設定</span></strong>。</p>
 <p>Windows Server 2016 で IIS を以下の構成でセットアップ。「IP およびドメインの制限」はインストールしなくても良いですが、WordPress の管理系のファイルに対するアクセスを IP アドレスでフィルタリングしたかったのでインストールしました。</p>
 <p>[X] Web サーバー (IIS)<br>
     [X] Web サーバー<br>
@@ -346,62 +346,62 @@ if (!doNotTrack) {
     [X] 管理ツール<br>
         [X] IIS 管理コンソール</p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、URL Rewrite Module のインストール<!-- raw HTML omitted --></strong>。このモジュールは、WordPress のパーマリンクの動作に必要。</p>
+<p><strong><span style="color: #0000ff;">次、URL Rewrite Module のインストール</span></strong>。このモジュールは、WordPress のパーマリンクの動作に必要。</p>
 <p>インストーラーは下からダウンロード。<br>
 <a href="https://www.iis.net/downloads/microsoft/url-rewrite">https://www.iis.net/downloads/microsoft/url-rewrite</a></p>
 <p> </p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->次、PHP のインストール<!-- raw HTML omitted --><!-- raw HTML omitted -->。今回は v5.6.28 を使ってみました。</p>
+<p><span style="color: #0000ff;"><strong>次、PHP のインストール</strong></span>。今回は v5.6.28 を使ってみました。</p>
 <p>下のページから「VC11 x64 Non Thread Safe (2016-Nov-09 18:10:02)」のモジュールをダウンロード。<br>
 <a href="https://windows.php.net/download/">https://windows.php.net/download/</a></p>
 <p>ダウンロードしたモジュールを解凍して、”C:\Program Files\PHP\v5.6.28” に置いておく。</p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、PHP WinCache のインストール<!-- raw HTML omitted --></strong>。</p>
-<p>下のページから、「php_wincache-1.3.7.12-5.6-nts-vc11-x64.zip」のモジュールをダウンロード。
+<p><strong><span style="color: #0000ff;">次、PHP WinCache のインストール</span></strong>。</p>
+<p>下のページから、「php_wincache-1.3.7.12-5.6-nts-vc11-x64.zip」のモジュールをダウンロード。<br>
 <a href="http://windows.php.net/downloads/pecl/releases/wincache/">http://windows.php.net/downloads/pecl/releases/wincache/</a></p>
 <p>ダウンロードしたモジュールを解凍して、”C:\Program Files\PHP\v5.6.28\ext\php_wincache.dll” に置いておく。</p>
 <p> </p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->次、MySQL のインストール<!-- raw HTML omitted --><!-- raw HTML omitted -->。今回は v5.7.16 を使ってみました。</p>
+<p><span style="color: #0000ff;"><strong>次、MySQL のインストール</strong></span>。今回は v5.7.16 を使ってみました。</p>
 <p>下のページから Windows 用のインストーラーをダウンロード。<br>
 <a href="https://dev.mysql.com/downloads/installer/">https://dev.mysql.com/downloads/installer/</a></p>
 <p>インストールの方法に「Custom」を選んで、以下のものを選択。Workbench はお好みで。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-1.png" alt="MySQL"></p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、WordPress のインストール<!-- raw HTML omitted --></strong>。今回は v4.6.1 を使ってみました。</p>
+<p><strong><span style="color: #0000ff;">次、WordPress のインストール</span></strong>。今回は v4.6.1 を使ってみました。</p>
 <p>下のページからダウンロード。<br>
 <a href="https://ja.wordpress.org/">https://ja.wordpress.org/</a></p>
 <p>ダウンロードしたモジュールを解凍して、IIS のルートフォルダに置いておく（例：”C:\inetpub\wordpress”）。</p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、VC++ 2012 Runtime のインストール<!-- raw HTML omitted --></strong>。PHP の実行に必要。</p>
+<p><strong><span style="color: #0000ff;">次、VC++ 2012 Runtime のインストール</span></strong>。PHP の実行に必要。</p>
 <p>下のページからダウンロードしてインストール。<br>
 <a href="https://www.microsoft.com/ja-JP/download/details.aspx?id=30679">https://www.microsoft.com/ja-JP/download/details.aspx?id=30679</a></p>
 <p> </p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->次、VC++ 2013 Runtime のインストール<!-- raw HTML omitted --><!-- raw HTML omitted -->。MySQL Workbench の実行に必要。Workbench をインストールしていない場合には省略可。</p>
+<p><span style="color: #0000ff;"><strong>次、VC++ 2013 Runtime のインストール</strong></span>。MySQL Workbench の実行に必要。Workbench をインストールしていない場合には省略可。</p>
 <p>下のページからダウンロードしてインストール。<br>
 <a href="https://www.microsoft.com/ja-jp/download/details.aspx?id=40784">https://www.microsoft.com/ja-jp/download/details.aspx?id=40784</a></p>
 <p> </p>
 <p>以上でモジュールの用意は完了。</p>
 <h2 id="iis-の設定">IIS の設定</h2>
-<p><strong><!-- raw HTML omitted -->まずはサイトを作成<!-- raw HTML omitted --></strong>して、WordPress のファイルが入っているフォルダを指定。</p>
+<p><strong><span style="color: #0000ff;">まずはサイトを作成</span></strong>して、WordPress のファイルが入っているフォルダを指定。</p>
 <p>この時、アプリケーション プールの設定は以下の通り。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-2.png" alt="AppPool"></p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、FastCGI の設定<!-- raw HTML omitted --></strong>。以下のように PHP の実行ファイルのパスを設定する。</p>
+<p><strong><span style="color: #0000ff;">次、FastCGI の設定</span></strong>。以下のように PHP の実行ファイルのパスを設定する。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-3.png" alt="PHP"></p>
 <p>各種パラメーターは以下の通り。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-4.png" alt="FastCGI"></p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、ハンドラー マッピングの設定<!-- raw HTML omitted --></strong>。[モジュール マップの追加] で、以下のように設定。</p>
+<p><strong><span style="color: #0000ff;">次、ハンドラー マッピングの設定</span></strong>。[モジュール マップの追加] で、以下のように設定。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-5.png" alt="Handler"></p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、既定のドキュメントの設定<!-- raw HTML omitted --></strong>。</p>
+<p><strong><span style="color: #0000ff;">次、既定のドキュメントの設定</span></strong>。</p>
 <p>作成した WordPress 用のサイトの [既定のドキュメント] を開いて、”index.php” を追加。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-6.png" alt="DefaultDoc"></p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、ディレクトリの参照設定<!-- raw HTML omitted --></strong>。</p>
+<p><strong><span style="color: #0000ff;">次、ディレクトリの参照設定</span></strong>。</p>
 <p>作成した WordPress 用のサイトの [ディレクトリの参照] を開いて、参照許可の設定をする。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/11/image-7.png" alt="Dir"></p>
 <p> </p>
-<p><strong><!-- raw HTML omitted -->次、WordPress のファイルを置いてあるフォルダのアクセス権の設定<!-- raw HTML omitted --></strong>。</p>
+<p><strong><span style="color: #0000ff;">次、WordPress のファイルを置いてあるフォルダのアクセス権の設定</span></strong>。</p>
 <p>フォルダのプロパティから [セキュリティ] を開いて、以下の 2 つのユーザーの追加とアクセス権の設定を行う。</p>
 <p><strong>IUSR</strong>：変更、読み取りと実行、フォルダーの内容の一覧表示、読み取り、書き込み</p>
 <p><strong>IIS_IUSRS</strong>：読み取りと実行、フォルダーの内容の一覧表示、読み取り</p>
@@ -415,7 +415,7 @@ session.save_path=C:\Windows\temp<br>
 cgi.force_redirect=0<br>
 cgi.fix_pathinfo=1<br>
 fastcgi.impersonate=1<br>
-fastcgi.logging=0
+fastcgi.logging=0<br>
 max_execution_time=300<br>
 date.timezone=Asia/Tokyo<br>
 extension_dir=”C:\Program Files\PHP\v5.6.28\ext”</p>
@@ -676,8 +676,7 @@ Query OK, 0 rows affected (0.01 sec)</p>
     
   
     
-      
-      <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
+      <div id="cover" style="background-image:url('https://blog.ryukiy.net/img/dat/cover.jpg');"></div>
     
   
 

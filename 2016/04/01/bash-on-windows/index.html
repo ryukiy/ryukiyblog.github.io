@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.70.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="Bash on Windows, Build 2016, LXSS, カーネルデバッガー, windbg, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。">
@@ -55,8 +55,8 @@
 
 
 
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Windows.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Windows.png">
+  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Windows.svg">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Windows.svg">
 
 
 
@@ -358,7 +358,7 @@ if (!doNotTrack) {
 <p>Csrss がプロセスを作る処理をしている間、コマンド プロンプトは何をしているんだろうか？</p>
 </li>
 </ol>
-<p>最初のコマンド プロンプトの状態と比べると、CreateProcessW の上の方に、何やらいろんな API が増えていますね。これの見方ですが、CreateProcessW の中で CreateProcessInternalW を呼び、さらに CreateProcessInternalW の中では CsrClientCallServer を呼び、さらに CsrClientCallServer の中では・・・ という見方をします。一言でいうと「スタック」です。このスタックの中を見てみると、CreateProcessW の処理が進み、<!-- raw HTML omitted -->Csr<!-- raw HTML omitted -->ClientCallServer の先で NtRequest<!-- raw HTML omitted -->WaitReplyPort<!-- raw HTML omitted --> というような API が呼ばれています。API に Csr なんて名前が付いていて、さらに WaitReplyPort という API を呼んでいるので、どうやらコマンド プロンプトは Csrss が実行している BaseSrvCreateProcess の処理が終わるのを待っているようです。</p>
+<p>最初のコマンド プロンプトの状態と比べると、CreateProcessW の上の方に、何やらいろんな API が増えていますね。これの見方ですが、CreateProcessW の中で CreateProcessInternalW を呼び、さらに CreateProcessInternalW の中では CsrClientCallServer を呼び、さらに CsrClientCallServer の中では・・・ という見方をします。一言でいうと「スタック」です。このスタックの中を見てみると、CreateProcessW の処理が進み、<span style="color: #ff0000;">Csr</span>ClientCallServer の先で NtRequest<span style="color: #ff0000;">WaitReplyPort</span> というような API が呼ばれています。API に Csr なんて名前が付いていて、さらに WaitReplyPort という API を呼んでいるので、どうやらコマンド プロンプトは Csrss が実行している BaseSrvCreateProcess の処理が終わるのを待っているようです。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/04/201603314.png" alt="201603314"></p>
 <p>というわけで、コマンド プロンプトは、Csrss に助けてもらわないと tree のプロセスを作ることができないことが分かりました。</p>
 <p>コマンド プロンプトから tree コマンドを実行すると、コマンド プロンプトだけで tree プロセスを作れるわけではなく、Windows サブシステムがプロセスやスレッドを作成する処理を手伝います。この例ではコマンド プロンプトからプロセスを作成する仕組みをデバッグしましたが、他のケースでも同様です。スタート メニューから Excel を立ち上げる、エクスプローラーからテキスト ファイルを開く等の Windows の基本動作を行うと必ずプロセスが作成されますが、これらの処理は Windows サブシステムの助けがなくては成り立ちません。Windows サブシステムはプロセスの作成以外にも様々な処理で Windows アプリケーションを支えています。Windows サブシステムがないとアプリケーションが動作できないくらい、Windows アーキテクチャーにとっては超超超重要なプロセスが Csrss です。</p>
@@ -613,8 +613,7 @@ Flow of CreateProcess<br>
     
   
     
-      
-      <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
+      <div id="cover" style="background-image:url('https://blog.ryukiy.net/img/dat/cover.jpg');"></div>
     
   
 

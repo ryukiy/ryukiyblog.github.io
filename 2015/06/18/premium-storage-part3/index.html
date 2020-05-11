@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.70.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="Azure Virtual Machines, Azure Storage, Azure VM, Premium SSD, Standard SSD, Standard HDD, IOPS, ディスク, スループット, レイテンシー, 応答時間, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="前回の記事では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。">
@@ -59,8 +59,8 @@
 
 
 
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
+  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Disks.svg">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Disks.svg">
 
 
 
@@ -330,7 +330,7 @@ if (!doNotTrack) {
               
               <p><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">前回の記事</a>では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。</p>
 <h2 id="目次">目次</h2>
-<!-- raw HTML omitted -->
+<p></p>
 <ol>
 <li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
 <li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
@@ -347,7 +347,7 @@ if (!doNotTrack) {
 <h2 id="アプリケーションが生成した-iops-の計測方法">アプリケーションが生成した IOPS の計測方法</h2>
 <p>Windows の場合、OS に標準搭載されているパフォーマンス モニターを利用することで、アプリケーションの IO 操作の数を測定することができます。</p>
 <p>パフォーマンス モニターは、CPU/メモリ/ディスク/ネットワークなどの OS の基本的なリソースをはじめ、Active Directory や SQL Server のようなサービスのパフォーマンスや、パフォーマンス モニターのデータ フォーマットに対応している製品のパフォーマンス データの収集が可能です。Windows 環境のパフォーマンス測定をする上で、パフォーマンス モニターは欠かせない有効なツールになります。</p>
-<p>アプリケーションの IO 操作の測定のため、パフォーマンス モニターで監視するカウンターは以下の 3 つになります。<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>アプリケーションの IO 操作の測定のため、パフォーマンス モニターで監視するカウンターは以下の 3 つになります。<p></p></p>
 <ul>
 <li>Process\IO Data Operations/sec</li>
 <li>Process\IO Read Operations/sec</li>
@@ -378,7 +378,7 @@ if (!doNotTrack) {
 <p>しかし、処理時間は数分間でも、1 秒の遅れが致命的になるような低レイテンシーを求める処理に対しては、数分間の処理に対して Premium SSD を用意する必要があるかもしれません。</p>
 <p>クラウド環境では、IOPS の調整に必要なディスクの調達も短時間で容易にできます。検証環境で負荷テストを実施して実際に発生した IOPS を測定して、パフォーマンス チューニングの作業を進めることをお勧めします。</p>
 <h2 id="まとめ">まとめ</h2>
-<!-- raw HTML omitted -->
+<p></p>
 <ul>
 <li>アプリケーション（プロセス）の IO 操作の数を測定することで、ディスクに必要な IOPS の見積もりが可能です</li>
 <li>Windows 環境の場合、IO 操作の数は OS に標準で付属されているパフォーマンス モニターで測定が可能です</li>
@@ -621,8 +621,7 @@ if (!doNotTrack) {
     
   
     
-      
-      <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
+      <div id="cover" style="background-image:url('https://blog.ryukiy.net/img/dat/cover.jpg');"></div>
     
   
 

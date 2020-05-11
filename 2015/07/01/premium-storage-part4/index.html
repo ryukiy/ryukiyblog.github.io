@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.70.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="Azure Virtual Machines, Azure Storage, Azure VM, Premium SSD, Standard SSD, Standard HDD, IOPS, ディスク, スループット, レイテンシー, 応答時間, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
@@ -59,8 +59,8 @@
 
 
 
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
+  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Disks.svg">
+  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Disks.svg">
 
 
 
@@ -330,7 +330,7 @@ if (!doNotTrack) {
               
               <p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p>
 <h2 id="目次">目次</h2>
-<!-- raw HTML omitted -->
+<p></p>
 <ol>
 <li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
 <li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
@@ -340,13 +340,13 @@ if (!doNotTrack) {
 <h2 id="ディスクの応答時間がパフォーマンスの判断指標となる">ディスクの応答時間がパフォーマンスの判断指標となる</h2>
 <p>システムのパフォーマンスが低下している原因がディスクの場合、ディスクの応答時間が長くなります。</p>
 <p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、パフォーマンス モニターを使ってアプリケーションの稼働に必要な IO 操作の数を測定する方法を紹介しましたが、パフォーマンス モニターでディスクの応答時間も確認することができます。応答時間を確認するためには以下のカウンターを使います。</p>
-<!-- raw HTML omitted -->
+<p></p>
 <ul>
 <li>LogicalDisk\Avg. Disk sec/Read</li>
 <li>LogicalDisk\Avg. Disk sec/Write</li>
 </ul>
 <p>もしくは</p>
-<!-- raw HTML omitted -->
+<p></p>
 <ul>
 <li>PhysicalDisk\Avg. Disk sec/Read</li>
 <li>PhysicalDisk\Avg. Disk sec/Write</li>
@@ -370,7 +370,7 @@ if (!doNotTrack) {
 <p>システム要件に応じて、ディスクの応答時間の期待値を調整していただくことをお勧めします。</p>
 <h2 id="standard-ssdstandard-hdd-の比較">Standard SSD/Standard HDD の比較</h2>
 <p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a>で説明した通り、Azure VM で使用できるディスクには以下の三種類のディスクがあり、それぞれの性能は以下の通りです。</p>
-<!-- raw HTML omitted -->
+<p></p>
 <table>
 <thead>
 <tr>
@@ -409,11 +409,11 @@ if (!doNotTrack) {
 <p>一方で、以下は Standard HDD にディスク性能以上の過負荷をかけた場合の、ディスクの読み取り時間のピーク値の履歴をトレースしたものです。メーターの中の青い線に着目すると、ピーク値は最大で 50 ミリ秒ほどに達していることが分かります。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/07/standardhdd.png" alt="StandardHDD"></p>
 <p>つまり、Standard SSD の方が応答時間が短く、パフォーマンスも安定していると言うことができます。Standard HDD はパフォーマンスにばらつきが見られますが、Azure Storage の製品チームからのアナウンスとして、各ストレージの比較について説明された記事が公開されています。詳細は以下をご参照ください。</p>
-<p>Azure 仮想マシンのワークロードを対象とする Standard SSD ディスクの一般提供のお知らせ
+<p>Azure 仮想マシンのワークロードを対象とする Standard SSD ディスクの一般提供のお知らせ<br>
 <a href="https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/">https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/</a></p>
 <p>同じ IOPS/スループット性能を提供するディスクでも、ディスクの種類によって応答時間が異なるため、システム全体のパフォーマンスに影響します。システム要件とコストのバランスを見ながら、最適なディスクを選択していただくことをお勧めします。</p>
 <h2 id="まとめ">まとめ</h2>
-<!-- raw HTML omitted -->
+<p></p>
 <ul>
 <li>ディスクがシステムのパフォーマンス低下の原因かどうかを判断するためには、ディスクの応答時間を確認します</li>
 <li>Windows 環境の場合、ディスクの応答時間は OS に標準で付属されているパフォーマンス モニターで測定が可能です</li>
@@ -656,8 +656,7 @@ if (!doNotTrack) {
     
   
     
-      
-      <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
+      <div id="cover" style="background-image:url('https://blog.ryukiy.net/img/dat/cover.jpg');"></div>
     
   
 
