@@ -339,13 +339,13 @@ if (!doNotTrack) {
 </ol>
 <h2 id="高い-iops-が得られている状態--高いスループットが得られている状態とは限らない">「高い IOPS が得られている状態 = 高いスループットが得られている状態」とは限らない</h2>
 <p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>では、サイズが 1TB の Premium SSD の IOPS を計測して、ディスク一台あたり 5,000 IOPS の性能を引き出せることを確認しました。本記事では、スループットの性能を計測します。</p>
-<p>前回と同じように <a href="http://www.iometer.org/">Iometer</a> を利用し、1TB の Premium SSD のディスクに 16 個の Worker を使って 4 KB 100% Read / 0% Random の負荷をかけます。また、Azure VM のサイズも前回と同様に Standard_D16s_v3 を利用してスループットを測定します。</p>
+<p>前回と同じように <a href="http://www.iometer.org/" target="_blank" rel="noopener">Iometer</a> を利用し、1TB の Premium SSD のディスクに 16 個の Worker を使って 4 KB 100% Read / 0% Random の負荷をかけます。また、Azure VM のサイズも前回と同様に Standard_D16s_v3 を利用してスループットを測定します。</p>
 <p>得られたスループットは以下の通り、約 21 MB/秒 です。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/06/4kbtp.png" alt="21MB"></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">Azure のドキュメント</a>には、1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒 と説明されています。従って、上記した負荷検証の条件で得られたスループットの結果は、ドキュメントに記載の 200 MB/秒には遠く及ばない結果と言えます。</p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">Azure のドキュメント</a>には、1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒 と説明されています。従って、上記した負荷検証の条件で得られたスループットの結果は、ドキュメントに記載の 200 MB/秒には遠く及ばない結果と言えます。</p>
 <p>一方で、4 KB 100% Read / 0% Random の負荷をかけている間に得られた IOPS 性能を測定すると、以下のように 5,000 IOPS が得られていることが分かります。また、5,000 IOPS が得られている状態において、スループットは上記した約 21 MB/秒という結果が記録されています。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/06/4kbiops.png" alt="5000 IOPS"></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">Azure のドキュメント</a>によると、サイズが 1TB の Premium SSD のディスク一台あたりの IOPS の期待値は 5,000 ですので、IOPS はドキュメントに記載通りの結果が得られていることが分かります。</p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">Azure のドキュメント</a>によると、サイズが 1TB の Premium SSD のディスク一台あたりの IOPS の期待値は 5,000 ですので、IOPS はドキュメントに記載通りの結果が得られていることが分かります。</p>
 <p>以上の測定結果から、「高い IOPS が得られている状態」と「高いスループットが得られている状態」はイコールではないということが分かります。</p>
 <h2 id="os-の中でio-はバケツリレーのように処理される">OS の中で、IO はバケツリレーのように処理される</h2>
 <p>スループット性能を引き出す方法を理解するためには、OS の中で IO がどのように処理されているのかを理解する必要があります。OS の中でディスクの IO が処理される様子を簡単な図にすると、以下のようになります。</p>
@@ -353,13 +353,13 @@ if (!doNotTrack) {
 <p>アプリケーション、ファイル システム、ディスク ドライバ、ハード ディスクなどの各モジュール間で IO の受け渡しが行われ、図の中の「I/O Request Packet（略して IRP）」と呼ばれるものが IO を受け渡すためのバケツです。OS の中では IRP のバケツリレーが常に行われており、今回の検証で利用している Iometer が生成した IO 負荷もバケツリレーで処理されます。</p>
 <p>IO のバケツリレーに関しては、詳細な解説が以下のドキュメントとして公開されています。より詳細にディスク IO の仕組みを知りたい方は、下記のドキュメントをご覧ください。</p>
 <p>How Basic Disks and Volumes Work<br>
-<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)</a></p>
+<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412%28v=ws.10%29" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)</a></p>
 <p>Windows Server 2003 時代の記事ですので情報は古いですが、ディスクの IO に関する処理の考え方は最近のバージョンの Windows でも同様です。上記したバケツリレーの図は、公開ドキュメントに掲載の「Basic Disk and Volume Input/Output (I/O) Processes」の図を簡略化したものです。</p>
 <h2 id="io-を運ぶバケツの大きさによってスループットは変化する">IO を運ぶバケツの大きさによってスループットは変化する</h2>
 <p>Iometer で 1TB の Premium SSD のディスクに 4 KB 100% Read / 0% Random の負荷をかけたところ、5,000 IOPS が得られ、スループットは約 21 MB/秒という計測結果が得られました。今度は、1TB の Premium SSD のディスクに 64 KB 100% Read / 0% Random の負荷をかけて IOPS/スループットを測定します。</p>
 <p>得られたスループットは以下の通り、約 200 MB/秒です。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/06/64kbtp.png" alt="200MB"></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">Azure のドキュメント</a>に記載されている 1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒です。従って、64 KB 100% Read / 0% Random の負荷をかけた場合には期待通りのスループットが得られるということが分かります。</p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">Azure のドキュメント</a>に記載されている 1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒です。従って、64 KB 100% Read / 0% Random の負荷をかけた場合には期待通りのスループットが得られるということが分かります。</p>
 <p>一方で、200 MB/秒のスループットが得られている状態で IOPS を計測すると、約 3,100 IOPS が得られていることが記録されています。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/06/64kbiops.png" alt="3100 IOPS"></p>
 <p>いくつかのパターンで同様の計測を行った結果をまとめたものが以下になります。</p>
@@ -412,19 +412,19 @@ if (!doNotTrack) {
 <h2 id="アプリケーションが扱うデータの特性を把握する">アプリケーションが扱うデータの特性を把握する</h2>
 <p>データベースのように高いディスク パフォーマンスを必要とするソフトウェアは、大抵の場合、ディスクの読み込み・書き込みに関するチューニング ガイドが提供されています。例えば、以下は SQL Server が利用するディスクのパフォーマンス ガイドになります。古い情報になりますが、ディスクのチューニングに関する知識としては現在でも通用する内容ですので、ご参考ください。</p>
 <p>SQL Server 2008 のためのディスク パーティション アライメント ベスト プラクティス<br>
-<a href="https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)">https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)</a></p>
+<a href="https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814%28v=sql.100%29" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)</a></p>
 <p>ディスクのスループットが高ければシステム全体のパフォーマンスが必ず上がるというわけでもありません。例えば、サイズが 4KB 以下のファイルを大量に読み込み・書き込みするようなアプリケーションでは、スループットよりも IOPS（データの読み込み・書き込み回数）の数値を重視してパフォーマンスをチューニングすることで、システム全体のパフォーマンスが改善されることが考えられます。</p>
 <p>クラウドの利点として、検証のための環境を素早く簡単に低コストで構築できるという点が挙げられます。読み込み・書き込みサイズの理論的な数字を机上で計算する作業に工数を使うより、クラウドでテスト環境を構築し、実際に負荷テストを実施することでパフォーマンス データを測定することをお勧めします。</p>
 <h2 id="64-kb-と-256-kb-の検証結果に差異がない理由">64 KB と 256 KB の検証結果に差異がない理由</h2>
 <p>最後に、上述したテスト ケースの中で、読み込みサイズが 64 KB と 256 KB のケースで得られたスループットの結果が両ケースとも約 200 MB/秒になった原因について説明します。</p>
 <p>このようなテスト パターンで計測を行った場合、一般的には読み込みサイズが 256 KB の方が高いスループットが得られます。今回の検証で 64 KB と 256 KB のケースで得られたスループットが同じ値になった原因は、1TB の Premium SSD では、ディスク一台あたりの最大 IOPS に 5,000、最大スループットに 200 MB/秒という上限が設定されているためです。</p>
-<p>5,000 を超えた IOPS、200 MB/秒を超えたスループットが必要になった場合には、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739(v=ws.11)">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS/スループット性能を確保します。</p>
+<p>5,000 を超えた IOPS、200 MB/秒を超えたスループットが必要になった場合には、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739%28v=ws.11%29" target="_blank" rel="noopener">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS/スループット性能を確保します。</p>
 <p>加えて、<a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>でも説明した通り、Azure VM のサイズに対しても IOPS とスループットの上限が設定されています。本記事での検証では、Azure VM のサイズに Standard_D16s_v3 を指定しています。適切なサイズの Premium SSD を使用しているにもかかわらず、思うようなパフォーマンスが得られない場合には、Azure VM のサイズを確認してみてください。</p>
 <p>参考情報：<br>
 Azure の Windows 仮想マシンのサイズ<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
 <p>汎用仮想マシンのサイズ<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
 <h2 id="まとめ">まとめ</h2>
 <p></p>
 <ul>
@@ -437,15 +437,61 @@ Azure の Windows 仮想マシンのサイズ<br>
               
 
 <h2>関連記事</h2>
-<ul>
 	
-	<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+				ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+				システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+				Premium SSD を使ってみよう ～性能と注意点をチェック～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-</ul>
 
 
             </div>

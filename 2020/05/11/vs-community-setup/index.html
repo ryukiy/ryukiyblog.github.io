@@ -326,8 +326,8 @@ if (!doNotTrack) {
 <p>無料で利用できる Visual Studio のエディションです。<br>
 各エディションの具体的な違いは下記を参照してください。</p>
 <p><strong>Visual Studio 製品の比較</strong><br>
-<a href="https://visualstudio.microsoft.com/ja/vs/compare/">https://visualstudio.microsoft.com/ja/vs/compare/</a></p>
-<p><a href="https://visualstudio.microsoft.com/ja/vs/community/">Visual Studio Community のページ</a>に、ライセンスで認められている利用シナリオについての要約が記載されています。以下は要約の引用ですが、個人の学習のため、サンプル コードのビルドに Visual Studio Community を利用することは認められています。</p>
+<a href="https://visualstudio.microsoft.com/ja/vs/compare/" target="_blank" rel="noopener">https://visualstudio.microsoft.com/ja/vs/compare/</a></p>
+<p><a href="https://visualstudio.microsoft.com/ja/vs/community/" target="_blank" rel="noopener">Visual Studio Community のページ</a>に、ライセンスで認められている利用シナリオについての要約が記載されています。以下は要約の引用ですが、個人の学習のため、サンプル コードのビルドに Visual Studio Community を利用することは認められています。</p>
 <blockquote>
 <p><strong>個人用</strong><br>
 個人開発者の方はどなたでも、独自の無料/有料のアプリを作成するために Visual Studio Community を使用できます。</p>
@@ -343,12 +343,12 @@ if (!doNotTrack) {
 <p>Visual Studio Community が利用できるシナリオの詳細については、ライセンス条項を参照してください。</p>
 <p><strong>マイクロソフト ソフトウェア ライセンス条項</strong><br>
 <strong>MICROSOFT VISUAL STUDIO COMMUNITY 2019</strong><br>
-<a href="https://visualstudio.microsoft.com/ja/license-terms/mlt031819/">https://visualstudio.microsoft.com/ja/license-terms/mlt031819/</a></p>
+<a href="https://visualstudio.microsoft.com/ja/license-terms/mlt031819/" target="_blank" rel="noopener">https://visualstudio.microsoft.com/ja/license-terms/mlt031819/</a></p>
 <br>
 <h2 id="visual-studio-community-のインストール">Visual Studio Community のインストール</h2>
 <p>Visual Studio Community のページから、Visual Studio のセットアップ ファイルをダウンロードします。</p>
 <p><strong>Visual Studio Community</strong><br>
-<a href="https://visualstudio.microsoft.com/ja/vs/community/">https://visualstudio.microsoft.com/ja/vs/community/</a></p>
+<a href="https://visualstudio.microsoft.com/ja/vs/community/" target="_blank" rel="noopener">https://visualstudio.microsoft.com/ja/vs/community/</a></p>
 <p><img src="https://blog.ryukiy.net/img/post/2020/05/20200511-1.png" alt="20200511-1.png"></p>
 <p>以下のようなバイナリがダウンロードされます。これが Visual Studio のセットアップ ファイルです。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2020/05/20200511-2.png" alt="20200511-2.png"></p>
@@ -389,7 +389,7 @@ if (!doNotTrack) {
 <h2 id="サンプル-コードのビルド">サンプル コードのビルド</h2>
 <p>GitHub には Microsoft Azure のサンプル コードが多く公開されています。今回は Visual Studio の動作確認のために、簡単にビルドできる Cosmos DB のベンチマーク ツールをビルドしてみます。以下が Cosmos DB のサンプル集のリポジトリで、ベンチマーク ツールのコードもこちらから公開されています。</p>
 <p><strong>Microsoft Azure Cosmos DB .NET SDK Version 2</strong><br>
-<a href="https://github.com/Azure/azure-cosmos-dotnet-v2">https://github.com/Azure/azure-cosmos-dotnet-v2</a></p>
+<a href="https://github.com/Azure/azure-cosmos-dotnet-v2" target="_blank" rel="noopener">https://github.com/Azure/azure-cosmos-dotnet-v2</a></p>
 <p>リポジトリをクローンし、samples\documentdb-benchmark を開くと以下のような Visual Studio でビルドできるファイルがあります。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2020/05/20200511-16.png" alt="20200511-16.png"></p>
 <p>この中から、&ldquo;DocumentDBBenchmark.sln&rdquo; をダブルクリックし、コード一式が格納されたソリューションを開きます。この時、以下の警告が表示されると思います。</p>
@@ -403,7 +403,7 @@ if (!doNotTrack) {
 <p>例えば、Test.dll を参照する Test.exe を開発するようなケースでは、「Test.dll をビルドするためのプロジェクト」と、「Test.exe をビルドするためのプロジェクト」の、2 つのプロジェクトを作成します。これら 2 つのプロジェクトを「Test ソリューション」に格納すると、Test ソリューションをビルドすることで Test.dll と Test.exe をまとめてビルドすることができるようになります。</p>
 <p>今回の場合は、&ldquo;DocumentDBBenchmark&rdquo; という C# のプロジェクトがあり、このプロジェクトをビルドすると &ldquo;DocumentDBBenchmark.exe&rdquo; が生成されます。そして、このプロジェクトを &ldquo;DocumentDBBenchmark.sln&rdquo; というソリューションに格納しているという状態になります。プロジェクトとソリューションの詳細については、以下のドキュメントを参照してください。</p>
 <p><strong>プロジェクトとソリューションについて理解する</strong><br>
-<a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/tutorial-projects-solutions?view=vs-2019">https://docs.microsoft.com/ja-jp/visualstudio/get-started/tutorial-projects-solutions?view=vs-2019</a></p>
+<a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/tutorial-projects-solutions?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/visualstudio/get-started/tutorial-projects-solutions?view=vs-2019</a></p>
 <p>それでは &ldquo;DocumentDBBenchmark.sln&rdquo; をビルドします。ビルドは、[ビルド] - [ソリューションのビルド] から行います。慣れてくると、ビルドのキーボード ショートカット（この例では F6）を使ってビルドするようになると思います。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2020/05/20200511-20.png" alt="20200511-20.png"></p>
 <p>問題なくビルドが完了すると、[出力] ウィンドウにビルドが正常終了した旨が表示されます。</p>
@@ -417,13 +417,13 @@ if (!doNotTrack) {
 <p>以上、Visual Studio Community を初めて利用する方向けの Tips でした。<br>
 インストール後に Visual Studio を本格的に利用する際の参考情報は、こちらのドキュメントを参照してください。</p>
 <p><strong>Visual Studio IDE ドキュメント</strong><br>
-<a href="https://docs.microsoft.com/ja-jp/visualstudio/ide/?view=vs-2019">https://docs.microsoft.com/ja-jp/visualstudio/ide/?view=vs-2019</a></p>
+<a href="https://docs.microsoft.com/ja-jp/visualstudio/ide/?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/visualstudio/ide/?view=vs-2019</a></p>
 <br>
 <h2 id="参考情報">参考情報</h2>
 <p><strong>Visual Studio のインストール</strong><br>
-<a href="https://docs.microsoft.com/ja-jp/visualstudio/install/install-visual-studio?view=vs-2019">https://docs.microsoft.com/ja-jp/visualstudio/install/install-visual-studio?view=vs-2019</a></p>
+<a href="https://docs.microsoft.com/ja-jp/visualstudio/install/install-visual-studio?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/visualstudio/install/install-visual-studio?view=vs-2019</a></p>
 <p><strong>Visual Studio にサインイン</strong><br>
-<a href="https://docs.microsoft.com/ja-jp/visualstudio/ide/signing-in-to-visual-studio?view=vs-2019">https://docs.microsoft.com/ja-jp/visualstudio/ide/signing-in-to-visual-studio?view=vs-2019</a></p>
+<a href="https://docs.microsoft.com/ja-jp/visualstudio/ide/signing-in-to-visual-studio?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/visualstudio/ide/signing-in-to-visual-studio?view=vs-2019</a></p>
               
               
 

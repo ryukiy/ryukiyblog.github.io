@@ -326,15 +326,15 @@ if (!doNotTrack) {
               
               <p>本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。</p>
 <h2 id="bash-on-windows-が発表されました">Bash on Windows が発表されました</h2>
-<p>いま開催中のイベント <a href="https://channel9.msdn.com/Events/Build/2016">Build 2016</a> の初日に、Windows で Bash を実行できるようにするよ、という発表がありました。この記事を書いている時点では、以下のような公開情報がありますね。</p>
+<p>いま開催中のイベント <a href="https://channel9.msdn.com/Events/Build/2016" target="_blank" rel="noopener">Build 2016</a> の初日に、Windows で Bash を実行できるようにするよ、という発表がありました。この記事を書いている時点では、以下のような公開情報がありますね。</p>
 <p>Run Bash on Ubuntu on Windows<br>
-<a href="https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/">https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/</a></p>
+<a href="https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/" target="_blank" rel="noopener">https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/</a></p>
 <p>Running Bash on Ubuntu on Windows!<br>
-<a href="https://channel9.msdn.com/Events/Build/2016/P488">https://channel9.msdn.com/Events/Build/2016/P488</a></p>
+<a href="https://channel9.msdn.com/Events/Build/2016/P488" target="_blank" rel="noopener">https://channel9.msdn.com/Events/Build/2016/P488</a></p>
 <p>Linux Command Line on Windows<br>
-<a href="https://channel9.msdn.com/Events/Build/2016/C906">https://channel9.msdn.com/Events/Build/2016/C906</a></p>
+<a href="https://channel9.msdn.com/Events/Build/2016/C906" target="_blank" rel="noopener">https://channel9.msdn.com/Events/Build/2016/C906</a></p>
 <p>Developers can run Bash Shell and user-mode Ubuntu Linux binaries on Windows 10<br>
-<a href="https://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx">https://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx</a></p>
+<a href="https://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx" target="_blank" rel="noopener">https://www.hanselman.com/blog/DevelopersCanRunBashShellAndUsermodeUbuntuLinuxBinariesOnWindows10.aspx</a></p>
 <p>何やら、「Linux のための Windows サブシステム」 というものを Windows に実装するそうです。</p>
 <h2 id="windows-サブシステムって何ですかね">Windows サブシステムって何ですかね？</h2>
 <p>とりあえず、Windows のアーキテクチャーをデバッグしてみましょう。デバッグすれば全てが分かります。デバッグ最高。</p>
@@ -362,11 +362,11 @@ if (!doNotTrack) {
 <p><img src="https://blog.ryukiy.net/img/post/2016/04/201603314.png" alt="201603314"></p>
 <p>というわけで、コマンド プロンプトは、Csrss に助けてもらわないと tree のプロセスを作ることができないことが分かりました。</p>
 <p>コマンド プロンプトから tree コマンドを実行すると、コマンド プロンプトだけで tree プロセスを作れるわけではなく、Windows サブシステムがプロセスやスレッドを作成する処理を手伝います。この例ではコマンド プロンプトからプロセスを作成する仕組みをデバッグしましたが、他のケースでも同様です。スタート メニューから Excel を立ち上げる、エクスプローラーからテキスト ファイルを開く等の Windows の基本動作を行うと必ずプロセスが作成されますが、これらの処理は Windows サブシステムの助けがなくては成り立ちません。Windows サブシステムはプロセスの作成以外にも様々な処理で Windows アプリケーションを支えています。Windows サブシステムがないとアプリケーションが動作できないくらい、Windows アーキテクチャーにとっては超超超重要なプロセスが Csrss です。</p>
-<p>もうちょっとつっこんで Windows サブシステムの仕組みを知りたい方は、Azure CTO Mark Russinovich の著書、<a href="http://www.amazon.co.jp/Windows-Internals-Part-Developer-Reference/dp/0735648735/">Windows Internals Part 1</a> を読んでみてください。Windows サブシステムがどれほど重要なものなのか、詳細に詳細に詳細に説明されています。</p>
+<p>もうちょっとつっこんで Windows サブシステムの仕組みを知りたい方は、Azure CTO Mark Russinovich の著書、<a href="http://www.amazon.co.jp/Windows-Internals-Part-Developer-Reference/dp/0735648735/" target="_blank" rel="noopener">Windows Internals Part 1</a> を読んでみてください。Windows サブシステムがどれほど重要なものなのか、詳細に詳細に詳細に説明されています。</p>
 <p>また、一部の章はインターネットで公開されています。今回デバッグした Windows の中でプロセスが作成されるフローについては、以下で説明されています。</p>
 <p>Processes, Threads, and Jobs in the Windows Operating System<br>
 Flow of CreateProcess<br>
-<a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=3">https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=3</a></p>
+<a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=3" target="_blank" rel="noopener">https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=3</a></p>
 <p>上のページの中に、以下のようなフロー図が掲載されています。今回デバッグしたのは、このフローのうちの Stage 5 の辺りになります。”Creating Process” のフローがコマンド プロンプトで実行されていて、”Windows subsystem” のフローが Csrss で実行されています。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2016/04/201603315.png" alt="201603315"></p>
 <h2 id="linux-のための-windows-サブシステム">Linux のための Windows サブシステム</h2>
@@ -389,11 +389,25 @@ Flow of CreateProcess<br>
               
 
 <h2>関連記事</h2>
-<ul>
 	
-	<li><a href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">WordPress on Windows Server 2016 のインストール手順を解説</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/post/2016/11/wordpress-logo.png"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2016-11-21&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-21</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/">
+				WordPress on Windows Server 2016 のインストール手順を解説
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-</ul>
 
 
             </div>

@@ -372,11 +372,11 @@ if (!doNotTrack) {
 </table>
 <p>参考情報：<br>
 管理対象の仮想マシン ディスク<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks</a></p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks</a></p>
 <p>Managed Disks の価格<br>
-<a href="https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/">https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/</a></p>
+<a href="https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/" target="_blank" rel="noopener">https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/</a></p>
 <p>性能が高い順に、Premium SSD、Standard SSD、Standard HDD となります。</p>
-<p>また、IOPS/スループットの性能はディスクのサイズに応じて変化します。例えば、ディスク サイズが 1TB の Premium SSD の場合、IOPS 性能の期待値は 5,000 になります。5,000 を超えた IOPS が必要になった場合、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739(v=ws.11)">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS を確保します。</p>
+<p>また、IOPS/スループットの性能はディスクのサイズに応じて変化します。例えば、ディスク サイズが 1TB の Premium SSD の場合、IOPS 性能の期待値は 5,000 になります。5,000 を超えた IOPS が必要になった場合、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739%28v=ws.11%29" target="_blank" rel="noopener">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS を確保します。</p>
 <h2 id="iopsスループットの上限は-azure-vm-のサイズに対しても設けられている">IOPS/スループットの上限は Azure VM のサイズに対しても設けられている</h2>
 <p>Azure VM に接続されたディスク性能に影響を及ぼす要素として、以下の三点があります。</p>
 <p></p>
@@ -385,20 +385,20 @@ if (!doNotTrack) {
 <li>ディスク サイズ</li>
 <li>Azure VM のサイズ</li>
 </ul>
-<p>ディスクの種類およびサイズが IOPS/スループット性能に及ぼす影響については、上記の参考資料（<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">管理対象の仮想マシン ディスク</a>）に記載の表をご覧ください。Premium SSD が最も高速で、ディスク サイズが大きいほど IOPS/スループット性能が上がります。</p>
+<p>ディスクの種類およびサイズが IOPS/スループット性能に及ぼす影響については、上記の参考資料（<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">管理対象の仮想マシン ディスク</a>）に記載の表をご覧ください。Premium SSD が最も高速で、ディスク サイズが大きいほど IOPS/スループット性能が上がります。</p>
 <p>Azure の場合、ディスク自体の性能に加えて、Azure VM のサイズがディスク性能に影響します。Azure VM のサイズが適切でない場合、Premium SSD を利用して高速なディスク構成を展開しても、思うような性能が引き出せないケースがありますので、ご注意ください。</p>
 <p>ディスク性能を引き出すための Azure VM の適切なサイズですが、まず SSD に対応しているサイズを選択します。例えば、D v3 シリーズの D2 を利用する場合、同じ D2 v3 でも Standard_D2_v3 と Standard_D2<strong><font color="Red">s</font></strong>_v3 という、サイズ名に「<strong><font color="Red">s</font></strong>」が付与されているものがあります。SSD に対応しているサイズは「s」が付与されているものになります。Premium SSD/Standard SSD を利用する際には、「s」付きのサイズを選択します。</p>
 <p>次に、サイズに応じて設定された IOPS/スループットの性能を確認します。以下の参考情報をご覧ください。</p>
 <p>参考情報：<br>
 Azure の Windows 仮想マシンのサイズ<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
 <p>汎用仮想マシンのサイズ<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general">汎用仮想マシンのサイズ</a>に記載の表を見ると、IOPS/スループット性能に関する列があります。例えば、Standard_D2s_v3 のキャッシュ無効時の IOPS/スループット性能はそれぞれ、3,200 IOPS/48 MB/秒 になります。</p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general" target="_blank" rel="noopener">汎用仮想マシンのサイズ</a>に記載の表を見ると、IOPS/スループット性能に関する列があります。例えば、Standard_D2s_v3 のキャッシュ無効時の IOPS/スループット性能はそれぞれ、3,200 IOPS/48 MB/秒 になります。</p>
 <p>サイズが 1TB の Premium SSD のディスク一台あたりの性能は 5,000 IOPS/200 MB/秒 になります。従って、Standard_D2s_v3 でサイズ 1TB の Premium SSD を利用した場合、Azure VM のサイズに設けられた IOPS/スループットの上限によって Premium SSD の性能をフルに引き出すことができません。</p>
 <p>Standard_D2s_v3 以外のサイズを確認すると、Standard_D8s_v3 のキャッシュ無効時のディスク性能は 12,800 IOPS/192 MB/秒、Standard_D16s_v3 のキャッシュ無効時のディスク性能は 25,600 IOPS/384 MB/秒 になります。サイズが 1TB の Premium SSD の性能をフルに引き出す場合、最低でも Standard_D8s_v3、出来れば Standard_D16s_v3 以上のサイズを設定するのが望ましいということになります。</p>
 <h2 id="premium-ssd-の-iops-を測定">Premium SSD の IOPS を測定</h2>
-<p>Standard_D16s_v3 の Azure VM に 1TB の Premium SSD のディスクを接続し、ディスクのホスト キャッシュを「なし」に設定して IOPS の測定を行います。IOPS の測定には <a href="http://www.iometer.org/">Iometer</a> を使用します。Iometer は、ディスクに負荷をかけながらディスク性能のベンチマーク データを取得できるツールになります。</p>
+<p>Standard_D16s_v3 の Azure VM に 1TB の Premium SSD のディスクを接続し、ディスクのホスト キャッシュを「なし」に設定して IOPS の測定を行います。IOPS の測定には <a href="http://www.iometer.org/" target="_blank" rel="noopener">Iometer</a> を使用します。Iometer は、ディスクに負荷をかけながらディスク性能のベンチマーク データを取得できるツールになります。</p>
 <p>今回の測定で利用した Iometer の設定は以下の通りです。16 個の Worker を実行して 4 KB 100% Read / 0% Random の負荷をかけます。これは、1 レコードあたり 4KB のデータをディスクからシーケンシャルに読み込み続ける、という負荷のかけ方になります。また、Worker が 16 個なのは、Standard_D16s_v3 の CPU が 16 個あるためです。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/06/iometer1.png" alt="Iometer"></p>
 <p>以上の条件で IOPS の測定を行うと、1TB の Premium SSD の IOPS 性能の期待値である 5,000 IOPS が得られていることが確認できます。</p>
@@ -415,15 +415,61 @@ Azure の Windows 仮想マシンのサイズ<br>
               
 
 <h2>関連記事</h2>
-<ul>
 	
-	<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+				ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+				システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+				IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-</ul>
 
 
             </div>

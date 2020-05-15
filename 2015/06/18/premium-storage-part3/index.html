@@ -357,7 +357,7 @@ if (!doNotTrack) {
 <p><strong>Process\IO Data Operations/sec = Process\IO Read Operations/sec + Process\IO Write Operations/sec</strong></p>
 <p>IO Read Operations/sec は読み込みに関する IO 操作の数、IO Write Operations/sec は書き込みに関する IO 操作の数、IO Data Operations/sec は Read と Write の合計値になります。</p>
 <h2 id="iometer-が生成した-io-操作を測定する">Iometer が生成した IO 操作を測定する</h2>
-<p><a href="http://www.iometer.org/">Iometer</a> を使って、4 KB 75% Read / 0% Random（全体の IO 操作のうち、75% を読み込み処理に、25% を書き込み処理に振り分ける設定）の負荷をサイズ 1TB の Premium SSD のディスクにかけます。この状態で Iometer が発生させている IO 操作をパフォーマンス モニターで計測すると、以下のようなグラフが表示されます。</p>
+<p><a href="http://www.iometer.org/" target="_blank" rel="noopener">Iometer</a> を使って、4 KB 75% Read / 0% Random（全体の IO 操作のうち、75% を読み込み処理に、25% を書き込み処理に振り分ける設定）の負荷をサイズ 1TB の Premium SSD のディスクにかけます。この状態で Iometer が発生させている IO 操作をパフォーマンス モニターで計測すると、以下のようなグラフが表示されます。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/06/read75write25.png" alt="Perfmon"></p>
 <p>Iometer で負荷のかけ方を Read 75%/Write 25% と設定し、1TB の Premium SSD の最大 IOPS である 5,000 IOPS が生成されるように負荷をかけました。パフォーマンス モニターの測定結果にも、Read 75%/Write 25% という負荷の割り振りが反映されていることが確認できます。</p>
 <p>赤いグラフは Process\IO Data Operations/sec を示し、Iometer が発生させている全体の IO 操作の合計値である約 5,000 IOPS が記録されています。緑のグラフは Process\IO Read Operations/sec を示し、5,000 IOPS の 75% にあたる約 3,750 IOPS が読み込み処理に使われていることが記録されています。青いグラフは Process\IO Write Operations/sec を示し、5,000 IOPS の 25% にあたる約 1,250 IOPS が書き込み処理に使われていることが記録されています。</p>
@@ -389,15 +389,61 @@ if (!doNotTrack) {
               
 
 <h2>関連記事</h2>
-<ul>
 	
-	<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">
+				ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+				IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+				Premium SSD を使ってみよう ～性能と注意点をチェック～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-</ul>
 
 
             </div>

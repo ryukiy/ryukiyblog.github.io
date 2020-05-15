@@ -324,13 +324,13 @@ if (!doNotTrack) {
                   この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
                 </div>
               
-              <p>Microsoft Ignite 2018 において、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview">Azure Virtual Network TAP (VTAP)</a> のプレビューが発表されました。</p>
+              <p>Microsoft Ignite 2018 において、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview" target="_blank" rel="noopener">Azure Virtual Network TAP (VTAP)</a> のプレビューが発表されました。</p>
 <h2 id="tap-とは何か">TAP とは何か？</h2>
 <p>TAP とは Terminal Access Point の略であり、ネットワーク機器がトラフィックを受け取るためのアクセス ポイントを意味します。TAP を利用するメリットは、ネットワークのトラフィックがミラーリングされ、既存のネットワーク構成を変更することなくトラフィックの監視が可能となる点です。ここでは例として、既存のネットワーク環境に対して次世代ファイアウォールを新たに設置し、ネットワーク経由のサイバー攻撃の状況を監視するケースについて考えてみます。<br>
 <img src="https://blog.ryukiy.net/img/post/2018/10/tap.png" alt="TAP の概要"><br>
 ネットワーク機器の構成変更はリスクが伴いますが、リスクを回避する手段として TAP を用いることが可能です。また、TAP は Azure 特有のものではなく、従来からあるネットワークのテクニックとして利用されています。</p>
 <h2 id="現状の-azure-vnet-におけるチャレンジ">現状の Azure VNET におけるチャレンジ</h2>
-<p>セキュリティ解析を行う NVA (Network Virtual Appliance) を設置して VNET に対するサイバー攻撃の監視を行う場合、Azure VM でホストされるワークロードのトラフィックが、NVA を経由（インライン構成）するように VNET をデザインする必要があります。この構成については、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-networks-dmz-nsg-fw-udr-asm">Azure のドキュメント</a> で紹介されているので、詳細はこちらのページを参考にしてみてください。</p>
+<p>セキュリティ解析を行う NVA (Network Virtual Appliance) を設置して VNET に対するサイバー攻撃の監視を行う場合、Azure VM でホストされるワークロードのトラフィックが、NVA を経由（インライン構成）するように VNET をデザインする必要があります。この構成については、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-networks-dmz-nsg-fw-udr-asm" target="_blank" rel="noopener">Azure のドキュメント</a> で紹介されているので、詳細はこちらのページを参考にしてみてください。</p>
 <p>既存の VNET に追加で NVA を設置するパターンでは、構成変更による影響を考慮する必要があります。ここでは、フロントエンドに Web、バックエンドに DB が存在する環境の例で考えてみます。既存の VNET に NVA を設置するためには、以下のような構成変更が必要となります。<br>
 <img src="https://blog.ryukiy.net/img/post/2018/10/nva.png" alt="NVA の設置"></p>
 <p>この構成変更のポイントは以下の通りです。</p>

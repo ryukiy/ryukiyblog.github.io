@@ -355,7 +355,7 @@ if (!doNotTrack) {
 <p>例えば、1 本の論理ディスクが 16 本の物理ディスクで構成されている場合、LogicalDisk のカウンターから得られるデータと PhysicalDisk のカウンターから得られるデータは異なるので注意してください。LogicalDisk のデータを参照した際には、16 本の物理ディスクを 1 つの論理ディスクとして束ねた結果のパフォーマンス データが得られます。PhysicalDisk を参照した際には、個別の物理ディスクのパフォーマンス データが得られます。</p>
 <p>アプリケーションからは論理ディスクの単位でディスクを参照しますので、ディスクのボトルネックを調査する時には最初に LogicalDisk で論理ディスクの応答時間を測定し、その後に PhysicalDisk で物理ディスクを個別に調査するケースが一般的だと思います。</p>
 <h2 id="iometer-で負荷をかけた際のディスクの応答時間を測定">Iometer で負荷をかけた際のディスクの応答時間を測定</h2>
-<p><a href="http://www.iometer.org/">Iometer</a> を使って、4 KB 100% Read / 0% Random の負荷をサイズ 1TB の Premium SSD のディスクにかけながら、LogicalDisk\Avg. Disk sec/Read の測定をします。この時、Iometer からは 5,000 IOPS の負荷がディスクに対して発生しています。</p>
+<p><a href="http://www.iometer.org/" target="_blank" rel="noopener">Iometer</a> を使って、4 KB 100% Read / 0% Random の負荷をサイズ 1TB の Premium SSD のディスクにかけながら、LogicalDisk\Avg. Disk sec/Read の測定をします。この時、Iometer からは 5,000 IOPS の負荷がディスクに対して発生しています。</p>
 <p>パフォーマンス モニターで計測したディスクの平均読み取り時間として、約 3.5 ミリ秒付近でグラフが一定化していることが分かります。</p>
 <p><img src="https://blog.ryukiy.net/img/post/2015/07/perflatency.png" alt="PerfLatency"></p>
 <p>また、Iometer の画面からは、応答時間を数字で確認することが可能です。パフォーマンス モニターで計測できた数値と同じ数値が Iometer からも確認できます。</p>
@@ -364,7 +364,7 @@ if (!doNotTrack) {
 <p>Premium SSD の場合、IO 操作の応答時間が 10 ミリ秒未満となるように設計されています。そのため、Premium SSD を使っているにもかかわらず、ディスクの応答時間が常に数十ミリ秒を超えるようなシステムの場合、ディスクが原因でパフォーマンス遅延が発生しているということが言えます。</p>
 <p>また、OS やミドルウェアの観点からディスクの応答時間に関するガイドラインが提供されています。以下のページをご参照ください。</p>
 <p>サーバーのパフォーマンスを測定する<br>
-<a href="https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)">https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)</a></p>
+<a href="https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984%28v=msdn.10%29" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/previous-versions/technet-magazine/cc718984(v=msdn.10)</a></p>
 <p>Windows 環境の場合、応答時間が 25 ミリ秒以内におさまる設計を推奨しています。ですが、 25 ミリ秒という数値は一般的な目安です。例えば、SQL Server に超高速なレスポンスを求めるという要件があるような場合には、10 ミリ秒以下の応答時間を目標にディスクのチューニングを行うケースもあります。</p>
 <p>また、日中の業務時間中は 25 ミリ秒以内で処理を実行することができる環境で、夜間のバックアップ処理の実行中に一時的に応答時間が 100 ミリ秒を超える、というようなケースはよくあります。応答時間が 100 ミリ秒を超えることでバックアップ処理が業務の開始時間前までに終了しないというようなケースではディスクのパフォーマンスの見直しが必要になりますが、夜間のバックアップの負荷が日中の業務に影響を与えないレベルであれば、バックアップ処理実行時の 100 ミリ秒という応答時間は許容する、というケースも多くあります。</p>
 <p>システム要件に応じて、ディスクの応答時間の期待値を調整していただくことをお勧めします。</p>
@@ -410,7 +410,7 @@ if (!doNotTrack) {
 <p><img src="https://blog.ryukiy.net/img/post/2015/07/standardhdd.png" alt="StandardHDD"></p>
 <p>つまり、Standard SSD の方が応答時間が短く、パフォーマンスも安定していると言うことができます。Standard HDD はパフォーマンスにばらつきが見られますが、Azure Storage の製品チームからのアナウンスとして、各ストレージの比較について説明された記事が公開されています。詳細は以下をご参照ください。</p>
 <p>Azure 仮想マシンのワークロードを対象とする Standard SSD ディスクの一般提供のお知らせ<br>
-<a href="https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/">https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/</a></p>
+<a href="https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/" target="_blank" rel="noopener">https://azure.microsoft.com/ja-jp/blog/announcing-general-availability-of-standard-ssd-disks-for-azure-virtual-machine-workloads/</a></p>
 <p>同じ IOPS/スループット性能を提供するディスクでも、ディスクの種類によって応答時間が異なるため、システム全体のパフォーマンスに影響します。システム要件とコストのバランスを見ながら、最適なディスクを選択していただくことをお勧めします。</p>
 <h2 id="まとめ">まとめ</h2>
 <p></p>
@@ -424,15 +424,61 @@ if (!doNotTrack) {
               
 
 <h2>関連記事</h2>
-<ul>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+				システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+				IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-	<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+				Premium SSD を使ってみよう ～性能と注意点をチェック～
+			  </a>
+			</h4>
+		  </div>
+	</div>
 	
-</ul>
 
 
             </div>

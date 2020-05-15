@@ -26,3 +26,13 @@ body, h1, h2, h3, h4, h5, h6, html {
 .sidebar-button-desc {
     color: #ebebeb;
 }
+
+.postShorten-thumbnailimg-related img {
+    float: left;
+    margin: 5px 15px 5px 0;
+    display: block;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    overflow: hidden;
+}
