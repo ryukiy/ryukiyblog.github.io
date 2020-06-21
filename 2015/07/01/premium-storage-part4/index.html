@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.70.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.72.0 with theme Tranquilpeak 0.4.8-BETA">
 <meta name="author" content="Ryuki Yoshimatsu">
 <meta name="keywords" content="Azure Virtual Machines, Azure Storage, Azure VM, Premium SSD, Standard SSD, Standard HDD, IOPS, ディスク, スループット, レイテンシー, 応答時間, Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP, メタル先輩">
 <meta name="description" content="前回の記事では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。">
@@ -31,14 +31,14 @@
   
   
     
-      <meta property="article:section" content="Azure Storage">
+      <meta property="article:section" content="Technology">
     
   
   
     
-      <meta property="article:tag" content="Storage">
+      <meta property="article:tag" content="Azure Storage">
     
-      <meta property="article:tag" content="Virtual Machine">
+      <meta property="article:tag" content="Azure Virtual Machines">
     
       <meta property="article:tag" content="Premium SSD">
     
@@ -168,11 +168,31 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories">
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories/technology/">
     
-      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
       
-      <span class="sidebar-button-desc">Categories</span>
+      <span class="sidebar-button-desc">Technology</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories/music/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-music"></i>
+      
+      <span class="sidebar-button-desc">Music</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories/note/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-file-text"></i>
+      
+      <span class="sidebar-button-desc">Note</span>
     </a>
   </li>
 
@@ -193,16 +213,6 @@ if (!doNotTrack) {
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
       <span class="sidebar-button-desc">Archives</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about">
-    
-      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
-      
-      <span class="sidebar-button-desc">About</span>
     </a>
   </li>
 
@@ -227,6 +237,16 @@ if (!doNotTrack) {
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
       <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
     </a>
   </li>
 
@@ -293,7 +313,7 @@ if (!doNotTrack) {
   
     <b><span>カテゴリー: </span></b>
     
-      <a class="category-link" href="https://blog.ryukiy.net/categories/azure-storage">Azure Storage</a>
+      <a class="category-link" href="https://blog.ryukiy.net/categories/technology">Technology</a>
     
   
 
@@ -304,9 +324,9 @@ if (!doNotTrack) {
         <div class="post-footer-tags">
           <b><span class="text-color-light text-small">タグ: </span></b>
           
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/storage/">Storage</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-storage/">Azure Storage</a>
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-virtual-machines/">Azure Virtual Machines</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
 
@@ -327,6 +347,10 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
+              
+                <div class="alert warning">  
+                  この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                </div>
               
               <p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p>
 <h2 id="目次">目次</h2>
@@ -436,7 +460,7 @@ if (!doNotTrack) {
 		  <div class="postShorten-header">
 			<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
 			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
+			  <a class="topmenu-title" href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">
 				システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
 			  </a>
 			</h4>
@@ -454,7 +478,7 @@ if (!doNotTrack) {
 		  <div class="postShorten-header">
 			<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
 			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
+			  <a class="topmenu-title" href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">
 				IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
 			  </a>
 			</h4>
@@ -472,8 +496,44 @@ if (!doNotTrack) {
 		  <div class="postShorten-header">
 			<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
 			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="link-unstyled" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
+			  <a class="topmenu-title" href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">
 				Premium SSD を使ってみよう ～性能と注意点をチェック～
+			  </a>
+			</h4>
+		  </div>
+	</div>
+	
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/VM.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="topmenu-title" href="https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/">
+				Azure VM のシングル インスタンスは SLA が適用されます
+			  </a>
+			</h4>
+		  </div>
+	</div>
+	
+	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+		  
+			<a href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+			  <div class="postShorten-thumbnailimg-related">
+				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/VM-windows.svg"/>
+			  </div>
+			</a>
+		  
+		  <div class="postShorten-header">
+			<small>公開日: 2016-11-21&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-21</small>
+			<h4 class="postShorten-title" itemprop="headline">
+			  <a class="topmenu-title" href="https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/">
+				Azure Windows VM の管理者は Built-in Administrator です
 			  </a>
 			</h4>
 		  </div>
@@ -491,9 +551,9 @@ if (!doNotTrack) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">タグ</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/storage/">Storage</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-storage/">Azure Storage</a>
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/virtual-machine/">Virtual Machine</a>
+  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-virtual-machines/">Azure Virtual Machines</a>
 
   <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
 

@@ -6,10 +6,28 @@
     <description>Recent content in Posts on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 11 May 2020 15:57:55 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2020 17:53:00 +0900</lastBuildDate>
     
 	<atom:link href="https://blog.ryukiy.net/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ギターのスピードを上げるためのピッキングの秘密</title>
+      <link>https://blog.ryukiy.net/2020/06/21/fast-picking/</link>
+      <pubDate>Sun, 21 Jun 2020 17:53:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2020/06/21/fast-picking/</guid>
+      <description>&lt;p&gt;YouTube で見かけた、ギターのスピードを上げるためのピッキングのコツの話を紹介します。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>こうやったらラクに禁煙できたという方法の紹介</title>
+      <link>https://blog.ryukiy.net/2020/06/21/how-to-stop-smoking/</link>
+      <pubDate>Sun, 21 Jun 2020 08:00:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/2020/06/21/how-to-stop-smoking/</guid>
+      <description>&lt;p&gt;僕の禁煙体験談の話しです。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>無料の IDE、Visual Studio Community 2019 のインストールと動作確認</title>
