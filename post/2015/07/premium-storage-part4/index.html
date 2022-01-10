@@ -162,18 +162,18 @@
       </div>
       <p></p>
     
-    <div class="post_body"><p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p>
+    <div class="post_body"><p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">前回の記事</a>では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。</p>
 <h2 id="目次">目次</h2>
 <p></p>
 <ol>
-<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
 <li>ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～（本記事）</li>
 </ol>
 <h2 id="ディスクの応答時間がパフォーマンスの判断指標となる">ディスクの応答時間がパフォーマンスの判断指標となる</h2>
 <p>システムのパフォーマンスが低下している原因がディスクの場合、ディスクの応答時間が長くなります。</p>
-<p><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">前回の記事</a>では、パフォーマンス モニターを使ってアプリケーションの稼働に必要な IO 操作の数を測定する方法を紹介しましたが、パフォーマンス モニターでディスクの応答時間も確認することができます。応答時間を確認するためには以下のカウンターを使います。</p>
+<p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">前回の記事</a>では、パフォーマンス モニターを使ってアプリケーションの稼働に必要な IO 操作の数を測定する方法を紹介しましたが、パフォーマンス モニターでディスクの応答時間も確認することができます。応答時間を確認するためには以下のカウンターを使います。</p>
 <p></p>
 <ul>
 <li>LogicalDisk\Avg. Disk sec/Read</li>

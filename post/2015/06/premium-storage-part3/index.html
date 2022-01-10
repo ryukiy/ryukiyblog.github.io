@@ -162,20 +162,20 @@
       </div>
       <p></p>
     
-    <div class="post_body"><p><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">前回の記事</a>では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。</p>
+    <div class="post_body"><p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">前回の記事</a>では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。</p>
 <h2 id="目次">目次</h2>
 <p></p>
 <ol>
-<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</a></li>
 <li>システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～（本記事）</li>
-<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
 </ol>
 <h2 id="同じ-web-サーバーでも必要な-iops-は要件によって異なる">同じ Web サーバーでも必要な IOPS は要件によって異なる</h2>
 <p>ディスク パフォーマンスの見積もりに関して、「Web サーバーではどの程度の IOPS を用意しておくのが妥当ですか？」といったような質問をいただきます。Web サーバーに限った話ではなく、他にも DB サーバーや認証サーバー等が必要とする IOPS の一般論に関するご相談が多いように思います。</p>
 <p>一言で Web サーバーと言っても、ディスク パフォーマンスの見積もりに影響する HTTP リクエストの総量、Web コンテンツのデータ サイズ、ファイル システムのクラスター サイズ等は異なりますので、一概に「Web サーバーの場合はこの程度の IOPS が必要です」という解答はありません。</p>
 <p>しかし、実際に HTTP の負荷をシミュレートさせてパフォーマンス テストを行うことで、稼働中のアプリケーションが必要とする IOPS を測定することが可能です。</p>
-<p><a href="https://blog.ryukiy.net/2015/06/12/premium-storage-part2/">前回の記事</a>に書いたように、OS の中では IO はバケツリレーのように処理されます。</p>
+<p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">前回の記事</a>に書いたように、OS の中では IO はバケツリレーのように処理されます。</p>
 <p>
 
 

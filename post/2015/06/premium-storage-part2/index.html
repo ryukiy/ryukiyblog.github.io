@@ -162,17 +162,17 @@
       </div>
       <p></p>
     
-    <div class="post_body"><p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p>
+    <div class="post_body"><p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p>
 <h2 id="目次">目次</h2>
 <p></p>
 <ol>
-<li><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
 <li>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～（本記事）</li>
-<li><a href="https://blog.ryukiy.net/2015/06/18/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
-<li><a href="https://blog.ryukiy.net/2015/07/01/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
 </ol>
 <h2 id="高い-iops-が得られている状態--高いスループットが得られている状態とは限らない">「高い IOPS が得られている状態 = 高いスループットが得られている状態」とは限らない</h2>
-<p><a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>では、サイズが 1TB の Premium SSD の IOPS を計測して、ディスク一台あたり 5,000 IOPS の性能を引き出せることを確認しました。本記事では、スループットの性能を計測します。</p>
+<p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">前回の記事</a>では、サイズが 1TB の Premium SSD の IOPS を計測して、ディスク一台あたり 5,000 IOPS の性能を引き出せることを確認しました。本記事では、スループットの性能を計測します。</p>
 <p>前回と同じように <a href="http://www.iometer.org/">Iometer</a> を利用し、1TB の Premium SSD のディスクに 16 個の Worker を使って 4 KB 100% Read / 0% Random の負荷をかけます。また、Azure VM のサイズも前回と同様に Standard_D16s_v3 を利用してスループットを測定します。</p>
 <p>得られたスループットは以下の通り、約 21 MB/秒 です。</p>
 <p>
@@ -547,7 +547,7 @@
 <p>最後に、上述したテスト ケースの中で、読み込みサイズが 64 KB と 256 KB のケースで得られたスループットの結果が両ケースとも約 200 MB/秒になった原因について説明します。</p>
 <p>このようなテスト パターンで計測を行った場合、一般的には読み込みサイズが 256 KB の方が高いスループットが得られます。今回の検証で 64 KB と 256 KB のケースで得られたスループットが同じ値になった原因は、1TB の Premium SSD では、ディスク一台あたりの最大 IOPS に 5,000、最大スループットに 200 MB/秒という上限が設定されているためです。</p>
 <p>5,000 を超えた IOPS、200 MB/秒を超えたスループットが必要になった場合には、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739(v=ws.11)">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS/スループット性能を確保します。</p>
-<p>加えて、<a href="https://blog.ryukiy.net/2015/06/10/premium-storage-part1/">前回の記事</a>でも説明した通り、Azure VM のサイズに対しても IOPS とスループットの上限が設定されています。本記事での検証では、Azure VM のサイズに Standard_D16s_v3 を指定しています。適切なサイズの Premium SSD を使用しているにもかかわらず、思うようなパフォーマンスが得られない場合には、Azure VM のサイズを確認してみてください。</p>
+<p>加えて、<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">前回の記事</a>でも説明した通り、Azure VM のサイズに対しても IOPS とスループットの上限が設定されています。本記事での検証では、Azure VM のサイズに Standard_D16s_v3 を指定しています。適切なサイズの Premium SSD を使用しているにもかかわらず、思うようなパフォーマンスが得られない場合には、Azure VM のサイズを確認してみてください。</p>
 <p>参考情報：<br>
 Azure の Windows 仮想マシンのサイズ<br>
 <a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
