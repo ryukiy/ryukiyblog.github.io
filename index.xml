@@ -5,133 +5,182 @@
     <link>https://blog.ryukiy.net/</link>
     <description>Recent content on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
-    <lastBuildDate>Sun, 21 Jun 2020 17:53:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.ryukiy.net/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>ギターのスピードを上げるためのピッキングの秘密</title>
-      <link>https://blog.ryukiy.net/2020/06/21/fast-picking/</link>
-      <pubDate>Sun, 21 Jun 2020 17:53:00 +0900</pubDate>
-      
-      <guid>https://blog.ryukiy.net/2020/06/21/fast-picking/</guid>
-      <description>&lt;p&gt;YouTube で見かけた、ギターのスピードを上げるためのピッキングのコツの話を紹介します。&lt;/p&gt;</description>
-    </item>
-    
+    <copyright>© 2022 Ryuki Yoshimatsu. All Rights Reserved.</copyright>
+    <lastBuildDate>Sun, 21 Jun 2020 08:00:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>こうやったらラクに禁煙できたという方法の紹介</title>
-      <link>https://blog.ryukiy.net/2020/06/21/how-to-stop-smoking/</link>
+      <link>https://blog.ryukiy.net/post/2020/06/how-to-stop-smoking/</link>
       <pubDate>Sun, 21 Jun 2020 08:00:00 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2020/06/21/how-to-stop-smoking/</guid>
-      <description>&lt;p&gt;僕の禁煙体験談の話しです。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2020/06/how-to-stop-smoking/</guid>
+      <description>
+        
+          
+            &lt;p&gt;僕の禁煙体験談の話です。プルームテックを使って禁煙することができました。僕が試した禁煙の方法について紹介します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>無料の IDE、Visual Studio Community 2019 のインストールと動作確認</title>
-      <link>https://blog.ryukiy.net/2020/05/11/vs-community-setup/</link>
+      <link>https://blog.ryukiy.net/post/2020/05/vs-community-setup/</link>
       <pubDate>Mon, 11 May 2020 15:57:55 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2020/05/11/vs-community-setup/</guid>
-      <description>&lt;p&gt;Visual Studio Community 2019 のインストールと動作確認の方法について紹介します。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2020/05/vs-community-setup/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Visual Studio Community 2019 のインストールと動作確認の方法について紹介します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>Azure Virtual Network TAP のメリットを解説</title>
-      <link>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</link>
+      <link>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</link>
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</guid>
-      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。Azure Virtual Network TAP のメリットを解説します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>Azure VM のシングル インスタンスは SLA が適用されます</title>
-      <link>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</link>
+      <link>https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/</link>
       <pubDate>Tue, 22 Nov 2016 00:57:09 +0000</pubDate>
       
-      <guid>https://blog.ryukiy.net/2016/11/22/azure-vm-sla-update/</guid>
-      <description>&lt;p&gt;Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>WordPress on Windows Server 2016 のインストール手順を解説</title>
-      <link>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</link>
+      <link>https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/</link>
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2016/11/21/wordpress-manual-install/</guid>
-      <description>&lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>Azure Windows VM の管理者は Built-in Administrator です</title>
-      <link>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</link>
+      <link>https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/</link>
       <pubDate>Mon, 21 Nov 2016 05:03:46 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2016/11/21/azure-windows-vm-administrator/</guid>
-      <description>&lt;p&gt;Azure で Windows VM を作成した時に標準でアサインされる管理者について触れたいと思います。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>Bash on Windows のアーキテクチャーを妄想してみる</title>
-      <link>https://blog.ryukiy.net/2016/04/01/bash-on-windows/</link>
+      <link>https://blog.ryukiy.net/post/2016/04/bash-on-windows/</link>
       <pubDate>Fri, 01 Apr 2016 18:49:17 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2016/04/01/bash-on-windows/</guid>
-      <description>&lt;p&gt;本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2016/04/bash-on-windows/</guid>
+      <description>
+        
+          
+            &lt;p&gt;本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</title>
-      <link>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</link>
+      <link>https://blog.ryukiy.net/post/2015/07/premium-storage-part4/</link>
       <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2015/07/01/premium-storage-part4/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/18/premium-storage-part3/&#34;&gt;前回の記事&lt;/a&gt;では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2015/07/premium-storage-part4/</guid>
+      <description>
+        
+          
+            &lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/18/premium-storage-part3/&#34;&gt;前回の記事&lt;/a&gt;では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</title>
-      <link>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</link>
+      <link>https://blog.ryukiy.net/post/2015/06/premium-storage-part3/</link>
       <pubDate>Thu, 18 Jun 2015 15:16:29 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2015/06/18/premium-storage-part3/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/12/premium-storage-part2/&#34;&gt;前回の記事&lt;/a&gt;では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2015/06/premium-storage-part3/</guid>
+      <description>
+        
+          
+            &lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/12/premium-storage-part2/&#34;&gt;前回の記事&lt;/a&gt;では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</title>
-      <link>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</link>
+      <link>https://blog.ryukiy.net/post/2015/06/premium-storage-part2/</link>
       <pubDate>Fri, 12 Jun 2015 12:40:15 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2015/06/12/premium-storage-part2/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&#34;&gt;前回の記事&lt;/a&gt;では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2015/06/premium-storage-part2/</guid>
+      <description>
+        
+          
+            &lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/2015/06/10/premium-storage-part1/&#34;&gt;前回の記事&lt;/a&gt;では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
     <item>
       <title>Premium SSD を使ってみよう ～性能と注意点をチェック～</title>
-      <link>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</link>
+      <link>https://blog.ryukiy.net/post/2015/06/premium-storage-part1/</link>
       <pubDate>Wed, 10 Jun 2015 16:13:38 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2015/06/10/premium-storage-part1/</guid>
-      <description>&lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>https://blog.ryukiy.net/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.ryukiy.net/about/</guid>
-      <description>吉松 龍輝（よしまつ りゅうき） Cross Technology Architect at Microsoft Japan
-CISSP (Certified Information Systems Security Professional)
-日本マイクロソフトに入社後、Windows Server/Client の高度障害解析エンジニアおよび緊急案件専任チームのテクニカル リードとして活動。アメリカ本社の R&amp;amp;D と協力して Windows のバグ修正や、OS モジュールのデバッグ・ダンプ解析などによる障害解析を担当。その後、プリセールス部門での技術提案活動やオンサイト サポート部門で技術トレーニングのデリバリー経験などを経て、AWS Japan、Palo Alto Networks Japan でクラウド アーキテクトとして活動。
-現在は、日本マイクロソフトで Microsoft Azure を始めとしたクロス ソリューションのアーキテクトを担当。
-趣味はギター、バンド、ヘヴィ メタル。クラウドのコミュニティ活動の中では「メタル先輩」というニックネームで呼ばれています。
-このブログの内容に関してご指摘やご質問などがありましたら、GitHub で Issue をオープンしていただくか、Twitter でご連絡ください。
-【免責事項】本ブログでの発言やコメントは、私が所属する組織・団体の正式な見解またはコメントではなく、私個人の見解を述べたものになります。本ブログに掲載された内容によって生じた損害等の一切の責任を負いかねますので、ご了承ください。本ブログの情報を利用する場合は、各自の責任においてご利用ください。</description>
+      <guid>https://blog.ryukiy.net/post/2015/06/premium-storage-part1/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
   </channel>

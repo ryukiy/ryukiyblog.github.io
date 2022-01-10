@@ -5,19 +5,22 @@
     <link>https://blog.ryukiy.net/tags/nva/</link>
     <description>Recent content in NVA on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
-    <lastBuildDate>Thu, 25 Oct 2018 10:33:32 +0900</lastBuildDate>
-    
-	<atom:link href="https://blog.ryukiy.net/tags/nva/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>© 2022 Ryuki Yoshimatsu. All Rights Reserved.</copyright>
+    <lastBuildDate>Thu, 25 Oct 2018 10:33:32 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/tags/nva/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Virtual Network TAP のメリットを解説</title>
-      <link>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</link>
+      <link>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</link>
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/2018/10/25/azure-vnet-vtap/</guid>
-      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。&lt;/p&gt;</description>
+      <guid>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。Azure Virtual Network TAP のメリットを解説します。&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
     
   </channel>

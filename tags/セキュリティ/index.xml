@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>セキュリティ on RyukiY&#39;s Blog</title>
+    <link>https://blog.ryukiy.net/tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3/</link>
+    <description>Recent content in セキュリティ on RyukiY&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>© 2022 Ryuki Yoshimatsu. All Rights Reserved.</copyright>
+    <lastBuildDate>Thu, 25 Oct 2018 10:33:32 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Virtual Network TAP のメリットを解説</title>
+      <link>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</link>
+      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。Azure Virtual Network TAP のメリットを解説します。&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
