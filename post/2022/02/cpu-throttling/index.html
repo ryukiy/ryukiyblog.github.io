@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた" />
-    <meta property="og:title" content="M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた" />
-    <meta property="twitter:title" content="M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた" />
+    <meta name="title" content="CPU のスロットリングにより Cubase の音が途切れてしまう" />
+    <meta property="og:title" content="CPU のスロットリングにより Cubase の音が途切れてしまう" />
+    <meta property="twitter:title" content="CPU のスロットリングにより Cubase の音が途切れてしまう" />
     
 
     
-    <meta name="description" content="M-AUDIO KEYSTATION 61 のボタンから Cubase をコントロールするための設定方法についてまとめた情報です。">
-    <meta property="og:description" content="M-AUDIO KEYSTATION 61 のボタンから Cubase をコントロールするための設定方法についてまとめた情報です。" />
-    <meta property="twitter:description" content="M-AUDIO KEYSTATION 61 のボタンから Cubase をコントロールするための設定方法についてまとめた情報です。" />
+    <meta name="description" content="CPU のスロットリングが起こって Cubase の音が途切れてしまう現象についてまとめた情報です。">
+    <meta property="og:description" content="CPU のスロットリングが起こって Cubase の音が途切れてしまう現象についてまとめた情報です。" />
+    <meta property="twitter:description" content="CPU のスロットリングが起こって Cubase の音が途切れてしまう現象についてまとめた情報です。" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="Ryuki Yoshimatsu, 吉松龍輝, RyukiY&#39;s Blog">
     <link rel="shortcut icon" href="https://blog.ryukiy.net/img/dat/favicon.ico">
 
-    <title>M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた | RyukiY&#39;s Blog</title>
+    <title>CPU のスロットリングにより Cubase の音が途切れてしまう | RyukiY&#39;s Blog</title>
 
-    <link rel="canonical" href="https://blog.ryukiy.net/post/2022/01/m-audio-keys/">
+    <link rel="canonical" href="https://blog.ryukiy.net/post/2022/02/cpu-throttling/">
 
     
     
@@ -150,7 +150,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/post/2022/01/0123thum.jpg')
+        background-image: url('/img/post/2022/02/0217thum.png')
     }
 </style>
 
@@ -170,16 +170,8 @@
                             Cubase
                         </a>
                         
-                        <a class="tag" href="https://blog.ryukiy.net/tags/m-audio" title="M-AUDIO">
-                            M-AUDIO
-                        </a>
-                        
-                        <a class="tag" href="https://blog.ryukiy.net/tags/keystation" title="KEYSTATION">
-                            KEYSTATION
-                        </a>
-                        
                     </div>
-                    <h1>M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた</h1>
+                    <h1>CPU のスロットリングにより Cubase の音が途切れてしまう</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -188,7 +180,7 @@
                                 Ryuki Yoshimatsu
                              
                             on 
-                            Sunday, January 23, 2022
+                            Thursday, February 17, 2022
                             
                             
                             
@@ -222,13 +214,13 @@
         Share:
       </div>
       <div class="sns_button twitter">
-        <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f01%2fm-audio-keys%2f&text=M-AUDIO%20KEYSTATION%2061%20%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%83%bb%e5%86%8d%e7%94%9f%e3%83%bb%e5%81%9c%e6%ad%a2%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Cubase%20%e3%82%92%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f" target="_blank" title="Tweet"><i class="fab fa-twitter"></i></a>
+        <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f02%2fcpu-throttling%2f&text=CPU%20%e3%81%ae%e3%82%b9%e3%83%ad%e3%83%83%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%82%88%e3%82%8a%20Cubase%20%e3%81%ae%e9%9f%b3%e3%81%8c%e9%80%94%e5%88%87%e3%82%8c%e3%81%a6%e3%81%97%e3%81%be%e3%81%86" target="_blank" title="Tweet"><i class="fab fa-twitter"></i></a>
       </div>
       <div class="sns_button facebook">
-        <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f01%2fm-audio-keys%2f&t=M-AUDIO%20KEYSTATION%2061%20%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%83%bb%e5%86%8d%e7%94%9f%e3%83%bb%e5%81%9c%e6%ad%a2%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Cubase%20%e3%82%92%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f02%2fcpu-throttling%2f&t=CPU%20%e3%81%ae%e3%82%b9%e3%83%ad%e3%83%83%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%82%88%e3%82%8a%20Cubase%20%e3%81%ae%e9%9f%b3%e3%81%8c%e9%80%94%e5%88%87%e3%82%8c%e3%81%a6%e3%81%97%e3%81%be%e3%81%86" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
       </div>
       <div class="sns_button hatena">
-        <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f01%2fm-audio-keys%2f&title=M-AUDIO%20KEYSTATION%2061%20%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%83%bb%e5%86%8d%e7%94%9f%e3%83%bb%e5%81%9c%e6%ad%a2%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Cubase%20%e3%82%92%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f" target="_blank" title="hatena"><i class="fa fa-hatena"></i></i></a>
+        <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f02%2fcpu-throttling%2f&title=CPU%20%e3%81%ae%e3%82%b9%e3%83%ad%e3%83%83%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%82%88%e3%82%8a%20Cubase%20%e3%81%ae%e9%9f%b3%e3%81%8c%e9%80%94%e5%88%87%e3%82%8c%e3%81%a6%e3%81%97%e3%81%be%e3%81%86" target="_blank" title="hatena"><i class="fa fa-hatena"></i></i></a>
       </div>
   </div>
 </section>
@@ -237,41 +229,62 @@
                 <div class="blog-content">
                     
 
-                    <p>M-AUDIO の MIDI キーボード、KEYSTATION 61 に付いているボタンから、Cubase で制作している曲の再生や録音を行うための設定の紹介です。</p>
-<h2 id="やりたいこと">やりたいこと</h2>
-<p>僕は DAW に Cubase Pro 11、MIDI キーボードとして M-AUDIO の KEYSTATION 61 を使っているのですが、KEYSTATION 61 には以下のように録音・再生・停止ボタンがついています。</p>
+                    <p>僕の手持ちのラップトップで Cubase Pro 11 を立ち上げて、Cubase のデモトラック（Venus Theory Cubase 11 Demo Track）を再生すると、曲が盛り上がる部分で音が途切れてしまうという現象が起こります。原因を調べた結果、CPU のスロットリングによって起こっているのではないかという結論に至ったので、原因と対策について書いてみようと思います。</p>
+<h2 id="発生する現象">発生する現象</h2>
 <p>
-  <img src="https://blog.ryukiy.net/img/post/2022/01/0123-1.jpg" alt="KEYSTATION 61">
+  <img src="https://blog.ryukiy.net/img/post/2022/02/0217-1.png" alt="Venus Theory Cubase 11 Demo Track">
 
 </p>
-<p>ギターを抱えながら Cubase でレコーディングしている時に、ギターが邪魔になってパソコンのマウスやキーボードを操作するのが手間だなと感じることが多いんですよね。そこで、KEYSTATION 61 のボタンから操作できるとギターを抱えながらでも操作がラクになるかなと思って、今回紹介する設定をしてみました。</p>
-<p>KEYSTATION 61 から Cubase をコントロールする設定を行うと、この動画のように Cubase のコントロールができるようになります。</p>
-<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/tv/CeqNSMQl1sd/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/tv/CeqNSMQl1sd/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">この投稿をInstagramで見る</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/tv/CeqNSMQl1sd/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Ryu(@ryukiyoshimatsu)がシェアした投稿</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
-<h2 id="設定方法">設定方法</h2>
-<p>僕が行った設定方法は以下の通りです。</p>
-<p>Cubase のメニューから、[スタジオ] - [スタジオ設定] を開きます。すると以下の画面が開きますが、初期状態では [リモートデバイス] のところに &ldquo;Mackie Control&rdquo; というものが入っていないと思います。</p>
-<p>
-  <img src="https://blog.ryukiy.net/img/post/2022/01/0123-2.png" alt="リモートデバイス">
+<p>僕が使っているラップトップはマイクロソフトの Surface Book 2 で、以下のような構成のマシンです。<br>
+<br></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>スペック</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz、2112 Mhz、4 個のコア、8 個のロジカル プロセッサ</td>
+</tr>
+<tr>
+<td>メモリ</td>
+<td>16.0 GB</td>
+</tr>
+<tr>
+<td>SSD</td>
+<td>SAMSUNG MZFLW1T0HMLH-000MU、1TB</td>
+</tr>
+</tbody>
+</table>
+<p>ラップトップのわりにはそこそこスペックも高いので Cubase の利用も問題ないだろうと思っていたのですが、デモトラックを再生してみると音が途切れてしまいます。一般的に、Cubase で音飛びする時にはオーディオインターフェースのサンプル数が低い場合に問題が起こることがあると思いますが、僕の環境では 512 Samples でも音が飛びます。<br>
+
+  <img src="https://blog.ryukiy.net/img/post/2022/02/0217-2.png" alt="Venus Theory Cubase 11 Demo Track">
 
 </p>
-<p>[デバイスを追加] のところをクリックして、&ldquo;Mackie Control&rdquo; を追加します。</p>
-<p>
-  <img src="https://blog.ryukiy.net/img/post/2022/01/0123-3.png" alt="デバイスを追加">
+<p>原因を調べていたところ、音が途切れるときには CPU のクロック数がグッと下がることが分かりました。Core i7-8650U にはクロック数をブーストする機能が搭載されているので、処理が重くなった際にはブーストして処理して欲しいところなのですが、実際は逆で、一番ブーストして欲しいところでクロック数が下がってしまうということが起こっているようです。</p>
+<h2 id="クロック数が下がる原因">クロック数が下がる原因</h2>
+<p>クロック数が下がる原因をいろいろと調べていたところ、行きついたのが CPU のスロットリングです。</p>
+<p>CPU に負荷がかかると、CPU の温度が高くなって不正な動作を行うことがあります。そこで、温度が高くなりすぎないように、あえて CPU の動作を遅くするための機能がスロットリングです。Cubase で音飛びする時には、このスロットリングが働いていることが分かりました。</p>
+<p>スロットリングが発生していることを確認する方法ですが、ThrottleStop というツールを使って確認します。このツールは、スロットリングが発生している時には「POWER」という赤い文字を表示して、CPU の動作に制限がかかっていることを教えてくれます。僕の環境でデモトラックを再生すると、以下のような形でスロットリングが確認できました。曲を再生した直後は何度か POWER が点灯する程度で頑張っているのですが、曲の盛り上がり部分に入ったら POWER が点灯しっぱなしで音が止まってしまいました。</p>
+<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/tv/CeqSAkkFv-Y/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/tv/CeqSAkkFv-Y/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">この投稿をInstagramで見る</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/tv/CeqSAkkFv-Y/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Ryu(@ryukiyoshimatsu)がシェアした投稿</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
+<h2 id="スロットリングの解決法">スロットリングの解決法</h2>
+<p>スロットリングによる Cubase の音飛びを解決するためには、スロットリングの機能を無効化します。ただ、スロットリングは CPU の温度が上がりすぎないようにするための安全対策のための機能なので、スロットリングを無効化するのはそれなりにリスクがあります。最悪の場合は、CPU の耐熱温度を超過して CPU 自体が壊れてしまうかもしれません。</p>
+<p>パソコンが壊れるリスクを承知でスロットリングを無効化するには、ThrottleStop で [Disable and Lock Turbo Power Limits] にチェックを入れます。<br>
+
+  <img src="https://blog.ryukiy.net/img/post/2022/02/0217-3.png" alt="Disable and Lock Turbo Power Limits">
 
 </p>
-<p>すると、以下のように [リモートデバイス] に &ldquo;Mackie Control&rdquo; が追加されます。[MIDI 入力] と [MIDI 出力] にそれぞれ Cubase に命令を送りたいキーボードを選択します。下の例では、&ldquo;Keystation 61 MK3&rdquo; が選択されています。</p>
-<p>
-  <img src="https://blog.ryukiy.net/img/post/2022/01/0123-4.png" alt="MIDI 設定">
-
-</p>
-<p>以上の設定をすると、KEYSTATION 61 の録音・再生・停止ボタンから Cubase の録音・再生・停止ができるようになります。</p>
-<h2 id="素人なりの解説">素人なりの解説</h2>
-<p>僕は MIDI の専門家ではないので何となくの説明しかできないのですが、こんな感じの理解をしています。</p>
-<p>MIDI という規格に対応しているソフトウェアやハードウェアは、MIDI 規格の中で定義された言葉を使って、お互いにやり取りすることができるようになります。KEYSTATION 61 と Cubase の間でも MIDI 規格にのっとってお互いに会話することができるのですが、KEYSTATION 61 の場合は MIDI 規格に対応している Mackie Control（マッキーコントロール）という仕様に対応しています。このことは、KEYSTATION 61 ユーザーガイドの P13 に説明されています。</p>
-<p>そのため、KEYSTATION 61 と Cubase との間で会話させるための手段として Mackie Control を使うようにしよう、というのが今回紹介した設定手順になります。</p>
+<p>ちなみに、Surface Book 2 ではこの解決策が使えませんでした。CPU の設定項目を変更するための機能が、Surface Book 2 では無効になっているためです。そのため、Surface Book 2 ではスロットリングを無効化することはできないのですが、安全対策という意味では確かに CPU の設定変更が出来ない方が安全といえるかもしれませんね。</p>
+<p>結果的に、オーディオインターフェースのサンプル数を 1536 Samples まで上げたら音飛びが発生しなくなりました。かなり高い数値かなとは思いますが、一時的な対策としては使えそうです。</p>
+<p>以上、Cubase の音飛びにお困りの方は参考にしてください。</p>
 <h2 id="参考情報">参考情報</h2>
-<p>M-AUDIO KEYSTATION 61 MK3 ユーザーガイド<br>
-<a href="http://m-audio.jp/keystation-61-mk3/data/JP-kstation61-MK3-v1.0.pdf" target="_blank" rel="noopener">http://m-audio.jp/keystation-61-mk3/data/JP-kstation61-MK3-v1.0.pdf</a></p>
+<p>ThrottleStop<br>
+<a href="https://www.techpowerup.com/download/techpowerup-throttlestop/" target="_blank" rel="noopener">https://www.techpowerup.com/download/techpowerup-throttlestop/</a></p>
+<p>DISABLE POWER LIMITS USING THROTTLESTOP<br>
+<a href="https://bradshacks.com/disable-power-limits/" target="_blank" rel="noopener">https://bradshacks.com/disable-power-limits/</a></p>
 
                     
 <section class="section sns_parent">
@@ -280,13 +293,13 @@
         Share:
       </div>
       <div class="sns_button twitter">
-        <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f01%2fm-audio-keys%2f&text=M-AUDIO%20KEYSTATION%2061%20%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%83%bb%e5%86%8d%e7%94%9f%e3%83%bb%e5%81%9c%e6%ad%a2%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Cubase%20%e3%82%92%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f" target="_blank" title="Tweet"><i class="fab fa-twitter"></i></a>
+        <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f02%2fcpu-throttling%2f&text=CPU%20%e3%81%ae%e3%82%b9%e3%83%ad%e3%83%83%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%82%88%e3%82%8a%20Cubase%20%e3%81%ae%e9%9f%b3%e3%81%8c%e9%80%94%e5%88%87%e3%82%8c%e3%81%a6%e3%81%97%e3%81%be%e3%81%86" target="_blank" title="Tweet"><i class="fab fa-twitter"></i></a>
       </div>
       <div class="sns_button facebook">
-        <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f01%2fm-audio-keys%2f&t=M-AUDIO%20KEYSTATION%2061%20%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%83%bb%e5%86%8d%e7%94%9f%e3%83%bb%e5%81%9c%e6%ad%a2%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Cubase%20%e3%82%92%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f02%2fcpu-throttling%2f&t=CPU%20%e3%81%ae%e3%82%b9%e3%83%ad%e3%83%83%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%82%88%e3%82%8a%20Cubase%20%e3%81%ae%e9%9f%b3%e3%81%8c%e9%80%94%e5%88%87%e3%82%8c%e3%81%a6%e3%81%97%e3%81%be%e3%81%86" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
       </div>
       <div class="sns_button hatena">
-        <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f01%2fm-audio-keys%2f&title=M-AUDIO%20KEYSTATION%2061%20%e3%81%ae%e9%8c%b2%e9%9f%b3%e3%83%bb%e5%86%8d%e7%94%9f%e3%83%bb%e5%81%9c%e6%ad%a2%e3%83%9c%e3%82%bf%e3%83%b3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Cubase%20%e3%82%92%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f" target="_blank" title="hatena"><i class="fa fa-hatena"></i></i></a>
+        <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f02%2fcpu-throttling%2f&title=CPU%20%e3%81%ae%e3%82%b9%e3%83%ad%e3%83%83%e3%83%88%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%82%88%e3%82%8a%20Cubase%20%e3%81%ae%e9%9f%b3%e3%81%8c%e9%80%94%e5%88%87%e3%82%8c%e3%81%a6%e3%81%97%e3%81%be%e3%81%86" target="_blank" title="hatena"><i class="fa fa-hatena"></i></i></a>
       </div>
   </div>
 </section>
@@ -298,15 +311,10 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="https://blog.ryukiy.net/post/2020/06/fast-picking/" data-toggle="tooltip" data-placement="top" title="ギターのスピードを上げるためのピッキングの秘密">&larr;
+                        <a href="https://blog.ryukiy.net/post/2022/01/m-audio-keys/" data-toggle="tooltip" data-placement="top" title="M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="https://blog.ryukiy.net/post/2022/02/cpu-throttling/" data-toggle="tooltip" data-placement="top" title="CPU のスロットリングにより Cubase の音が途切れてしまう">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 

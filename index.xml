@@ -6,7 +6,16 @@
     <description>Recent content on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 23 Jan 2022 04:53:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Feb 2022 04:53:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CPU のスロットリングにより Cubase の音が途切れてしまう</title>
+      <link>https://blog.ryukiy.net/post/2022/02/cpu-throttling/</link>
+      <pubDate>Thu, 17 Feb 2022 04:53:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/post/2022/02/cpu-throttling/</guid>
+      <description>&lt;p&gt;僕の手持ちのラップトップで Cubase Pro 11 を立ち上げて、Cubase のデモトラック（Venus Theory Cubase 11 Demo Track）を再生すると、曲が盛り上がる部分で音が途切れてしまうという現象が起こります。原因を調べた結果、CPU のスロットリングによって起こっているのではないかという結論に至ったので、原因と対策について書いてみようと思います。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>M-AUDIO KEYSTATION 61 の録音・再生・停止ボタンを使って Cubase をコントロールしてみた</title>
       <link>https://blog.ryukiy.net/post/2022/01/m-audio-keys/</link>
