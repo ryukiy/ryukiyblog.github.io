@@ -5,7 +5,34 @@
     <link>https://blog.ryukiy.net/categories/</link>
     <description>Recent content in Categories on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>© 2022 Ryuki Yoshimatsu. All Rights Reserved.</copyright>
-    <lastBuildDate>Sun, 21 Jun 2020 08:00:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja</language>
+    <lastBuildDate>Sun, 21 Jun 2020 17:53:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Music</title>
+      <link>https://blog.ryukiy.net/categories/music/</link>
+      <pubDate>Sun, 21 Jun 2020 17:53:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/categories/music/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Diary</title>
+      <link>https://blog.ryukiy.net/categories/diary/</link>
+      <pubDate>Sun, 21 Jun 2020 08:00:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/categories/diary/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tech</title>
+      <link>https://blog.ryukiy.net/categories/tech/</link>
+      <pubDate>Mon, 11 May 2020 15:57:55 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/categories/tech/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

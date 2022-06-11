@@ -5,22 +5,24 @@
     <link>https://blog.ryukiy.net/</link>
     <description>Recent content on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>© 2022 Ryuki Yoshimatsu. All Rights Reserved.</copyright>
-    <lastBuildDate>Sun, 21 Jun 2020 08:00:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja</language>
+    <lastBuildDate>Sun, 21 Jun 2020 17:53:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ギターのスピードを上げるためのピッキングの秘密</title>
+      <link>https://blog.ryukiy.net/post/2020/06/fast-picking/</link>
+      <pubDate>Sun, 21 Jun 2020 17:53:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/post/2020/06/fast-picking/</guid>
+      <description>&lt;p&gt;YouTube で見かけた、ギターのスピードを上げるためのピッキングのコツの話を紹介します。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>こうやったらラクに禁煙できたという方法の紹介</title>
       <link>https://blog.ryukiy.net/post/2020/06/how-to-stop-smoking/</link>
       <pubDate>Sun, 21 Jun 2020 08:00:00 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2020/06/how-to-stop-smoking/</guid>
-      <description>
-        
-          
-            &lt;p&gt;僕の禁煙体験談の話です。プルームテックを使って禁煙することができました。僕が試した禁煙の方法について紹介します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;僕の禁煙体験談の話です。プルームテックを使って禁煙することができました。僕が試した禁煙の方法について紹介します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,14 +31,7 @@
       <pubDate>Mon, 11 May 2020 15:57:55 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2020/05/vs-community-setup/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Visual Studio Community 2019 のインストールと動作確認の方法について紹介します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;Visual Studio Community 2019 のインストールと動作確認の方法について紹介します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,14 +40,7 @@
       <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2018/10/azure-vnet-vtap/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。Azure Virtual Network TAP のメリットを解説します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;Microsoft Ignite 2018 において、&lt;a href=&#34;https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Azure Virtual Network TAP (VTAP)&lt;/a&gt; のプレビューが発表されました。Azure Virtual Network TAP のメリットを解説します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -61,14 +49,7 @@
       <pubDate>Tue, 22 Nov 2016 00:57:09 +0000</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;Azure VM のシングル インスタンス構成に対して、新たに SLA が設定されました。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -77,14 +58,7 @@
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -93,14 +67,7 @@
       <pubDate>Mon, 21 Nov 2016 05:03:46 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -109,14 +76,7 @@
       <pubDate>Fri, 01 Apr 2016 18:49:17 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2016/04/bash-on-windows/</guid>
-      <description>
-        
-          
-            &lt;p&gt;本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;本記事では、Build 2016 で発表された Bash on Windows について触れたいと思います。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -125,14 +85,7 @@
       <pubDate>Wed, 01 Jul 2015 08:40:02 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2015/07/premium-storage-part4/</guid>
-      <description>
-        
-          
-            &lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/post/2015/06/premium-storage-part3/&#34;&gt;前回の記事&lt;/a&gt;では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/post/2015/06/premium-storage-part3/&#34;&gt;前回の記事&lt;/a&gt;では、アプリケーションの稼働に必要な IO 操作の測定方法について触れました。本記事では、システムのパフォーマンス低下がディスクによって引き起こされているのかどうかを判断するための指標について説明します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -141,14 +94,7 @@
       <pubDate>Thu, 18 Jun 2015 15:16:29 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2015/06/premium-storage-part3/</guid>
-      <description>
-        
-          
-            &lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/post/2015/06/premium-storage-part2/&#34;&gt;前回の記事&lt;/a&gt;では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/post/2015/06/premium-storage-part2/&#34;&gt;前回の記事&lt;/a&gt;では、IOPS とスループット性能とデータ サイズとの因果関係について説明しました。本記事では、システムで稼働しているアプリケーションが実際に生成している IOPS の測定方法について説明します。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -157,14 +103,7 @@
       <pubDate>Fri, 12 Jun 2015 12:40:15 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2015/06/premium-storage-part2/</guid>
-      <description>
-        
-          
-            &lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/post/2015/06/premium-storage-part1/&#34;&gt;前回の記事&lt;/a&gt;では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.ryukiy.net/post/2015/06/premium-storage-part1/&#34;&gt;前回の記事&lt;/a&gt;では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -173,14 +112,34 @@
       <pubDate>Wed, 10 Jun 2015 16:13:38 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/post/2015/06/premium-storage-part1/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。&lt;/p&gt;
-          
-          
-        
-      </description>
+      <description>&lt;p&gt;Azure VM で利用可能な高パフォーマンスのディスクとして、Premium SSD が提供されています。本記事では、Premium SSD をはじめとした Azue VM で利用できるディスクの性能および、利用時の注意点に関して触れます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://blog.ryukiy.net/search/placeholder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ryukiy.net/search/placeholder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://blog.ryukiy.net/top/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ryukiy.net/top/about/</guid>
+      <description>吉松 龍輝（よしまつ りゅうき） Technical Architect@Microsoft Technology Center Tokyo, Guitarist, Songwriter CISSP (Certified Information Systems Security Professional) 日本マイクロソフトに所属しているテクニカル アーキテクトです。 プライベートでは音楽活動を</description>
+    </item>
+    
+    <item>
+      <title>Posts Archive</title>
+      <link>https://blog.ryukiy.net/top/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ryukiy.net/top/archive/</guid>
+      <description></description>
     </item>
     
   </channel>

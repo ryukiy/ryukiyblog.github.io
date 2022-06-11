@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Music on RyukiY&#39;s Blog</title>
+    <link>https://blog.ryukiy.net/categories/music/</link>
+    <description>Recent content in Music on RyukiY&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 21 Jun 2020 17:53:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/categories/music/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ギターのスピードを上げるためのピッキングの秘密</title>
+      <link>https://blog.ryukiy.net/post/2020/06/fast-picking/</link>
+      <pubDate>Sun, 21 Jun 2020 17:53:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/post/2020/06/fast-picking/</guid>
+      <description>&lt;p&gt;YouTube で見かけた、ギターのスピードを上げるためのピッキングのコツの話を紹介します。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
