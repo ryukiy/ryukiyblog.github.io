@@ -68,7 +68,7 @@ body, h1, h2, h3, h4, h5, h6, html {
 .share_title {
     float: left;
     font-size: 20px;
-    margin: 6px 12px 0 0;
+    margin: 24px 12px 0 0;
 }
 .sns_button {
     float: left;
@@ -78,6 +78,7 @@ body, h1, h2, h3, h4, h5, h6, html {
     -o-transition: all 280ms ease;
     -webkit-transition: all 280ms ease;
     transition: all 280ms ease;
+    margin: 20px 0 0 0;
 }
 .sns_button a {
     display: table-cell;
@@ -100,7 +101,7 @@ body, h1, h2, h3, h4, h5, h6, html {
 }
   
 .sns_button + .sns_button {
-    margin: 0 0 0 12px;
+    margin: 20px 0 0 12px;
 }
   
 .twitter:hover a {
