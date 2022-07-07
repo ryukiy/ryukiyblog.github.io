@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.ryukiy.net/categories/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/post/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/tags/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/categories/tech/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/post/2022/07/critical-issue/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/tags/%E7%B7%8A%E6%80%A5%E6%A1%88%E4%BB%B6/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/post/2022/02/cpu-throttling/</loc>
     <lastmod>2022-02-17T04:53:00+09:00</lastmod>
@@ -15,15 +36,6 @@
     <lastmod>2022-02-17T04:53:00+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/categories/music/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/post/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/</loc>
     <lastmod>2022-02-17T04:53:00+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/keystation/</loc>
@@ -52,9 +64,6 @@
   </url><url>
     <loc>https://blog.ryukiy.net/tags/%E7%A6%81%E7%85%99/</loc>
     <lastmod>2020-06-21T08:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/categories/tech/</loc>
-    <lastmod>2020-05-11T15:57:55+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/visual-studio/</loc>
     <lastmod>2020-05-11T15:57:55+09:00</lastmod>

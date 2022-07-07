@@ -6,7 +6,16 @@
     <description>Recent content in Categories on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 17 Feb 2022 04:53:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jul 2022 12:21:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech</title>
+      <link>https://blog.ryukiy.net/categories/tech/</link>
+      <pubDate>Wed, 06 Jul 2022 12:21:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/categories/tech/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Music</title>
       <link>https://blog.ryukiy.net/categories/music/</link>
@@ -22,15 +31,6 @@
       <pubDate>Sun, 21 Jun 2020 08:00:00 +0900</pubDate>
       
       <guid>https://blog.ryukiy.net/categories/diary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tech</title>
-      <link>https://blog.ryukiy.net/categories/tech/</link>
-      <pubDate>Mon, 11 May 2020 15:57:55 +0900</pubDate>
-      
-      <guid>https://blog.ryukiy.net/categories/tech/</guid>
       <description></description>
     </item>
     

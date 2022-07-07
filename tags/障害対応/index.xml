@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>障害対応 on RyukiY&#39;s Blog</title>
+    <link>https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C/</link>
+    <description>Recent content in 障害対応 on RyukiY&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Wed, 06 Jul 2022 12:21:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策</title>
+      <link>https://blog.ryukiy.net/post/2022/07/critical-issue/</link>
+      <pubDate>Wed, 06 Jul 2022 12:21:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/post/2022/07/critical-issue/</guid>
+      <description>&lt;p&gt;以前、マイクロソフトのサポート部門で緊急性が高い障害対応の専門チームとして活動していた時期がありました。その時の経験から、緊急案件の対応方法についてまとめてみました。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

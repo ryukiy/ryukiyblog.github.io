@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="RyukiY&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://blog.ryukiy.net//img/dat/home-bg.jpg">
+    <meta property="twitter:image" content="https://blog.ryukiy.net//img/dat/home-bg.jpg" />
+    
+
+    
+    <meta name="title" content="緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策" />
+    <meta property="og:title" content="緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策" />
+    <meta property="twitter:title" content="緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策" />
+    
+
+    
+    <meta name="description" content="クリティカルな障害対策を専門としているチームで学んだ、緊急案件対応の傾向と対策についてまとめた情報です。">
+    <meta property="og:description" content="クリティカルな障害対策を専門としているチームで学んだ、緊急案件対応の傾向と対策についてまとめた情報です。" />
+    <meta property="twitter:description" content="クリティカルな障害対策を専門としているチームで学んだ、緊急案件対応の傾向と対策についてまとめた情報です。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Ryuki Yoshimatsu, 吉松龍輝, RyukiY&#39;s Blog">
+    <link rel="shortcut icon" href="https://blog.ryukiy.net/img/dat/favicon.ico">
+
+    <title>緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策 | RyukiY&#39;s Blog</title>
+
+    <link rel="canonical" href="https://blog.ryukiy.net/post/2022/07/critical-issue/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/zanshang.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/mystyle.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    
+    <script src="https://blog.ryukiy.net/js/jquery.min.js"></script>
+
+    
+    <script src="https://blog.ryukiy.net/js/bootstrap.min.js"></script>
+
+    
+    <script src="https://blog.ryukiy.net/js/hux-blog.min.js"></script>
+
+    
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
+     crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://blog.ryukiy.net/">RyukiY&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://blog.ryukiy.net/">All Posts</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="https://blog.ryukiy.net/categories/tech/">TECH</a></li>
+                    
+                        <li><a href="https://blog.ryukiy.net/categories/music/">MUSIC</a></li>
+                    
+                        <li><a href="https://blog.ryukiy.net/categories/diary/">DIARY</a></li>
+                    
+                        <li><a href="https://blog.ryukiy.net/top/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="https://blog.ryukiy.net/top/about/">ABOUT</a></li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post/2022/07/0707thum.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="https://blog.ryukiy.net/tags/%E7%B7%8A%E6%80%A5%E6%A1%88%E4%BB%B6" title="緊急案件">
+                            緊急案件
+                        </a>
+                        
+                        <a class="tag" href="https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C" title="障害対応">
+                            障害対応
+                        </a>
+                        
+                    </div>
+                    <h1>緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Ryuki Yoshimatsu
+                             
+                            on 
+                            Wednesday, July 6, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+
+                
+<section class="section sns_parent">
+    <div class="container sns_section">
+      <div class="share_title">
+        Share:
+      </div>
+      <div class="sns_button twitter">
+        <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f07%2fcritical-issue%2f&text=%e7%b7%8a%e6%80%a5%e6%80%a7%e3%81%8c%e9%ab%98%e3%81%84%e9%9a%9c%e5%ae%b3%e5%af%be%e7%ad%96%e3%81%ae%e5%b0%82%e9%96%80%e3%83%81%e3%83%bc%e3%83%a0%e3%81%a7%e5%ad%a6%e3%82%93%e3%81%a0%e3%80%81%e7%b7%8a%e6%80%a5%e6%a1%88%e4%bb%b6%e5%af%be%e5%bf%9c%e3%81%ae%e5%82%be%e5%90%91%e3%81%a8%e5%af%be%e7%ad%96" target="_blank" title="Tweet"><i class="fab fa-twitter"></i></a>
+      </div>
+      <div class="sns_button facebook">
+        <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f07%2fcritical-issue%2f&t=%e7%b7%8a%e6%80%a5%e6%80%a7%e3%81%8c%e9%ab%98%e3%81%84%e9%9a%9c%e5%ae%b3%e5%af%be%e7%ad%96%e3%81%ae%e5%b0%82%e9%96%80%e3%83%81%e3%83%bc%e3%83%a0%e3%81%a7%e5%ad%a6%e3%82%93%e3%81%a0%e3%80%81%e7%b7%8a%e6%80%a5%e6%a1%88%e4%bb%b6%e5%af%be%e5%bf%9c%e3%81%ae%e5%82%be%e5%90%91%e3%81%a8%e5%af%be%e7%ad%96" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+      <div class="sns_button hatena">
+        <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f07%2fcritical-issue%2f&title=%e7%b7%8a%e6%80%a5%e6%80%a7%e3%81%8c%e9%ab%98%e3%81%84%e9%9a%9c%e5%ae%b3%e5%af%be%e7%ad%96%e3%81%ae%e5%b0%82%e9%96%80%e3%83%81%e3%83%bc%e3%83%a0%e3%81%a7%e5%ad%a6%e3%82%93%e3%81%a0%e3%80%81%e7%b7%8a%e6%80%a5%e6%a1%88%e4%bb%b6%e5%af%be%e5%bf%9c%e3%81%ae%e5%82%be%e5%90%91%e3%81%a8%e5%af%be%e7%ad%96" target="_blank" title="hatena"><i class="fa fa-hatena"></i></i></a>
+      </div>
+  </div>
+</section>
+
+
+                <div class="blog-content">
+                    
+
+                    <p>以前、マイクロソフトのサポート部門で緊急性が高い障害対応の専門チームとして活動していた時期がありました。その時の経験から、緊急案件の対応方法についてまとめてみました。</p>
+<h2 id="緊急性が高い障害とは具体的にどのようなケースか">「緊急性が高い障害」とは具体的にどのようなケースか？</h2>
+<p>緊急案件として対応を依頼されるケースとしては、以下のようなパターンが多いと思います。</p>
+<ul>
+<li>停止することで日々の業務オペレーションに甚大な影響を与える社内システム。例えばメールや商品の受発注など。</li>
+<li>停止することで社会的な影響が大きいシステム。例えば社会インフラ、医療系など。</li>
+<li>停止することで売り上げのロスに直接影響するシステム。例えばオンラインショップなどの E コマース。</li>
+</ul>
+<p>こういった緊急案件では数時間以内での解決を求められます。よくある目安としては、障害発生から 2 ～ 4 時間以内に解決することを目標として対応することが多いように思います。</p>
+<h2 id="緊急案件対応のゴールとは何か">緊急案件対応のゴールとは何か？</h2>
+<p>緊急案件対応において最も重要なことは「<b><span style="color: red">通常の状態に復旧する</span></b>」ことです。<br>
+加えて、「<b><span style="color: red">障害の根本原因の追究・解決をすることと、通常の状態に復旧することは、イコールとは限らないという点を理解しておく</span></b>」ことも重要です。</p>
+<p>例えば、こんなケースをイメージしてみてください。<br>
+<b>12 時から放送されるテレビ番組を絶対に見逃したくない</b>、といった状況で、テレビが 10 時に壊れたとします。<br>
+この場合、根本原因の解決策としては「<b>壊れたテレビを修理すること</b>」が考えられます。テレビを修理するためのフローとしては、以下のような流れになることが予想できます。</p>
+<ol>
+<li>とりあえず自分でテレビを直すことを試みる</li>
+<li>自分で修理することが無理そうだったら、テレビを購入した家電屋さんに修理を依頼する</li>
+<li>家電屋さんでも修理が無理そうだったら、テレビのメーカーさんに修理を依頼する</li>
+</ol>
+<p>この手順を踏めば、テレビが壊れたという根本原因の解決が可能です。しかし、このフローを完結するためには、壊れた状況次第では問題の解決までに数日～数週間かかることが見込まれます。</p>
+<p>これでは、「12 時から放送されるテレビ番組を絶対に見逃したくない」という要件を満たすことができません。ではどうするか？<br>
+僕なら、「<b><span style="color: red">家電屋さんに行って新しいテレビを買うという回避策</span></b>」をとります。新しいテレビを買うことでコストが発生しますが、回避策の採用を優先することで「12 時から放送されるテレビ番組を絶対に見逃したくない」という要件には対応できます。</p>
+<p>通常であれば、テレビを修理するという方法が解決策になると思います。この対応の違いが、一般の障害対応と緊急案件対応の違いです。</p>
+<h2 id="緊急案件対応の現場で起こる困った事態">緊急案件対応の現場で起こる困った事態</h2>
+<p>現場でよく起こる問題として、「<b><span style="color: red">本質的ではない調査を早急に求められることで、緊急状態から脱するための本質的な作業に手が回らない状態に陥る</span></b>」ことがあります。この状態に陥ると、本来もっと早く緊急状態から脱することが出来たはずなのに、結果的に業務が復旧するまでにだいぶ時間がかかってしまった、という事が起こります。この問題が起こる原因としては、緊急案件対応に関わる人の役割の違いが考えられます。</p>
+<p>
+  <img src="https://blog.ryukiy.net/img/post/2022/07/0707-1.png" alt="緊急案件の関係者">
+
+</p>
+<p>緊急案件には以下のような役割を持つ人が存在します。</p>
+<ul>
+<li>
+<p><b>障害によって困っている人</b><br>
+社内システムを利用している社員、サービスを利用しているエンド ユーザーなど。システム障害によって直接的な被害を被っており、本当に困っている方々。</p>
+</li>
+<li>
+<p><b>責任者として状況を把握したい人</b><br>
+経営者、事業部門の部門長など。障害発生時にビジネスを継続するために社内に指示を出したり、対外的な説明責任を持っている方々。</p>
+</li>
+<li>
+<p><b>責任者に状況を報告する人</b><br>
+障害が発生したシステムの担当者、情報システム部門など。経営者、事業部門の部門長のような責任者に、緊急案件の対応状況などを説明する方々。</p>
+</li>
+<li>
+<p><b>問題解決の作業にあたる人</b><br>
+システム側のエンジニア、IT ベンダーなど。技術的な観点から、障害から復旧するための作業に注力する方々。</p>
+</li>
+</ul>
+<p>この中で、緊急案件対応の方向性に大きく影響するのは「<b>責任者に状況を報告する人</b>」です。<br>
+<b><span style="color: red">責任者に状況を報告する人の行動の目的が、「通常の状態に復旧すること」ではなく「責任者から叱責されないように状況を報告すること」になった時、事態が悪化します。</span></b>この場合、<b>以下のような要求が問題解決の作業にあたる人に与えられます</b>。</p>
+<ul>
+<li>問題の現象について、経営層に説明するための資料を作れ</li>
+<li>現時点の作業状況についてまとめよ</li>
+<li>今後の対策、作業内容について提示せよ</li>
+<li>いつまでに問題が解決できるか、正確な見積もりを出せ</li>
+<li>以上の内容を、1 時間ごとに報告書として提出せよ</li>
+</ul>
+<p>上記のような要求は問題解決のための本質的な作業とは異なるものですので、これらに丁寧に対応しても緊急状態から脱して通常の状態に復旧することはありません。ですが、こういう要求は常に起こります。そのため、こういう要求が来ることを前提として緊急案件対応にあたる体制を作る必要があります。</p>
+<h2 id="こういう体制を組むのはいかがでしょう">こういう体制を組むのはいかがでしょう？</h2>
+<p>僕の経験上、緊急案件対応には以下のような体制でのぞむと良いのでは、と考えています。上で説明した「問題解決の作業にあたる人」を以下のように細分化しています。</p>
+<p>
+  <img src="https://blog.ryukiy.net/img/post/2022/07/0707-2.png" alt="緊急案件の体制アイデア">
+
+</p>
+<ul>
+<li>
+<p><b>要求の内容で作業を振り分ける人</b><br>
+上記したように、「責任者に状況を報告する人」からは、問題解決の本質とは異なる要求が多く飛んでくることがあります。要求の内容を精査し、問題解決のために本当に必要な要求なのかどうかを見極めて作業の振り分けを行う役割が必要になります。</p>
+</li>
+<li>
+<p><b>緊急状態からの復旧に注力する人</b><br>
+緊急案件対応において、技術的に最も重要な調査・作業を行う役割です。周囲の人は、この役割の人の作業が本質的ではない要求によって割り込まれないようにブロックする必要があります。</p>
+</li>
+<li>
+<p><b>要求に答えるための調査をする人</b><br>
+「緊急状態からの復旧に注力する人」の作業が妨げられないようにするための技術的な役割です。例えば、上記したように、根本原因の追究をすることが緊急状態からの復旧にはつながらないことがあります。それでも、緊急案件対応として根本原因の追究を求められる事は多々あります。このような要求に対して答えるのがこの役割の人になります。</p>
+</li>
+<li>
+<p><b>報告書のための作文をやる人</b><br>
+エンジニアの言葉をビジネス層にも理解できるように翻訳し、ビジネス文書として体裁が整った報告書を作成するための役割です。そのため、技術文書の作成とは異なるスキルが求められます。緊急案件対応では報告書を頻繁に求められることが多いため、報告書を作成する役割はエンジニアとは別に設けた方が都合が良いことが多いと思います。</p>
+</li>
+</ul>
+<h2 id="上記の体制が必要になる理由">上記の体制が必要になる理由</h2>
+<p><b><span style="color: red">緊急案件対応において最も難しいのは、冷静さを保って物事を判断することです。</span></b>技術的な難易度よりも、人の判断が緊急案件対応の結果を左右することが多いように思います。</p>
+<p><b><span style="color: red">緊急事態の発生時と一般の障害発生時の最も大きな違いは、「現場の空気感」です。</span></b><br>
+一般的な障害対応でも、作業の優先度の判断、必要最小限の工数の策定、復旧作業の実施などを通じて問題を解決するというアプローチを取ると思います。<b>これに加えて、時間的な制約や障害による多大な影響度が付加される、というのが緊急案件対応です</b>。この付加条件が現場にプレッシャーを与え、全体的に冷静さを欠いた動きになります。</p>
+<p>自分がそのような緊急事態の現場の当事者になった時に、冷静さを保って行動できる人はそう多くはありません。理由は、<b><span style="color: red">緊急事態はめったに発生しないからです。緊急事態の経験値がないためにどう対応したら良いのかが分からず、動揺した状態になります。</span></b></p>
+<p>そういう状況下においては、人は何とか物事を解決しようとし、<b><span style="color: red">とにかくやみくもに様々なことに手を出そうとします</span></b>。すると、本質的ではない作業が多く発生します。そのため、緊急事態の発生時においては上記したような体制が必要になります。</p>
+<h2 id="緊急事態に備えて普段から出来ること">緊急事態に備えて普段から出来ること</h2>
+<p>緊急事態の発生に冷静に対処できるようになるために何をすれば良いのか？それは、「<b><span style="color: red">緊急事態の空気感に慣れること</span></b>」です。</p>
+<p>僕がサポート部門に所属していた時、正確な数は分かりませんが、緊急事態が起こった現場に入った回数はおそらく 200 ～ 300 回程度はあるのではないかと思います。この経験から言うと、<b><span style="color: red">緊急事態に冷静に対応するためには、緊急事態に慣れるしかありません</span></b>。</p>
+<p>どんなに素晴らしい技術力を持っていても、どんなに素晴らしいチームの統率力を持っていても、組織全体が冷静さを欠いた状況で 100% の力を発揮することはできません。そのために、普段からトレーニングをしておくことが重要です。</p>
+<p>ただ、避難訓練のような形で実施する「障害シミュレーション」のようなトレーニングは、緊急事態に慣れるためのトレーニングとしては効果的ではありません。<b><span style="color: red">トレーニングの目的は障害対応のための技術力を上げることではなく、緊急事態の空気感に慣れること</span></b>です。</p>
+<p>従って、トレーニングでは緊急事態のリアルな空気感を出すことが重要です。そのためには、<b><span style="color: red">経営層に許可を取った上で、現場に内緒でリアルな障害を演出するドッキリ トレーニングを仕掛けるのが有効な手段</span></b>だと考えます。ドッキリ トレーニングをすることで現場には緊張感が走ります。この緊張感、焦燥感、現場の空気を知っておくことが緊急事態への備えとしては重要です。</p>
+<h2 id="最後に">最後に</h2>
+<p>最近、通信会社で大規模な障害がありましたが、その事故の対応内容を評価した記事などを読むことがあります。中には対応について批判的な論調の記事を見かけることもありますが、その批判は冷静な状態で書かれたものです。緊急事態が起こっている瞬間にその現場で何ができるかが重要です。そのような事を意識しながら、万が一の時のために備えておくのが良いのではないかと思います。</p>
+
+                    
+<section class="section sns_parent">
+    <div class="container sns_section">
+      <div class="share_title">
+        Share:
+      </div>
+      <div class="sns_button twitter">
+        <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f07%2fcritical-issue%2f&text=%e7%b7%8a%e6%80%a5%e6%80%a7%e3%81%8c%e9%ab%98%e3%81%84%e9%9a%9c%e5%ae%b3%e5%af%be%e7%ad%96%e3%81%ae%e5%b0%82%e9%96%80%e3%83%81%e3%83%bc%e3%83%a0%e3%81%a7%e5%ad%a6%e3%82%93%e3%81%a0%e3%80%81%e7%b7%8a%e6%80%a5%e6%a1%88%e4%bb%b6%e5%af%be%e5%bf%9c%e3%81%ae%e5%82%be%e5%90%91%e3%81%a8%e5%af%be%e7%ad%96" target="_blank" title="Tweet"><i class="fab fa-twitter"></i></a>
+      </div>
+      <div class="sns_button facebook">
+        <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f07%2fcritical-issue%2f&t=%e7%b7%8a%e6%80%a5%e6%80%a7%e3%81%8c%e9%ab%98%e3%81%84%e9%9a%9c%e5%ae%b3%e5%af%be%e7%ad%96%e3%81%ae%e5%b0%82%e9%96%80%e3%83%81%e3%83%bc%e3%83%a0%e3%81%a7%e5%ad%a6%e3%82%93%e3%81%a0%e3%80%81%e7%b7%8a%e6%80%a5%e6%a1%88%e4%bb%b6%e5%af%be%e5%bf%9c%e3%81%ae%e5%82%be%e5%90%91%e3%81%a8%e5%af%be%e7%ad%96" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+      <div class="sns_button hatena">
+        <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fblog.ryukiy.net%2fpost%2f2022%2f07%2fcritical-issue%2f&title=%e7%b7%8a%e6%80%a5%e6%80%a7%e3%81%8c%e9%ab%98%e3%81%84%e9%9a%9c%e5%ae%b3%e5%af%be%e7%ad%96%e3%81%ae%e5%b0%82%e9%96%80%e3%83%81%e3%83%bc%e3%83%a0%e3%81%a7%e5%ad%a6%e3%82%93%e3%81%a0%e3%80%81%e7%b7%8a%e6%80%a5%e6%a1%88%e4%bb%b6%e5%af%be%e5%bf%9c%e3%81%ae%e5%82%be%e5%90%91%e3%81%a8%e5%af%be%e7%ad%96" target="_blank" title="hatena"><i class="fa fa-hatena"></i></i></a>
+      </div>
+  </div>
+</section>
+
+                    
+                </div>
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="https://blog.ryukiy.net/post/2022/02/cpu-throttling/" data-toggle="tooltip" data-placement="top" title="CPU のスロットリングにより Cubase の音が途切れてしまう">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="https://blog.ryukiy.net/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/azure-storage" title="azure-storage">
+                            azure-storage
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/azure-virtual-machines" title="azure-virtual-machines">
+                            azure-virtual-machines
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/azure-virtual-network" title="azure-virtual-network">
+                            azure-virtual-network
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/bash" title="bash">
+                            bash
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/cubase" title="cubase">
+                            cubase
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/dtm" title="dtm">
+                            dtm
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/iops" title="iops">
+                            iops
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/keystation" title="keystation">
+                            keystation
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/lxss" title="lxss">
+                            lxss
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/m-audio" title="m-audio">
+                            m-audio
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/microsoft-azure" title="microsoft-azure">
+                            microsoft-azure
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/nva" title="nva">
+                            nva
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/premium-ssd" title="premium-ssd">
+                            premium-ssd
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/sla" title="sla">
+                            sla
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/standard-hdd" title="standard-hdd">
+                            standard-hdd
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/standard-ssd" title="standard-ssd">
+                            standard-ssd
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/tap" title="tap">
+                            tap
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/visual-studio" title="visual-studio">
+                            visual-studio
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/windows" title="windows">
+                            windows
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/windows-server" title="windows-server">
+                            windows-server
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/wordpress" title="wordpress">
+                            wordpress
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" title="インストール">
+                            インストール
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E3%82%AE%E3%82%BF%E3%83%BC" title="ギター">
+                            ギター
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3" title="セキュリティ">
+                            セキュリティ
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97" title="セットアップ">
+                            セットアップ
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E3%83%87%E3%83%90%E3%83%83%E3%82%B0" title="デバッグ">
+                            デバッグ
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E3%83%94%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0" title="ピッキング">
+                            ピッキング
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E7%A6%81%E7%85%99" title="禁煙">
+                            禁煙
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E7%B7%8A%E6%80%A5%E6%A1%88%E4%BB%B6" title="緊急案件">
+                            緊急案件
+                        </a>
+                        
+                        
+                        
+                        <a href="https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C" title="障害対応">
+                            障害対応
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://twitter.com/ryukiyoshimatsu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.instagram.com/ryukiyoshimatsu/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/ryukiyoshimatsu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="RyukiY&#39;s Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; RyukiY&#39;s Blog 2022
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXPDH4855"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+gtag('config', 'G-FZXPDH4855');
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+</body>
+</html>
