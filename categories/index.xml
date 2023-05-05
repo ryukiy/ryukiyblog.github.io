@@ -8,29 +8,38 @@
     <language>ja</language>
     <lastBuildDate>Wed, 06 Jul 2022 12:21:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tech</title>
-      <link>https://blog.ryukiy.net/categories/tech/</link>
+      <title>IT</title>
+      <link>https://blog.ryukiy.net/categories/it/</link>
       <pubDate>Wed, 06 Jul 2022 12:21:00 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/categories/tech/</guid>
+      <guid>https://blog.ryukiy.net/categories/it/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Music</title>
-      <link>https://blog.ryukiy.net/categories/music/</link>
-      <pubDate>Thu, 17 Feb 2022 04:53:00 +0900</pubDate>
+      <title>Visual Studio</title>
+      <link>https://blog.ryukiy.net/categories/visual-studio/</link>
+      <pubDate>Mon, 11 May 2020 15:57:55 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/categories/music/</guid>
+      <guid>https://blog.ryukiy.net/categories/visual-studio/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Diary</title>
-      <link>https://blog.ryukiy.net/categories/diary/</link>
-      <pubDate>Sun, 21 Jun 2020 08:00:00 +0900</pubDate>
+      <title>Microsoft Azure</title>
+      <link>https://blog.ryukiy.net/categories/microsoft-azure/</link>
+      <pubDate>Thu, 25 Oct 2018 10:33:32 +0900</pubDate>
       
-      <guid>https://blog.ryukiy.net/categories/diary/</guid>
+      <guid>https://blog.ryukiy.net/categories/microsoft-azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://blog.ryukiy.net/categories/windows/</link>
+      <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/categories/windows/</guid>
       <description></description>
     </item>
     

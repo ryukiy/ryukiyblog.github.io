@@ -5,7 +5,10 @@
     <loc>https://blog.ryukiy.net/categories/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/post/</loc>
+    <loc>https://blog.ryukiy.net/categories/it/</loc>
+    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/posts/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/</loc>
@@ -14,58 +17,19 @@
     <loc>https://blog.ryukiy.net/tags/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/categories/tech/</loc>
+    <loc>https://blog.ryukiy.net/tags/%E7%B7%8A%E6%80%A5%E6%A1%88%E4%BB%B6/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/post/2022/07/critical-issue/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/tags/%E7%B7%8A%E6%80%A5%E6%A1%88%E4%BB%B6/</loc>
-    <lastmod>2022-07-06T12:21:00+09:00</lastmod>
-  </url><url>
     <loc>https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/post/2022/02/cpu-throttling/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/cubase/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/dtm/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/categories/music/</loc>
-    <lastmod>2022-02-17T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/keystation/</loc>
-    <lastmod>2022-01-23T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/m-audio/</loc>
-    <lastmod>2022-01-23T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/post/2022/01/m-audio-keys/</loc>
-    <lastmod>2022-01-23T04:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/%E3%82%AE%E3%82%BF%E3%83%BC/</loc>
-    <lastmod>2020-06-21T17:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/post/2020/06/fast-picking/</loc>
-    <lastmod>2020-06-21T17:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/%E3%83%94%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0/</loc>
-    <lastmod>2020-06-21T17:53:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/categories/diary/</loc>
-    <lastmod>2020-06-21T08:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/post/2020/06/how-to-stop-smoking/</loc>
-    <lastmod>2020-06-21T08:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/tags/%E7%A6%81%E7%85%99/</loc>
-    <lastmod>2020-06-21T08:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://blog.ryukiy.net/tags/visual-studio/</loc>
+    <lastmod>2020-05-11T15:57:55+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/categories/visual-studio/</loc>
     <lastmod>2020-05-11T15:57:55+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/</loc>
@@ -84,6 +48,9 @@
     <lastmod>2018-10-25T10:33:32+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/microsoft-azure/</loc>
+    <lastmod>2019-06-03T10:06:38+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/categories/microsoft-azure/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/nva/</loc>
@@ -105,6 +72,9 @@
     <lastmod>2016-11-22T00:57:09+00:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/windows/</loc>
+    <lastmod>2016-11-21T15:42:58+09:00</lastmod>
+  </url><url>
+    <loc>https://blog.ryukiy.net/categories/windows/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/windows-server/</loc>
@@ -158,14 +128,8 @@
     <loc>https://blog.ryukiy.net/post/2015/06/premium-storage-part1/</loc>
     <lastmod>2019-06-03T10:06:38+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/search/placeholder/</loc>
+    <loc>https://blog.ryukiy.net/about/</loc>
   </url><url>
-    <loc>https://blog.ryukiy.net/top/about/</loc>
-  </url><url>
-    <loc>https://blog.ryukiy.net/top/archive/</loc>
-  </url><url>
-    <loc>https://blog.ryukiy.net/search/</loc>
-  </url><url>
-    <loc>https://blog.ryukiy.net/top/</loc>
+    <loc>https://blog.ryukiy.net/archives/</loc>
   </url>
 </urlset>
