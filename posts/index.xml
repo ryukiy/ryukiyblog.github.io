@@ -6,7 +6,16 @@
     <description>Recent content in Posts on RyukiY&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 06 Jul 2022 12:21:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 May 2023 06:01:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Stack HCI とは何か？</title>
+      <link>https://blog.ryukiy.net/post/2023/05/whats-is-azshci/</link>
+      <pubDate>Thu, 25 May 2023 06:01:00 +0900</pubDate>
+      
+      <guid>https://blog.ryukiy.net/post/2023/05/whats-is-azshci/</guid>
+      <description>&lt;p&gt;Azure Stack HCI は Hyper-V をベースとした仮想化プラットフォームで、オンプレミスに展開して VM などを実行するための仮想化基盤ソリューションです。この記事では、Azure Stack HCI がどういうケースで活用できるのかについてまとめてみました。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>緊急性が高い障害対策の専門チームで学んだ、緊急案件対応の傾向と対策</title>
       <link>https://blog.ryukiy.net/post/2022/07/critical-issue/</link>
