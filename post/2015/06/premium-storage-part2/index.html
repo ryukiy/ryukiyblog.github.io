@@ -1,416 +1,360 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     
-    <script type="application/ld+json">
+    <meta property="og:site_name" content="RyukiY&#39;s Blog">
+    <meta property="og:type" content="article">
 
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～",
-  
-  "image": "https://blog.ryukiy.net/img/icons/Disks.png",
-  
-  "datePublished": "2015-06-12T12:40:15+09:00",
-  "dateModified": "2019-06-03T10:06:38+09:00",
-  "author": {
-    "@type": "Person",
-    "name": "Ryuki Yoshimatsu",
     
-    "image": "https://blog.ryukiy.net/img/dat/ryukiy.jpg"
-    
-  },
-  "mainEntityOfPage": { 
-    "@type": "WebPage",
-    "@id": "https:\/\/blog.ryukiy.net\/post\/2015\/06\/premium-storage-part2\/" 
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "RyukiY's Blog",
-    
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blog.ryukiy.net/img/dat/ryukiy.jpg"
-    }
-    
-  },
-  "description": "前回の記事では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。\n",
-  "keywords": [, "Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP"]
-}
-
-</script>
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.111.3 with theme Tranquilpeak 0.5.3-BETA">
-<meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content=", Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP">
-<meta name="description" content="IOPS とスループットの関係性について触れます。">
-
-
-<meta property="og:description" content="IOPS とスループットの関係性について触れます。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～">
-<meta name="twitter:title" content="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～">
-<meta property="og:url" content="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
-<meta property="twitter:url" content="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
-<meta property="og:site_name" content="RyukiY&#39;s Blog">
-<meta property="og:description" content="IOPS とスループットの関係性について触れます。">
-<meta name="twitter:description" content="IOPS とスループットの関係性について触れます。">
-<meta property="og:locale" content="ja">
-
-  
-    <meta property="article:published_time" content="2015-06-12T12:40:15">
-  
-  
-    <meta property="article:modified_time" content="2019-06-03T10:06:38">
-  
-  
-  
-    
-      <meta property="article:section" content="Microsoft Azure">
-    
-  
-  
-    
-      <meta property="article:tag" content="Microsoft Azure">
-    
-      <meta property="article:tag" content="Azure Storage">
-    
-      <meta property="article:tag" content="Azure Virtual Machines">
-    
-      <meta property="article:tag" content="Premium SSD">
-    
-      <meta property="article:tag" content="Standard SSD">
-    
-      <meta property="article:tag" content="Standard HDD">
-    
-      <meta property="article:tag" content="IOPS">
-    
-  
-
-
-<meta name="twitter:card" content="summary">
-
-
-
-
-
-
-
-  <meta property="og:image" content="https://blog.ryukiy.net/img/dat/blogb.jpg">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/blogb.jpg">
-
-
-
-
-
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/Disks.png">
-
-
-    <title>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</title>
-
-    <link rel="icon" href="https://blog.ryukiy.net/img/dat/favicon.ico">
+    <meta property="og:image" content="https://blog.ryukiy.net//img/cover.jpg">
+    <meta property="twitter:image" content="https://blog.ryukiy.net//img/cover.jpg" />
     
 
     
-
-    <link rel="canonical" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
-
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
-    
-    <link rel="stylesheet" href="https://blog.ryukiy.net/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
-    
-    
-      
-        <link rel="stylesheet"  href="https://blog.ryukiy.net/css/mystyle.css">
-      
+    <meta name="title" content="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～" />
+    <meta property="og:title" content="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～" />
+    <meta property="twitter:title" content="IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～" />
     
 
     
-      
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
+    <meta name="description" content="IOPS とスループットの関係性について触れます。">
+    <meta property="og:description" content="IOPS とスループットの関係性について触れます。" />
+    <meta property="twitter:description" content="IOPS とスループットの関係性について触れます。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure,Windows,CISSP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～ | RyukiY&#39;s Blog</title>
+
+    <link rel="canonical" href="/post/2015/06/premium-storage-part2/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/mystyle.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NSV7HENVSR');
+        }
+      </script>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">RyukiY&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/it/">it</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/microsoft-azure/">microsoft azure</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/visual-studio/">visual studio</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/windows/">windows</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
 <script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-NSV7HENVSR', { 'anonymize_ip': false });
-}
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
 </script>
 
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
-     crossorigin="anonymous"></script>
-    
-  </head>
 
-  <body>
-    <div id="blog">
-      <header id="header" data-behavior="4">
-  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-  <div class="header-title">
-    <a class="header-title-link" href="https://blog.ryukiy.net/" aria-label="ホームページへ">RyukiY&#39;s Blog</a>
-  </div>
-  
-    
-      <a class="header-right-picture "
-         href="https://blog.ryukiy.net/#about" aria-label="リンクを開く: /#about">
-    
-    
-    
-      
-        <img class="header-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="プロフィール画像" />
-      
-    
-    </a>
-  
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/cover.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/microsoft-azure" title="Microsoft Azure">
+                            Microsoft Azure
+                        </a>
+                        
+                        <a class="tag" href="/tags/azure-storage" title="Azure Storage">
+                            Azure Storage
+                        </a>
+                        
+                        <a class="tag" href="/tags/azure-virtual-machines" title="Azure Virtual Machines">
+                            Azure Virtual Machines
+                        </a>
+                        
+                        <a class="tag" href="/tags/premium-ssd" title="Premium SSD">
+                            Premium SSD
+                        </a>
+                        
+                        <a class="tag" href="/tags/standard-ssd" title="Standard SSD">
+                            Standard SSD
+                        </a>
+                        
+                        <a class="tag" href="/tags/standard-hdd" title="Standard HDD">
+                            Standard HDD
+                        </a>
+                        
+                        <a class="tag" href="/tags/iops" title="IOPS">
+                            IOPS
+                        </a>
+                        
+                    </div>
+                    <h1>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Ryuki Yoshimatsu
+                             
+                            on 
+                            Friday, June 12, 2015
+                            
+                            
+                            
+                            <br>Last Modified on Monday, June 3, 2019
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
-      <nav id="sidebar" data-behavior="4">
-  <div class="sidebar-container">
-    
-      <div class="sidebar-profile">
-        <a href="https://blog.ryukiy.net/about" aria-label="著者についてもっと読む">
-          <img class="sidebar-profile-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="プロフィール画像" />
-        </a>
-        <h4 class="sidebar-profile-name">Ryuki Yoshimatsu</h4>
-        
-          <h5 class="sidebar-profile-bio">Technical Architect@Microsoft</h5>
-        
-      </div>
-    
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/" title="Home">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Home</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories" title="Categories">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Categories</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/tags" title="Tags">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Tags</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/archives" title="Archives">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Archives</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about" title="About">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">About</span>
-    </a>
-  </li>
 
 
-    </ul>
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://twitter.com/ryukiyoshimatsu" target="_blank" rel="noopener" title="Twitter">
-    
-      <i class="sidebar-button-icon fab fa-lg fa-twitter" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Twitter</span>
-    </a>
-  </li>
 
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/ryukiyoshimatsu/" target="_blank" rel="noopener" title="Linkedin">
-    
-      <i class="sidebar-button-icon fab fa-lg fa-linkedin" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Linkedin</span>
-    </a>
-  </li>
+<article>
+    <div class="container">
+        <div class="row">
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-    </ul>
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/index.xml" title="RSS">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">RSS</span>
-    </a>
-  </li>
+                
 
+                
+                    <div class="alert warning">
+                        この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                    </div>
+                
 
-    </ul>
-  </div>
-</nav>
-
-      
-
-      <div id="main" data-behavior="4"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" id="top">
-          
-          
-            <div class="post-header main-content-wrap text-left">
-  
-    <h1 class="post-title">
-      IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
-    </h1>
-  
-  
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished"  datetime="2015-06-12T12:40:15&#43;09:00">
-        <b>公開日:</b> 
-  
-  
-  
-  
-    2015-6-12
-  
-
-      </time>
-      <time itemprop="lastModified" datetime="2019-06-03T10:06:38&#43;09:00">
-        &nbsp;&nbsp;&nbsp;<b>最終更新日:</b> 
-  
-  
-  
-  
-    2019-6-3
-  
-&nbsp;&nbsp;
-      </time>
-    
-    
-  
-  
-    <b><span>カテゴリー:</span></b>
-    
-      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>
-    
-  
-
-  </div>
-
-</div>
-          
-          <div class="post-content markdown">
-            <div class="main-content-wrap">
-              
-                <div class="alert warning">
-                  この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                </div>
-              
-              <p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p>
+                <p><a href="/post/2015/06/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p>
 <h2 id="目次">目次</h2>
 <p></p>
 <ol>
-<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
+<li><a href="/post/2015/06/premium-storage-part1/">Premium SSD を使ってみよう ～性能と注意点をチェック～</a></li>
 <li>IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～（本記事）</li>
-<li><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
-<li><a href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="/post/2015/06/premium-storage-part3/">システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～</a></li>
+<li><a href="/post/2015/07/premium-storage-part4/">ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～</a></li>
 </ol>
 <h2 id="高い-iops-が得られている状態--高いスループットが得られている状態とは限らない">「高い IOPS が得られている状態 = 高いスループットが得られている状態」とは限らない</h2>
-<p><a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">前回の記事</a>では、サイズが 1TB の Premium SSD の IOPS を計測して、ディスク一台あたり 5,000 IOPS の性能を引き出せることを確認しました。本記事では、スループットの性能を計測します。</p>
-<p>前回と同じように <a href="http://www.iometer.org/" target="_blank" rel="noopener">Iometer</a> を利用し、1TB の Premium SSD のディスクに 16 個の Worker を使って 4 KB 100% Read / 0% Random の負荷をかけます。また、Azure VM のサイズも前回と同様に Standard_D16s_v3 を利用してスループットを測定します。</p>
+<p><a href="/post/2015/06/premium-storage-part1/">前回の記事</a>では、サイズが 1TB の Premium SSD の IOPS を計測して、ディスク一台あたり 5,000 IOPS の性能を引き出せることを確認しました。本記事では、スループットの性能を計測します。</p>
+<p>前回と同じように <a href="http://www.iometer.org/">Iometer</a> を利用し、1TB の Premium SSD のディスクに 16 個の Worker を使って 4 KB 100% Read / 0% Random の負荷をかけます。また、Azure VM のサイズも前回と同様に Standard_D16s_v3 を利用してスループットを測定します。</p>
 <p>得られたスループットは以下の通り、約 21 MB/秒 です。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/4kbtp.png" alt="21MB"></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">Azure のドキュメント</a>には、1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒 と説明されています。従って、上記した負荷検証の条件で得られたスループットの結果は、ドキュメントに記載の 200 MB/秒には遠く及ばない結果と言えます。</p>
+<p>
+  <img src="/img/post/2015/06/4kbtp.png" alt="21MB">
+
+</p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">Azure のドキュメント</a>には、1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒 と説明されています。従って、上記した負荷検証の条件で得られたスループットの結果は、ドキュメントに記載の 200 MB/秒には遠く及ばない結果と言えます。</p>
 <p>一方で、4 KB 100% Read / 0% Random の負荷をかけている間に得られた IOPS 性能を測定すると、以下のように 5,000 IOPS が得られていることが分かります。また、5,000 IOPS が得られている状態において、スループットは上記した約 21 MB/秒という結果が記録されています。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/4kbiops.png" alt="5000 IOPS"></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">Azure のドキュメント</a>によると、サイズが 1TB の Premium SSD のディスク一台あたりの IOPS の期待値は 5,000 ですので、IOPS はドキュメントに記載通りの結果が得られていることが分かります。</p>
+<p>
+  <img src="/img/post/2015/06/4kbiops.png" alt="5000 IOPS">
+
+</p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">Azure のドキュメント</a>によると、サイズが 1TB の Premium SSD のディスク一台あたりの IOPS の期待値は 5,000 ですので、IOPS はドキュメントに記載通りの結果が得られていることが分かります。</p>
 <p>以上の測定結果から、「高い IOPS が得られている状態」と「高いスループットが得られている状態」はイコールではないということが分かります。</p>
 <h2 id="os-の中でio-はバケツリレーのように処理される">OS の中で、IO はバケツリレーのように処理される</h2>
 <p>スループット性能を引き出す方法を理解するためには、OS の中で IO がどのように処理されているのかを理解する必要があります。OS の中でディスクの IO が処理される様子を簡単な図にすると、以下のようになります。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/irp20150610.png" alt="IRP"></p>
+<p>
+  <img src="/img/post/2015/06/irp20150610.png" alt="IRP">
+
+</p>
 <p>アプリケーション、ファイル システム、ディスク ドライバ、ハード ディスクなどの各モジュール間で IO の受け渡しが行われ、図の中の「I/O Request Packet（略して IRP）」と呼ばれるものが IO を受け渡すためのバケツです。OS の中では IRP のバケツリレーが常に行われており、今回の検証で利用している Iometer が生成した IO 負荷もバケツリレーで処理されます。</p>
 <p>IO のバケツリレーに関しては、詳細な解説が以下のドキュメントとして公開されています。より詳細にディスク IO の仕組みを知りたい方は、下記のドキュメントをご覧ください。</p>
 <p>How Basic Disks and Volumes Work<br>
-<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412%28v=ws.10%29" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)</a></p>
+<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc739412(v=ws.10)</a></p>
 <p>Windows Server 2003 時代の記事ですので情報は古いですが、ディスクの IO に関する処理の考え方は最近のバージョンの Windows でも同様です。上記したバケツリレーの図は、公開ドキュメントに掲載の「Basic Disk and Volume Input/Output (I/O) Processes」の図を簡略化したものです。</p>
 <h2 id="io-を運ぶバケツの大きさによってスループットは変化する">IO を運ぶバケツの大きさによってスループットは変化する</h2>
 <p>Iometer で 1TB の Premium SSD のディスクに 4 KB 100% Read / 0% Random の負荷をかけたところ、5,000 IOPS が得られ、スループットは約 21 MB/秒という計測結果が得られました。今度は、1TB の Premium SSD のディスクに 64 KB 100% Read / 0% Random の負荷をかけて IOPS/スループットを測定します。</p>
 <p>得られたスループットは以下の通り、約 200 MB/秒です。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/64kbtp.png" alt="200MB"></p>
-<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks" target="_blank" rel="noopener">Azure のドキュメント</a>に記載されている 1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒です。従って、64 KB 100% Read / 0% Random の負荷をかけた場合には期待通りのスループットが得られるということが分かります。</p>
+<p>
+  <img src="/img/post/2015/06/64kbtp.png" alt="200MB">
+
+</p>
+<p><a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/disk-scalability-targets#managed-virtual-machine-disks">Azure のドキュメント</a>に記載されている 1TB の Premium SSD のディスク一台あたりのスループットの期待値は 200 MB/秒です。従って、64 KB 100% Read / 0% Random の負荷をかけた場合には期待通りのスループットが得られるということが分かります。</p>
 <p>一方で、200 MB/秒のスループットが得られている状態で IOPS を計測すると、約 3,100 IOPS が得られていることが記録されています。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2015/06/64kbiops.png" alt="3100 IOPS"></p>
+<p>
+  <img src="/img/post/2015/06/64kbiops.png" alt="3100 IOPS">
+
+</p>
 <p>いくつかのパターンで同様の計測を行った結果をまとめたものが以下になります。</p>
 <p></p>
 <table>
-<thead>
-<tr>
-<th>テストケース</th>
-<th>IOPS</th>
-<th>スループット</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>4 KB 100% Read / 0% Random</td>
-<td>約 5,000</td>
-<td>約 21 MB/秒</td>
-</tr>
-<tr>
-<td>16 KB 100% Read / 0% Random</td>
-<td>約 4,800</td>
-<td>約 78 MB/秒</td>
-</tr>
-<tr>
-<td>32 KB 100% Read / 0% Random</td>
-<td>約 4,580</td>
-<td>約 150 MB/秒</td>
-</tr>
-<tr>
-<td>64 KB 100% Read / 0% Random</td>
-<td>約 3,100</td>
-<td>約 200 MB/秒</td>
-</tr>
-<tr>
-<td>256 KB 100% Read / 0% Random</td>
-<td>約 780</td>
-<td>約 200 MB/秒</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>テストケース</th>
+          <th>IOPS</th>
+          <th>スループット</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>4 KB 100% Read / 0% Random</td>
+          <td>約 5,000</td>
+          <td>約 21 MB/秒</td>
+      </tr>
+      <tr>
+          <td>16 KB 100% Read / 0% Random</td>
+          <td>約 4,800</td>
+          <td>約 78 MB/秒</td>
+      </tr>
+      <tr>
+          <td>32 KB 100% Read / 0% Random</td>
+          <td>約 4,580</td>
+          <td>約 150 MB/秒</td>
+      </tr>
+      <tr>
+          <td>64 KB 100% Read / 0% Random</td>
+          <td>約 3,100</td>
+          <td>約 200 MB/秒</td>
+      </tr>
+      <tr>
+          <td>256 KB 100% Read / 0% Random</td>
+          <td>約 780</td>
+          <td>約 200 MB/秒</td>
+      </tr>
+  </tbody>
 </table>
 <p>テストケースで設定を変更しているのは、ディスクからデータを読み込む際のサイズのみです。読み込みサイズが大きいほどスループットの数字は上がります。上述した通り、OS の中では IO はバケツリレーで処理されます。上の表の結果をバケツリレーで表現すると、以下のようになります。</p>
 <ul>
@@ -423,19 +367,19 @@ if (!doNotTrack) {
 <h2 id="アプリケーションが扱うデータの特性を把握する">アプリケーションが扱うデータの特性を把握する</h2>
 <p>データベースのように高いディスク パフォーマンスを必要とするソフトウェアは、大抵の場合、ディスクの読み込み・書き込みに関するチューニング ガイドが提供されています。例えば、以下は SQL Server が利用するディスクのパフォーマンス ガイドになります。古い情報になりますが、ディスクのチューニングに関する知識としては現在でも通用する内容ですので、ご参考ください。</p>
 <p>SQL Server 2008 のためのディスク パーティション アライメント ベスト プラクティス<br>
-<a href="https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814%28v=sql.100%29" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)</a></p>
+<a href="https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)">https://docs.microsoft.com/ja-jp/previous-versions/sql/sql-server-2008/dd758814(v=sql.100)</a></p>
 <p>ディスクのスループットが高ければシステム全体のパフォーマンスが必ず上がるというわけでもありません。例えば、サイズが 4KB 以下のファイルを大量に読み込み・書き込みするようなアプリケーションでは、スループットよりも IOPS（データの読み込み・書き込み回数）の数値を重視してパフォーマンスをチューニングすることで、システム全体のパフォーマンスが改善されることが考えられます。</p>
 <p>クラウドの利点として、検証のための環境を素早く簡単に低コストで構築できるという点が挙げられます。読み込み・書き込みサイズの理論的な数字を机上で計算する作業に工数を使うより、クラウドでテスト環境を構築し、実際に負荷テストを実施することでパフォーマンス データを測定することをお勧めします。</p>
 <h2 id="64-kb-と-256-kb-の検証結果に差異がない理由">64 KB と 256 KB の検証結果に差異がない理由</h2>
 <p>最後に、上述したテスト ケースの中で、読み込みサイズが 64 KB と 256 KB のケースで得られたスループットの結果が両ケースとも約 200 MB/秒になった原因について説明します。</p>
 <p>このようなテスト パターンで計測を行った場合、一般的には読み込みサイズが 256 KB の方が高いスループットが得られます。今回の検証で 64 KB と 256 KB のケースで得られたスループットが同じ値になった原因は、1TB の Premium SSD では、ディスク一台あたりの最大 IOPS に 5,000、最大スループットに 200 MB/秒という上限が設定されているためです。</p>
-<p>5,000 を超えた IOPS、200 MB/秒を超えたスループットが必要になった場合には、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739%28v=ws.11%29" target="_blank" rel="noopener">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS/スループット性能を確保します。</p>
-<p>加えて、<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">前回の記事</a>でも説明した通り、Azure VM のサイズに対しても IOPS とスループットの上限が設定されています。本記事での検証では、Azure VM のサイズに Standard_D16s_v3 を指定しています。適切なサイズの Premium SSD を使用しているにもかかわらず、思うようなパフォーマンスが得られない場合には、Azure VM のサイズを確認してみてください。</p>
+<p>5,000 を超えた IOPS、200 MB/秒を超えたスループットが必要になった場合には、複数台のディスクを Azure VM に接続し、<a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/server/hh831739(v=ws.11)">記憶域プール</a>などを用いて 1 つの論理ディスクとして束ねることにより、IOPS/スループット性能を確保します。</p>
+<p>加えて、<a href="/post/2015/06/premium-storage-part1/">前回の記事</a>でも説明した通り、Azure VM のサイズに対しても IOPS とスループットの上限が設定されています。本記事での検証では、Azure VM のサイズに Standard_D16s_v3 を指定しています。適切なサイズの Premium SSD を使用しているにもかかわらず、思うようなパフォーマンスが得られない場合には、Azure VM のサイズを確認してみてください。</p>
 <p>参考情報：<br>
 Azure の Windows 仮想マシンのサイズ<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes</a></p>
 <p>汎用仮想マシンのサイズ<br>
-<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
+<a href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general">https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/sizes-general</a></p>
 <h2 id="まとめ">まとめ</h2>
 <p></p>
 <ul>
@@ -444,453 +388,406 @@ Azure の Windows 仮想マシンのサイズ<br>
 <li>バケツリレーの往復回数（IOPS）を重視するのか、運ぶ水の総量（スループット）を重視するのかを意識してパフォーマンス チューニングを行います</li>
 <li>Premium SSD、Azure VM のスペックに応じて IOPS/スループットの上限が設定されているので、適切なサイズのリソースを選択します</li>
 </ul>
-              
+                
 
-<h2>関連記事</h2>
+<div class="related-post-title">関連記事</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
-				ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
+					ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
-				システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
+					システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
-				Premium SSD を使ってみよう ～性能と注意点をチェック～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
+					Premium SSD を使ってみよう ～性能と注意点をチェック～
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/VM.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
-				Azure VM のシングル インスタンスは SLA が適用されます
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
+					Azure VM のシングル インスタンスは SLA が適用されます
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/VM-windows.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2016-11-21&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-21</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
-				Azure Windows VM の管理者は Built-in Administrator です
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2016-11-21&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-21</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
+					Azure Windows VM の管理者は Built-in Administrator です
+				</a>
+			</div>
+		</div>
 	
 
 
-              
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2015/06/premium-storage-part1/" data-toggle="tooltip" data-placement="top" title="Premium SSD を使ってみよう ～性能と注意点をチェック～">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2015/06/premium-storage-part3/" data-toggle="tooltip" data-placement="top" title="システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
 
 
             </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
+
             
-              
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 
                 
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">タグ</span><br/>
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/azure-storage" title="azure storage">
+                            azure storage
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/azure-virtual-machines" title="azure virtual machines">
+                            azure virtual machines
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/iops" title="iops">
+                            iops
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/microsoft-azure" title="microsoft azure">
+                            microsoft azure
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/premium-ssd" title="premium ssd">
+                            premium ssd
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/standard-hdd" title="standard hdd">
+                            standard hdd
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/standard-ssd" title="standard ssd">
+                            standard ssd
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/windows" title="windows">
+                            windows
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/windows-server" title="windows server">
+                            windows server
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" title="インストール">
+                            インストール
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97" title="セットアップ">
+                            セットアップ
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
+        crossorigin="anonymous"></script>
+    
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-8022500513672072"
+        data-ad-slot="4654673600"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
                     
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/microsoft-azure/">Microsoft Azure</a>
+                    
+                    <li>
+                        <a href="https://x.com/ryukiyoshimatsu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-storage/">Azure Storage</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-virtual-machines/">Azure Virtual Machines</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/premium-ssd/">Premium SSD</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-ssd/">Standard SSD</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/standard-hdd/">Standard HDD</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/iops/">IOPS</a>
-
-                  </div>
-                
-              
+		            
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/ryukiyoshimatsu/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
             
             
-<div class="post-actions-wrap">
-  <nav >
-    <ul class="post-actions post-action-nav">
-      
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/" data-tooltip="システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～" aria-label="次の投稿: システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～">
-          
-              <i class="fa fa-angle-left"></i>
-              <span class="hide-xs hide-sm text-small icon-ml">次の投稿</span>
-            </a>
-        </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/" data-tooltip="Premium SSD を使ってみよう ～性能と注意点をチェック～" aria-label="前の投稿: Premium SSD を使ってみよう ～性能と注意点をチェック～">
-          
-              <span class="hide-xs hide-sm text-small icon-mr">前の投稿</span>
-              <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-      
-    </ul>
-  </nav>
-<ul class="post-actions post-action-share" >
-  
-    <li class="post-action hide-lg hide-md hide-sm">
-      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="この記事を共有する">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>
-      </a>
-    </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" title="Facebookで共有" aria-label="Facebookで共有">
-            <i class="fab fa-facebook-square" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" title="Hatenaで共有" aria-label="Hatenaで共有">
-            <i class="fab fa-hatena" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/&amp;text=IOPS%20%e3%81%a8%e3%82%b9%e3%83%ab%e3%83%bc%e3%83%97%e3%83%83%e3%83%88%e3%81%ae%e9%96%a2%e4%bf%82%e3%82%92%e8%a7%a3%e8%aa%ac%e3%81%97%e3%81%be%e3%81%99%20%ef%bd%9ePremium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%ef%bd%9e" title="Twitterで共有" aria-label="Twitterで共有">
-            <i class="fab fa-twitter" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" title="Linkedinで共有" aria-label="Linkedinで共有">
-            <i class="fab fa-linkedin" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-  
-  
-  <li class="post-action">
-    
-      <a class="post-action-btn btn btn--default" href="#top" aria-label="トップに戻る">
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    
-    </a>
-  </li>
-</ul>
-</div>
-
-
             
-  
-
-
-          </div>
-        </article>
-        <footer id="footer" class="main-content-wrap">
-  <span class="copyrights">
-    &copy; 2023 Ryuki Yoshimatsu. All Rights Reserved
-  </span>
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="RyukiY&#39;s Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; RyukiY&#39;s Blog 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
 </footer>
 
-      </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-        
-<div class="post-actions-wrap">
-  <nav >
-    <ul class="post-actions post-action-nav">
-      
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/" data-tooltip="システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～" aria-label="次の投稿: システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～">
-          
-              <i class="fa fa-angle-left"></i>
-              <span class="hide-xs hide-sm text-small icon-ml">次の投稿</span>
-            </a>
-        </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/" data-tooltip="Premium SSD を使ってみよう ～性能と注意点をチェック～" aria-label="前の投稿: Premium SSD を使ってみよう ～性能と注意点をチェック～">
-          
-              <span class="hide-xs hide-sm text-small icon-mr">前の投稿</span>
-              <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-      
-    </ul>
-  </nav>
-<ul class="post-actions post-action-share" >
-  
-    <li class="post-action hide-lg hide-md hide-sm">
-      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="この記事を共有する">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>
-      </a>
-    </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" title="Facebookで共有" aria-label="Facebookで共有">
-            <i class="fab fa-facebook-square" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" title="Hatenaで共有" aria-label="Hatenaで共有">
-            <i class="fab fa-hatena" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/&amp;text=IOPS%20%e3%81%a8%e3%82%b9%e3%83%ab%e3%83%bc%e3%83%97%e3%83%83%e3%83%88%e3%81%ae%e9%96%a2%e4%bf%82%e3%82%92%e8%a7%a3%e8%aa%ac%e3%81%97%e3%81%be%e3%81%99%20%ef%bd%9ePremium%20SSD%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%ef%bd%9e" title="Twitterで共有" aria-label="Twitterで共有">
-            <i class="fab fa-twitter" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" title="Linkedinで共有" aria-label="Linkedinで共有">
-            <i class="fab fa-linkedin" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-  
-  
-  <li class="post-action">
-    
-      <a class="post-action-btn btn btn--default" href="#top" aria-label="トップに戻る">
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    
-    </a>
-  </li>
-</ul>
-</div>
 
-
-      </div>
-      
-<div id="share-options-bar" class="share-options-bar" data-behavior="4">
-  <i id="btn-close-shareoptions" class="fa fa-times"></i>
-  <ul class="share-options">
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2015%2F06%2Fpremium-storage-part2%2F" aria-label="Facebookで共有">
-            <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebookで共有</span>
-          </a>
-      
-      </li>
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2015%2F06%2Fpremium-storage-part2%2F" aria-label="Hatenaで共有">
-            <i class="fab fa-hatena" aria-hidden="true"></i><span>Hatenaで共有</span>
-          </a>
-      
-      </li>
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2015%2F06%2Fpremium-storage-part2%2F&amp;text=IOPS&#43;%E3%81%A8%E3%82%B9%E3%83%AB%E3%83%BC%E3%83%97%E3%83%83%E3%83%88%E3%81%AE%E9%96%A2%E4%BF%82%E3%82%92%E8%A7%A3%E8%AA%AC%E3%81%97%E3%81%BE%E3%81%99&#43;%EF%BD%9EPremium&#43;SSD&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86%EF%BD%9E" aria-label="Twitterで共有">
-            <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitterで共有</span>
-          </a>
-        
-      </li>
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2015%2F06%2Fpremium-storage-part2%2F" aria-label="Linkedinで共有">
-            <i class="fab fa-linkedin" aria-hidden="true"></i><span>Linkedinで共有</span>
-          </a>
-      
-      </li>
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
-
-
-    </div>
-    
-    <div id="about">
-  <div id="about-card">
-    <div id="about-btn-close">
-      <i class="fa fa-times"></i>
-    </div>
-    
-      <img id="about-card-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="プロフィール画像" />
-    
-    <h4 id="about-card-name">Ryuki Yoshimatsu</h4>
-    
-      <div id="about-card-bio">Technical Architect@Microsoft</div>
-    
-    
-      <div id="about-card-job">
-        <i class="fa fa-briefcase"></i>
-        <br/>
-        Technical Architect, CISSP
-      </div>
-    
-    
-      <div id="about-card-location">
-        <i class="fa fa-map-marker-alt"></i>
-        <br/>
-        Tokyo, Japan
-      </div>
-    
-  </div>
-</div>
-
-    
-
-    
-  
-    
-      <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
-    
-  
-
-
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script src="https://blog.ryukiy.net/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
-
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
-  
 
 
 <script>
-$(document).ready(function() {
-  hljs.configure({ classPrefix: '', useBR: false });
-  $('pre.code-highlight > code, pre > code').each(function(i, block) {
-    if (!$(this).hasClass('codeblock')) {
-      $(this).addClass('codeblock');
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
     }
-    hljs.highlightBlock(block);
-  });
-});
 </script>
 
 
 
 
-    
-  </body>
-</html>
 
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

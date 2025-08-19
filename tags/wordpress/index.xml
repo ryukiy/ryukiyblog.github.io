@@ -4,17 +4,16 @@
     <title>WordPress on RyukiY&#39;s Blog</title>
     <link>https://blog.ryukiy.net/tags/wordpress/</link>
     <description>Recent content in WordPress on RyukiY&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 21 Nov 2016 15:42:58 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2016 15:42:58 +0900</lastBuildDate>
+    <atom:link href="https://blog.ryukiy.net/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WordPress on Windows Server 2016 のインストール手順を解説</title>
       <link>https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/</link>
       <pubDate>Mon, 21 Nov 2016 15:42:58 +0900</pubDate>
-      
       <guid>https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/</guid>
       <description>&lt;p&gt;Windows Server 2016 に WordPress を手動でインストールする方法について説明します。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

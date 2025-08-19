@@ -4,17 +4,16 @@
     <title>オンプレミス on RyukiY&#39;s Blog</title>
     <link>https://blog.ryukiy.net/tags/%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC%E3%83%9F%E3%82%B9/</link>
     <description>Recent content in オンプレミス on RyukiY&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 25 May 2023 06:01:00 +0900</lastBuildDate><atom:link href="https://blog.ryukiy.net/tags/%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC%E3%83%9F%E3%82%B9/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 May 2023 06:01:00 +0900</lastBuildDate>
+    <atom:link href="https://blog.ryukiy.net/tags/%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC%E3%83%9F%E3%82%B9/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Stack HCI とは何か？</title>
       <link>https://blog.ryukiy.net/post/2023/05/whats-is-azshci/</link>
       <pubDate>Thu, 25 May 2023 06:01:00 +0900</pubDate>
-      
       <guid>https://blog.ryukiy.net/post/2023/05/whats-is-azshci/</guid>
       <description>&lt;p&gt;Azure Stack HCI は Hyper-V をベースとした仮想化プラットフォームで、オンプレミスに展開して VM などを実行するための仮想化基盤ソリューションです。この記事では、Azure Stack HCI がどういうケースで活用できるのかについてまとめてみました。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

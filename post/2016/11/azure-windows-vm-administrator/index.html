@@ -1,800 +1,692 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     
-    <script type="application/ld+json">
+    <meta property="og:site_name" content="RyukiY&#39;s Blog">
+    <meta property="og:type" content="article">
 
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Azure Windows VM の管理者は Built-in Administrator です",
-  
-  "image": "https://blog.ryukiy.net/img/icons/VM-windows.png",
-  
-  "datePublished": "2016-11-21T05:03:46+09:00",
-  "dateModified": "2016-11-21T05:03:46+09:00",
-  "author": {
-    "@type": "Person",
-    "name": "Ryuki Yoshimatsu",
     
-    "image": "https://blog.ryukiy.net/img/dat/ryukiy.jpg"
-    
-  },
-  "mainEntityOfPage": { 
-    "@type": "WebPage",
-    "@id": "https:\/\/blog.ryukiy.net\/post\/2016\/11\/azure-windows-vm-administrator\/" 
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "RyukiY's Blog",
-    
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blog.ryukiy.net/img/dat/ryukiy.jpg"
-    }
-    
-  },
-  "description": "Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。\n",
-  "keywords": [, "Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP"]
-}
-
-</script>
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.111.3 with theme Tranquilpeak 0.5.3-BETA">
-<meta name="author" content="Ryuki Yoshimatsu">
-<meta name="keywords" content=", Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure, Windows, CISSP">
-<meta name="description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。">
-
-
-<meta property="og:description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Azure Windows VM の管理者は Built-in Administrator です">
-<meta name="twitter:title" content="Azure Windows VM の管理者は Built-in Administrator です">
-<meta property="og:url" content="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
-<meta property="twitter:url" content="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
-<meta property="og:site_name" content="RyukiY&#39;s Blog">
-<meta property="og:description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。">
-<meta name="twitter:description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。">
-<meta property="og:locale" content="ja">
-
-  
-    <meta property="article:published_time" content="2016-11-21T05:03:46">
-  
-  
-    <meta property="article:modified_time" content="2016-11-21T05:03:46">
-  
-  
-  
-    
-      <meta property="article:section" content="Microsoft Azure">
-    
-  
-  
-    
-      <meta property="article:tag" content="Microsoft Azure">
-    
-      <meta property="article:tag" content="Azure Virtual Machines">
-    
-      <meta property="article:tag" content="Windows Server">
-    
-  
-
-
-<meta name="twitter:card" content="summary">
-
-
-
-
-
-
-
-  <meta property="og:image" content="https://blog.ryukiy.net/img/dat/blogb.jpg">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/dat/blogb.jpg">
-
-
-
-
-
-  <meta property="og:image" content="https://blog.ryukiy.net/img/icons/VM-windows.png">
-  <meta property="twitter:image" content="https://blog.ryukiy.net/img/icons/VM-windows.png">
-
-
-    <title>Azure Windows VM の管理者は Built-in Administrator です</title>
-
-    <link rel="icon" href="https://blog.ryukiy.net/img/dat/favicon.ico">
+    <meta property="og:image" content="https://blog.ryukiy.net//img/cover.jpg">
+    <meta property="twitter:image" content="https://blog.ryukiy.net//img/cover.jpg" />
     
 
     
-
-    <link rel="canonical" href="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
-
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
-    
-    <link rel="stylesheet" href="https://blog.ryukiy.net/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
-    
-    
-      
-        <link rel="stylesheet"  href="https://blog.ryukiy.net/css/mystyle.css">
-      
+    <meta name="title" content="Azure Windows VM の管理者は Built-in Administrator です" />
+    <meta property="og:title" content="Azure Windows VM の管理者は Built-in Administrator です" />
+    <meta property="twitter:title" content="Azure Windows VM の管理者は Built-in Administrator です" />
     
 
     
-      
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
+    <meta name="description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。">
+    <meta property="og:description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。" />
+    <meta property="twitter:description" content="Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Ryuki Yoshimatsu, 吉松龍輝, Microsoft Azure,Windows,CISSP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Azure Windows VM の管理者は Built-in Administrator です | RyukiY&#39;s Blog</title>
+
+    <link rel="canonical" href="/post/2016/11/azure-windows-vm-administrator/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    <link rel="stylesheet" href="https://blog.ryukiy.net/css/mystyle.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NSV7HENVSR');
+        }
+      </script>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">RyukiY&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/it/">it</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/microsoft-azure/">microsoft azure</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/visual-studio/">visual studio</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/windows/">windows</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
 <script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-NSV7HENVSR', { 'anonymize_ip': false });
-}
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
 </script>
 
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
-     crossorigin="anonymous"></script>
-    
-  </head>
 
-  <body>
-    <div id="blog">
-      <header id="header" data-behavior="4">
-  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-  <div class="header-title">
-    <a class="header-title-link" href="https://blog.ryukiy.net/" aria-label="ホームページへ">RyukiY&#39;s Blog</a>
-  </div>
-  
-    
-      <a class="header-right-picture "
-         href="https://blog.ryukiy.net/#about" aria-label="リンクを開く: /#about">
-    
-    
-    
-      
-        <img class="header-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="プロフィール画像" />
-      
-    
-    </a>
-  
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/cover.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/microsoft-azure" title="Microsoft Azure">
+                            Microsoft Azure
+                        </a>
+                        
+                        <a class="tag" href="/tags/azure-virtual-machines" title="Azure Virtual Machines">
+                            Azure Virtual Machines
+                        </a>
+                        
+                        <a class="tag" href="/tags/windows-server" title="Windows Server">
+                            Windows Server
+                        </a>
+                        
+                    </div>
+                    <h1>Azure Windows VM の管理者は Built-in Administrator です</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Ryuki Yoshimatsu
+                             
+                            on 
+                            Monday, November 21, 2016
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
-      <nav id="sidebar" data-behavior="4">
-  <div class="sidebar-container">
-    
-      <div class="sidebar-profile">
-        <a href="https://blog.ryukiy.net/about" aria-label="著者についてもっと読む">
-          <img class="sidebar-profile-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="プロフィール画像" />
-        </a>
-        <h4 class="sidebar-profile-name">Ryuki Yoshimatsu</h4>
-        
-          <h5 class="sidebar-profile-bio">Technical Architect@Microsoft</h5>
-        
-      </div>
-    
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/" title="Home">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Home</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/categories" title="Categories">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Categories</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/tags" title="Tags">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Tags</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/archives" title="Archives">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Archives</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/about" title="About">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">About</span>
-    </a>
-  </li>
 
 
-    </ul>
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://twitter.com/ryukiyoshimatsu" target="_blank" rel="noopener" title="Twitter">
-    
-      <i class="sidebar-button-icon fab fa-lg fa-twitter" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Twitter</span>
-    </a>
-  </li>
 
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/ryukiyoshimatsu/" target="_blank" rel="noopener" title="Linkedin">
-    
-      <i class="sidebar-button-icon fab fa-lg fa-linkedin" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Linkedin</span>
-    </a>
-  </li>
+<article>
+    <div class="container">
+        <div class="row">
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-    </ul>
-    <ul class="sidebar-buttons">
-      
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="https://blog.ryukiy.net/index.xml" title="RSS">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">RSS</span>
-    </a>
-  </li>
+                
 
+                
+                    <div class="alert warning">
+                        この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                    </div>
+                
 
-    </ul>
-  </div>
-</nav>
-
-      
-
-      <div id="main" data-behavior="4"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" id="top">
-          
-          
-            <div class="post-header main-content-wrap text-left">
-  
-    <h1 class="post-title">
-      Azure Windows VM の管理者は Built-in Administrator です
-    </h1>
-  
-  
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished"  datetime="2016-11-21T05:03:46&#43;09:00">
-        <b>公開日:</b> 
-  
-  
-  
-  
-    2016-11-21
-  
-
-      </time>
-      <time itemprop="lastModified" datetime="2016-11-21T05:03:46&#43;09:00">
-        &nbsp;&nbsp;&nbsp;<b>最終更新日:</b> 
-  
-  
-  
-  
-    2016-11-21
-  
-&nbsp;&nbsp;
-      </time>
-    
-    
-  
-  
-    <b><span>カテゴリー:</span></b>
-    
-      <a class="category-link" href="https://blog.ryukiy.net/categories/microsoft-azure">Microsoft Azure</a>
-    
-  
-
-  </div>
-
-</div>
-          
-          <div class="post-content markdown">
-            <div class="main-content-wrap">
-              
-                <div class="alert warning">
-                  この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                </div>
-              
-              <p>Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。</p>
+                <p>Azure で Windows VM を作成した時に標準でアサインされる管理者について解説します。</p>
 <h2 id="azure-vm-で-windows-vm-を作成する時の管理者">Azure VM で Windows VM を作成する時の管理者</h2>
 <p>Azure ポータルから Windows の VM を作成すると、以下のように管理者名を指定するところがあります。</p>
 <p>通常、ここで指定した管理者名で Windows にログオンします。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/adminname.png" alt="adminname"></p>
+<p>
+  <img src="/img/post/2016/11/adminname.png" alt="adminname">
+
+</p>
 <h2 id="指定したユーザーが-administrator-であることの証">指定したユーザーが Administrator であることの証</h2>
 <p>Windows のユーザーには、SID と呼ばれる ID が割り当てられています。</p>
 <p>いわゆる Administrator は、Built-in Administrator と呼ばれています。</p>
 <p>Built-in Administrator の SID は末尾が 500 と決められており、以下のサポート技術情報にもそのことが記載されています。</p>
 <p>Windows オペレーティング システムの既知のセキュリティ識別子<br>
-<a href="https://support.microsoft.com/ja-jp/kb/243330" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/kb/243330</a></p>
+<a href="https://support.microsoft.com/ja-jp/kb/243330">https://support.microsoft.com/ja-jp/kb/243330</a></p>
 <p>ユーザーの SID を確認するには、whoami コマンドを実行します。</p>
 <p>VM 作成時に指定したユーザーで whoami を実行すると、以下のように SID の末尾が 500 であることが分かります。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/whoami.png" alt="whoami"></p>
+<p>
+  <img src="/img/post/2016/11/whoami.png" alt="whoami">
+
+</p>
 <p>つまり、VM 作成時に指定したユーザーは Built-in Administrator として作成されているということが分かります。</p>
 <h2 id="built-in-administrator-とその他の管理者の挙動の違い">Built-in Administrator と、その他の管理者の挙動の違い</h2>
 <p>Azure で Windows VM を作成すると、既定で UAC（ユーザーアカウント制御）が有効になっています。</p>
 <p>UAC が有効な状態で Built-in Administrator で「コマンド プロンプト（管理者）」を実行すると、普通にコマンド プロンプトが起動されます。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/uac500.png" alt="UAC500"></p>
+<p>
+  <img src="/img/post/2016/11/uac500.png" alt="UAC500">
+
+</p>
 <p>Built-in Administrator 以外の管理者ユーザーで「コマンド プロンプト（管理者）」を実行すると、以下のプロンプトが表示されます。</p>
 <p>この表示が出たら、その管理者は Built-in Administrator ではない管理者ユーザーとして作成されています。</p>
-<p><img src="https://blog.ryukiy.net/img/post/2016/11/uacother.png" alt="UACother"></p>
+<p>
+  <img src="/img/post/2016/11/uacother.png" alt="UACother">
+
+</p>
 <h2 id="まとめ">まとめ</h2>
 <p>Built-in Administrator とその他の管理者を意識して Azure VM を使いましょう。</p>
-              
+                
 
-<h2>関連記事</h2>
+<div class="related-post-title">関連記事</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/VM.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
-				Azure VM のシングル インスタンスは SLA が適用されます
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
+					Azure VM のシングル インスタンスは SLA が適用されます
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
-				ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
+					ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
-				システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
+					システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
-				IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
+					IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
 	
-	<div class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-		  
-			<a href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
-			  <div class="postShorten-thumbnailimg-related">
-				<img alt="" itemprop="image" src="https://blog.ryukiy.net/img/icons/Disks.png"/>
-			  </div>
-			</a>
-		  
-		  <div class="postShorten-header">
-			<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small>
-			<h4 class="postShorten-title" itemprop="headline">
-			  <a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
-				Premium SSD を使ってみよう ～性能と注意点をチェック～
-			  </a>
-			</h4>
-		  </div>
-	</div>
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
+					Premium SSD を使ってみよう ～性能と注意点をチェック～
+				</a>
+			</div>
+		</div>
 	
 
 
-              
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2016/04/bash-on-windows/" data-toggle="tooltip" data-placement="top" title="Bash on Windows のアーキテクチャーを妄想してみる">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2016/11/wordpress-manual-install/" data-toggle="tooltip" data-placement="top" title="WordPress on Windows Server 2016 のインストール手順を解説">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
 
 
             </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
+
             
-              
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 
                 
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">タグ</span><br/>
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/azure-storage" title="azure storage">
+                            azure storage
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/azure-virtual-machines" title="azure virtual machines">
+                            azure virtual machines
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/iops" title="iops">
+                            iops
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/microsoft-azure" title="microsoft azure">
+                            microsoft azure
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/premium-ssd" title="premium ssd">
+                            premium ssd
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/standard-hdd" title="standard hdd">
+                            standard hdd
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/standard-ssd" title="standard ssd">
+                            standard ssd
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/windows" title="windows">
+                            windows
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/windows-server" title="windows server">
+                            windows server
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" title="インストール">
+                            インストール
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97" title="セットアップ">
+                            セットアップ
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
+        crossorigin="anonymous"></script>
+    
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-8022500513672072"
+        data-ad-slot="4654673600"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
                     
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/microsoft-azure/">Microsoft Azure</a>
+                    
+                    <li>
+                        <a href="https://x.com/ryukiyoshimatsu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
 
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/azure-virtual-machines/">Azure Virtual Machines</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.ryukiy.net/tags/windows-server/">Windows Server</a>
-
-                  </div>
-                
-              
+		            
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/ryukiyoshimatsu/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
             
             
-<div class="post-actions-wrap">
-  <nav >
-    <ul class="post-actions post-action-nav">
-      
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/" data-tooltip="WordPress on Windows Server 2016 のインストール手順を解説" aria-label="次の投稿: WordPress on Windows Server 2016 のインストール手順を解説">
-          
-              <i class="fa fa-angle-left"></i>
-              <span class="hide-xs hide-sm text-small icon-ml">次の投稿</span>
-            </a>
-        </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2016/04/bash-on-windows/" data-tooltip="Bash on Windows のアーキテクチャーを妄想してみる" aria-label="前の投稿: Bash on Windows のアーキテクチャーを妄想してみる">
-          
-              <span class="hide-xs hide-sm text-small icon-mr">前の投稿</span>
-              <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-      
-    </ul>
-  </nav>
-<ul class="post-actions post-action-share" >
-  
-    <li class="post-action hide-lg hide-md hide-sm">
-      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="この記事を共有する">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>
-      </a>
-    </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/" title="Facebookで共有" aria-label="Facebookで共有">
-            <i class="fab fa-facebook-square" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/" title="Hatenaで共有" aria-label="Hatenaで共有">
-            <i class="fab fa-hatena" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/&amp;text=Azure%20Windows%20VM%20%e3%81%ae%e7%ae%a1%e7%90%86%e8%80%85%e3%81%af%20Built-in%20Administrator%20%e3%81%a7%e3%81%99" title="Twitterで共有" aria-label="Twitterで共有">
-            <i class="fab fa-twitter" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/" title="Linkedinで共有" aria-label="Linkedinで共有">
-            <i class="fab fa-linkedin" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-  
-  
-  <li class="post-action">
-    
-      <a class="post-action-btn btn btn--default" href="#top" aria-label="トップに戻る">
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    
-    </a>
-  </li>
-</ul>
-</div>
-
-
             
-  
-
-
-          </div>
-        </article>
-        <footer id="footer" class="main-content-wrap">
-  <span class="copyrights">
-    &copy; 2023 Ryuki Yoshimatsu. All Rights Reserved
-  </span>
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="RyukiY&#39;s Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; RyukiY&#39;s Blog 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
 </footer>
 
-      </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-        
-<div class="post-actions-wrap">
-  <nav >
-    <ul class="post-actions post-action-nav">
-      
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/" data-tooltip="WordPress on Windows Server 2016 のインストール手順を解説" aria-label="次の投稿: WordPress on Windows Server 2016 のインストール手順を解説">
-          
-              <i class="fa fa-angle-left"></i>
-              <span class="hide-xs hide-sm text-small icon-ml">次の投稿</span>
-            </a>
-        </li>
-        <li class="post-action">
-          
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.ryukiy.net/post/2016/04/bash-on-windows/" data-tooltip="Bash on Windows のアーキテクチャーを妄想してみる" aria-label="前の投稿: Bash on Windows のアーキテクチャーを妄想してみる">
-          
-              <span class="hide-xs hide-sm text-small icon-mr">前の投稿</span>
-              <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-      
-    </ul>
-  </nav>
-<ul class="post-actions post-action-share" >
-  
-    <li class="post-action hide-lg hide-md hide-sm">
-      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="この記事を共有する">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>
-      </a>
-    </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/" title="Facebookで共有" aria-label="Facebookで共有">
-            <i class="fab fa-facebook-square" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/" title="Hatenaで共有" aria-label="Hatenaで共有">
-            <i class="fab fa-hatena" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?url=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/&amp;text=Azure%20Windows%20VM%20%e3%81%ae%e7%ae%a1%e7%90%86%e8%80%85%e3%81%af%20Built-in%20Administrator%20%e3%81%a7%e3%81%99" title="Twitterで共有" aria-label="Twitterで共有">
-            <i class="fab fa-twitter" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-      <li class="post-action hide-xs">
-        
-          <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/" title="Linkedinで共有" aria-label="Linkedinで共有">
-            <i class="fab fa-linkedin" aria-hidden="true"></i>
-          </a>
-        
-      </li>
-    
-  
-  
-  <li class="post-action">
-    
-      <a class="post-action-btn btn btn--default" href="#top" aria-label="トップに戻る">
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    
-    </a>
-  </li>
-</ul>
-</div>
 
-
-      </div>
-      
-<div id="share-options-bar" class="share-options-bar" data-behavior="4">
-  <i id="btn-close-shareoptions" class="fa fa-times"></i>
-  <ul class="share-options">
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2016%2F11%2Fazure-windows-vm-administrator%2F" aria-label="Facebookで共有">
-            <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Facebookで共有</span>
-          </a>
-      
-      </li>
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2016%2F11%2Fazure-windows-vm-administrator%2F" aria-label="Hatenaで共有">
-            <i class="fab fa-hatena" aria-hidden="true"></i><span>Hatenaで共有</span>
-          </a>
-      
-      </li>
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2016%2F11%2Fazure-windows-vm-administrator%2F&amp;text=Azure&#43;Windows&#43;VM&#43;%E3%81%AE%E7%AE%A1%E7%90%86%E8%80%85%E3%81%AF&#43;Built-in&#43;Administrator&#43;%E3%81%A7%E3%81%99" aria-label="Twitterで共有">
-            <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitterで共有</span>
-          </a>
-        
-      </li>
-    
-      <li class="share-option">
-        
-          <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fblog.ryukiy.net%2Fpost%2F2016%2F11%2Fazure-windows-vm-administrator%2F" aria-label="Linkedinで共有">
-            <i class="fab fa-linkedin" aria-hidden="true"></i><span>Linkedinで共有</span>
-          </a>
-      
-      </li>
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
-
-
-    </div>
-    
-    <div id="about">
-  <div id="about-card">
-    <div id="about-btn-close">
-      <i class="fa fa-times"></i>
-    </div>
-    
-      <img id="about-card-picture" src="https://blog.ryukiy.net/img/dat/ryukiy.jpg" alt="プロフィール画像" />
-    
-    <h4 id="about-card-name">Ryuki Yoshimatsu</h4>
-    
-      <div id="about-card-bio">Technical Architect@Microsoft</div>
-    
-    
-      <div id="about-card-job">
-        <i class="fa fa-briefcase"></i>
-        <br/>
-        Technical Architect, CISSP
-      </div>
-    
-    
-      <div id="about-card-location">
-        <i class="fa fa-map-marker-alt"></i>
-        <br/>
-        Tokyo, Japan
-      </div>
-    
-  </div>
-</div>
-
-    
-
-    
-  
-    
-      <div id="cover" style="background-image:url('https://blog.ryukiy.net/images/cover.jpg');"></div>
-    
-  
-
-
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script src="https://blog.ryukiy.net/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
-
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
-  
-
-  
-    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
-  
 
 
 <script>
-$(document).ready(function() {
-  hljs.configure({ classPrefix: '', useBR: false });
-  $('pre.code-highlight > code, pre > code').each(function(i, block) {
-    if (!$(this).hasClass('codeblock')) {
-      $(this).addClass('codeblock');
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
     }
-    hljs.highlightBlock(block);
-  });
-});
 </script>
 
 
 
 
-    
-  </body>
-</html>
 
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

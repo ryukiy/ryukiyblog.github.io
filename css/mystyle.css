@@ -7,9 +7,23 @@ Theme URI: https://ryukiy.github.io/
     color: #515151;
 }
 
+.site-heading h1 {
+    color: #FFFFFF;
+}
+
+.subheading {
+    color: #FFFFFF;
+}
+
 body, h1, h2, h3, h4, h5, h6, html {
     font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
     color: #515151;
+}
+
+.post-preview>.post-meta>a, .post-preview>.post-meta {
+    font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, "メイリオ", "Meiryo", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: gray;
+    font-size: 15px;
 }
 
 .post .post-header .post-title {
@@ -19,11 +33,46 @@ body, h1, h2, h3, h4, h5, h6, html {
     overflow: hidden;
 }
 
-.post h2 {
+.post-heading h1, .meta {
+    color: #FFFFFF;
+}
+
+.post-container h2 {
     margin: 1.0em 0 0;
     padding: 0.8em;
     border-left: 7px solid #00BCF2;
     border-bottom: 1px dashed #00BCF2;
+}
+
+.post-preview h2 {
+    margin: 0 0 0;
+    padding: 0;
+    border-left: 0px;
+    border-bottom: 0px;
+}
+
+.alert:not(.no-icon) {
+    padding-left: 55px;
+}
+
+.alert.warning:not(.no-icon):before {
+    content: "";
+    color: #f5aa0a;
+}
+
+.alert:not(.no-icon):before {
+    position: absolute;
+    top: 33px;
+    left: 35px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.alert.warning {
+    margin-top: 20px;
+    border-color: #f5aa0a;
+    background-color: #fdf1d8;
 }
 
 .sidebar-button-icon {
@@ -34,14 +83,16 @@ body, h1, h2, h3, h4, h5, h6, html {
     color: #ebebeb;
 }
 
-.postShorten-thumbnailimg-related img {
-    float: left;
+.related-post-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+.postShorten-header {
     margin: 5px 15px 5px 0;
-    display: block;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    overflow: hidden;
+    height: 70px;
+}
+.topmenu-title {
+        font-weight: bold;
 }
 
 a.topmenu-title, a.topmenu-title:active {
