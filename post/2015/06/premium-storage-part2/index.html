@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <script>
+    (function() {
+        
+        
+        const autoTheme = false;
+        if (autoTheme) {
+            document.documentElement.setAttribute('data-auto-theme', 'true');
+        }
+
+        const theme = localStorage.getItem('cleanwhite-theme') ||
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    </script>
 
     
     <meta property="og:site_name" content="RyukiY&#39;s Blog">
@@ -26,6 +42,8 @@
     <meta property="twitter:description" content="IOPS とスループットの関係性について触れます。" />
     
 
+    <meta property="og:url" content="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/" />
+
     
     <meta property="twitter:card" content="summary" />
     
@@ -39,19 +57,24 @@
     <link rel="canonical" href="/post/2015/06/premium-storage-part2/">
 
     
-    
+
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     
-    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.css">
 
     
-    <link rel="stylesheet" href="/css/zanshang.css">
+    <link rel="stylesheet" href="/css/theme-variables.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
 
     
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
 
+    
+    
     
     <link rel="stylesheet" href="https://blog.ryukiy.net/css/mystyle.css">
 
@@ -70,6 +93,9 @@
     
     
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
+     crossorigin="anonymous"></script>
+
 </head>
 
 
@@ -77,7 +103,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -88,7 +114,6 @@
           gtag('config', 'G-NSV7HENVSR');
         }
       </script>
-
 
 
 
@@ -118,31 +143,56 @@
                     
                         
                         <li>
-                            <a href="/categories/it/">it</a>
+                            <a href="/categories/strategy/">strategy</a>
                         </li>
                         
                         <li>
-                            <a href="/categories/microsoft-azure/">microsoft azure</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/visual-studio/">visual studio</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/windows/">windows</a>
+                            <a href="/categories/technology/">technology</a>
                         </li>
                         
                     
-                    
-		    
+
+		            
                         <li><a href="/archive//">ARCHIVE</a></li>
                     
                         <li><a href="/about//">ABOUT</a></li>
                     
+                    
 		            <li>
-                        <a href="/search"><i class="fa fa-search"></i></a>
+                        <a href="#" id="theme-toggle" title="Toggle dark mode" style="opacity: 0;">
+                            <i class="fa fa-moon"></i>
+                            <i class="fa fa-sun" style="display: none;"></i>
+                        </a>
 		           </li>
+                    <script>
+                    (function() {
+                        
+                        var theme = localStorage.getItem('cleanwhite-theme') ||
+                                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                        var toggleBtn = document.getElementById('theme-toggle');
+                        if (toggleBtn) {
+                            var moonIcon = toggleBtn.querySelector('.fa-moon');
+                            var sunIcon = toggleBtn.querySelector('.fa-sun');
+
+                            if (theme === 'dark') {
+                                if (moonIcon) moonIcon.style.display = 'none';
+                                if (sunIcon) sunIcon.style.display = 'inline';
+                                toggleBtn.setAttribute('title', 'Switch to light mode');
+                            } else {
+                                if (moonIcon) moonIcon.style.display = 'inline';
+                                if (sunIcon) sunIcon.style.display = 'none';
+                                toggleBtn.setAttribute('title', 'Switch to dark mode');
+                            }
+
+                            
+                            requestAnimationFrame(function() {
+                                toggleBtn.style.transition = 'opacity 0.2s ease';
+                                toggleBtn.style.opacity = '1';
+                            });
+                        }
+                    })();
+                    </script>
+                    
                 </ul>
             </div>
         </div>
@@ -177,6 +227,24 @@
             $navbar.className += " in";
         }
     }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var navLinks = document.querySelectorAll('.navbar-collapse a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if ($navbar.className.indexOf('in') > 0) {
+                    
+                    $navbar.className = " ";
+                    setTimeout(function(){
+                        if($navbar.className.indexOf('in') < 0) {
+                            $collapse.style.height = "0px"
+                        }
+                    },400)
+                }
+            });
+        });
+    });
 </script>
 
 
@@ -238,7 +306,7 @@
                             
                             
                             
-                            <br>Last Modified on Monday, June 3, 2019
+                            <br>Last Modified on 月曜日, 6月 3, 2019
                             
                             
                     </span>
@@ -262,13 +330,6 @@
                 post-container">
 
                 
-
-                
-                    <div class="alert warning">
-                        この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                    </div>
-                
-
                 <p><a href="/post/2015/06/premium-storage-part1/">前回の記事</a>では Premium SSD の性能と利用時の注意点について説明しました。本記事では、IOPS とスループットの関係性について触れます。</p>
 <h2 id="目次">目次</h2>
 <p></p>
@@ -321,40 +382,40 @@
 <p>いくつかのパターンで同様の計測を行った結果をまとめたものが以下になります。</p>
 <p></p>
 <table>
-  <thead>
-      <tr>
-          <th>テストケース</th>
-          <th>IOPS</th>
-          <th>スループット</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>4 KB 100% Read / 0% Random</td>
-          <td>約 5,000</td>
-          <td>約 21 MB/秒</td>
-      </tr>
-      <tr>
-          <td>16 KB 100% Read / 0% Random</td>
-          <td>約 4,800</td>
-          <td>約 78 MB/秒</td>
-      </tr>
-      <tr>
-          <td>32 KB 100% Read / 0% Random</td>
-          <td>約 4,580</td>
-          <td>約 150 MB/秒</td>
-      </tr>
-      <tr>
-          <td>64 KB 100% Read / 0% Random</td>
-          <td>約 3,100</td>
-          <td>約 200 MB/秒</td>
-      </tr>
-      <tr>
-          <td>256 KB 100% Read / 0% Random</td>
-          <td>約 780</td>
-          <td>約 200 MB/秒</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>テストケース</th>
+					<th>IOPS</th>
+					<th>スループット</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>4 KB 100% Read / 0% Random</td>
+					<td>約 5,000</td>
+					<td>約 21 MB/秒</td>
+			</tr>
+			<tr>
+					<td>16 KB 100% Read / 0% Random</td>
+					<td>約 4,800</td>
+					<td>約 78 MB/秒</td>
+			</tr>
+			<tr>
+					<td>32 KB 100% Read / 0% Random</td>
+					<td>約 4,580</td>
+					<td>約 150 MB/秒</td>
+			</tr>
+			<tr>
+					<td>64 KB 100% Read / 0% Random</td>
+					<td>約 3,100</td>
+					<td>約 200 MB/秒</td>
+			</tr>
+			<tr>
+					<td>256 KB 100% Read / 0% Random</td>
+					<td>約 780</td>
+					<td>約 200 MB/秒</td>
+			</tr>
+	</tbody>
 </table>
 <p>テストケースで設定を変更しているのは、ディスクからデータを読み込む際のサイズのみです。読み込みサイズが大きいほどスループットの数字は上がります。上述した通り、OS の中では IO はバケツリレーで処理されます。上の表の結果をバケツリレーで表現すると、以下のようになります。</p>
 <ul>
@@ -388,57 +449,6 @@ Azure の Windows 仮想マシンのサイズ<br>
 <li>バケツリレーの往復回数（IOPS）を重視するのか、運ぶ水の総量（スループット）を重視するのかを意識してパフォーマンス チューニングを行います</li>
 <li>Premium SSD、Azure VM のスペックに応じて IOPS/スループットの上限が設定されているので、適切なサイズのリソースを選択します</li>
 </ul>
-                
-
-<div class="related-post-title">関連記事</div>
-	
-		<div class="postShorten-header">
-			<div class="postShorten-title" itemprop="headline">
-				<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
-				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
-					ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
-				</a>
-			</div>
-		</div>
-	
-		<div class="postShorten-header">
-			<div class="postShorten-title" itemprop="headline">
-				<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
-				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
-					システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
-				</a>
-			</div>
-		</div>
-	
-		<div class="postShorten-header">
-			<div class="postShorten-title" itemprop="headline">
-				<small>公開日: 2015-06-10&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
-				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part1/">
-					Premium SSD を使ってみよう ～性能と注意点をチェック～
-				</a>
-			</div>
-		</div>
-	
-		<div class="postShorten-header">
-			<div class="postShorten-title" itemprop="headline">
-				<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small><br>
-				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
-					Azure VM のシングル インスタンスは SLA が適用されます
-				</a>
-			</div>
-		</div>
-	
-		<div class="postShorten-header">
-			<div class="postShorten-title" itemprop="headline">
-				<small>公開日: 2016-11-21&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-21</small><br>
-				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
-					Azure Windows VM の管理者は Built-in Administrator です
-				</a>
-			</div>
-		</div>
-	
-
-
 
                 
 
@@ -601,18 +611,6 @@ Azure の Windows 仮想マシンのサイズ<br>
             </div>
         </div>
     </div>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
-        crossorigin="anonymous"></script>
-    
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-8022500513672072"
-        data-ad-slot="4654673600"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </article>
 
 
@@ -674,7 +672,7 @@ Azure の Windows 仮想マシンのサイズ<br>
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; RyukiY&#39;s Blog 2025
+                    Copyright &copy; RyukiY&#39;s Blog 2026
                     
                 </p>
             </div>
@@ -716,11 +714,49 @@ Azure の Windows 仮想マシンのサイズ<br>
 
 
 <script>
+    (function() {
+        function updateTagcloudColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const startColor = isDark ? '#808080' : '#bbbbee';
+            if($('#tag_cloud').length !== 0 && $.fn.tagcloud) {
+                $.fn.tagcloud.defaults = {
+                    color: {start: startColor, end: '#0085a1'},
+                };
+                $('#tag_cloud a').tagcloud();
+            }
+        }
+
+        
+        $(document).ready(function() {
+            updateTagcloudColors();
+        });
+
+        
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'data-theme') {
+                    updateTagcloudColors();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+    })();
+</script>
+
+
+<script>
     loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
+
+
+<script src="/js/theme-toggle.js"></script>
 
 
 
@@ -783,6 +819,7 @@ Azure の Windows 仮想マシンのサイズ<br>
         });
     });
 </script>
+
 
 
 

@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <script>
+    (function() {
+        
+        
+        const autoTheme = false;
+        if (autoTheme) {
+            document.documentElement.setAttribute('data-auto-theme', 'true');
+        }
+
+        const theme = localStorage.getItem('cleanwhite-theme') ||
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    </script>
 
     
     <meta property="og:site_name" content="RyukiY&#39;s Blog">
@@ -26,6 +42,8 @@
     <meta property="twitter:description" content="Windows Server 2016 に WordPress を手動でインストールする方法について説明します。" />
     
 
+    <meta property="og:url" content="https://blog.ryukiy.net/post/2016/11/wordpress-manual-install/" />
+
     
     <meta property="twitter:card" content="summary" />
     
@@ -39,19 +57,24 @@
     <link rel="canonical" href="/post/2016/11/wordpress-manual-install/">
 
     
-    
+
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     
-    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.css">
 
     
-    <link rel="stylesheet" href="/css/zanshang.css">
+    <link rel="stylesheet" href="/css/theme-variables.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
 
     
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
 
+    
+    
     
     <link rel="stylesheet" href="https://blog.ryukiy.net/css/mystyle.css">
 
@@ -70,6 +93,9 @@
     
     
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
+     crossorigin="anonymous"></script>
+
 </head>
 
 
@@ -77,7 +103,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -88,7 +114,6 @@
           gtag('config', 'G-NSV7HENVSR');
         }
       </script>
-
 
 
 
@@ -118,31 +143,56 @@
                     
                         
                         <li>
-                            <a href="/categories/it/">it</a>
+                            <a href="/categories/strategy/">strategy</a>
                         </li>
                         
                         <li>
-                            <a href="/categories/microsoft-azure/">microsoft azure</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/visual-studio/">visual studio</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/windows/">windows</a>
+                            <a href="/categories/technology/">technology</a>
                         </li>
                         
                     
-                    
-		    
+
+		            
                         <li><a href="/archive//">ARCHIVE</a></li>
                     
                         <li><a href="/about//">ABOUT</a></li>
                     
+                    
 		            <li>
-                        <a href="/search"><i class="fa fa-search"></i></a>
+                        <a href="#" id="theme-toggle" title="Toggle dark mode" style="opacity: 0;">
+                            <i class="fa fa-moon"></i>
+                            <i class="fa fa-sun" style="display: none;"></i>
+                        </a>
 		           </li>
+                    <script>
+                    (function() {
+                        
+                        var theme = localStorage.getItem('cleanwhite-theme') ||
+                                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                        var toggleBtn = document.getElementById('theme-toggle');
+                        if (toggleBtn) {
+                            var moonIcon = toggleBtn.querySelector('.fa-moon');
+                            var sunIcon = toggleBtn.querySelector('.fa-sun');
+
+                            if (theme === 'dark') {
+                                if (moonIcon) moonIcon.style.display = 'none';
+                                if (sunIcon) sunIcon.style.display = 'inline';
+                                toggleBtn.setAttribute('title', 'Switch to light mode');
+                            } else {
+                                if (moonIcon) moonIcon.style.display = 'inline';
+                                if (sunIcon) sunIcon.style.display = 'none';
+                                toggleBtn.setAttribute('title', 'Switch to dark mode');
+                            }
+
+                            
+                            requestAnimationFrame(function() {
+                                toggleBtn.style.transition = 'opacity 0.2s ease';
+                                toggleBtn.style.opacity = '1';
+                            });
+                        }
+                    })();
+                    </script>
+                    
                 </ul>
             </div>
         </div>
@@ -177,6 +227,24 @@
             $navbar.className += " in";
         }
     }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var navLinks = document.querySelectorAll('.navbar-collapse a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if ($navbar.className.indexOf('in') > 0) {
+                    
+                    $navbar.className = " ";
+                    setTimeout(function(){
+                        if($navbar.className.indexOf('in') < 0) {
+                            $collapse.style.height = "0px"
+                        }
+                    },400)
+                }
+            });
+        });
+    });
 </script>
 
 
@@ -252,13 +320,6 @@
                 post-container">
 
                 
-
-                
-                    <div class="alert warning">
-                        この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                    </div>
-                
-
                 <p>Windows Server 2016 に WordPress を手動でインストールする方法について説明します。</p>
 <h2 id="web-platform-installer-が動かなくて困った">Web Platform Installer が動かなくて困った</h2>
 <p>このブログは Azure VM の Windows Server 2012 R2 に WordPress をセットアップして運用していましたが、Windows Server 2016 もリリースされたし、<a href="https://docs.microsoft.com/ja-jp/azure/application-gateway/waf-overview">Application Gateway で WAF も使えるようになったし</a>、もろもろアップグレードしてみることにしました。</p>
@@ -422,21 +483,6 @@ Query OK, 0 rows affected (0.01 sec)</p>
 <h2 id="まとめ">まとめ</h2>
 <p>この手順を全自動でやってくれる Web Platform Installer はえらい。</p>
 <p>早く Windows Server 2016 にも対応してね。</p>
-                
-
-<div class="related-post-title">関連記事</div>
-	
-		<div class="postShorten-header">
-			<div class="postShorten-title" itemprop="headline">
-				<small>公開日: 2016-04-01&nbsp;&nbsp;&nbsp;最終更新日: 2016-04-01</small><br>
-				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/04/bash-on-windows/">
-					Bash on Windows のアーキテクチャーを妄想してみる
-				</a>
-			</div>
-		</div>
-	
-
-
 
                 
 
@@ -599,18 +645,6 @@ Query OK, 0 rows affected (0.01 sec)</p>
             </div>
         </div>
     </div>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
-        crossorigin="anonymous"></script>
-    
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-8022500513672072"
-        data-ad-slot="4654673600"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </article>
 
 
@@ -672,7 +706,7 @@ Query OK, 0 rows affected (0.01 sec)</p>
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; RyukiY&#39;s Blog 2025
+                    Copyright &copy; RyukiY&#39;s Blog 2026
                     
                 </p>
             </div>
@@ -714,11 +748,49 @@ Query OK, 0 rows affected (0.01 sec)</p>
 
 
 <script>
+    (function() {
+        function updateTagcloudColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const startColor = isDark ? '#808080' : '#bbbbee';
+            if($('#tag_cloud').length !== 0 && $.fn.tagcloud) {
+                $.fn.tagcloud.defaults = {
+                    color: {start: startColor, end: '#0085a1'},
+                };
+                $('#tag_cloud a').tagcloud();
+            }
+        }
+
+        
+        $(document).ready(function() {
+            updateTagcloudColors();
+        });
+
+        
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'data-theme') {
+                    updateTagcloudColors();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+    })();
+</script>
+
+
+<script>
     loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
+
+
+<script src="/js/theme-toggle.js"></script>
 
 
 
@@ -781,6 +853,7 @@ Query OK, 0 rows affected (0.01 sec)</p>
         });
     });
 </script>
+
 
 
 

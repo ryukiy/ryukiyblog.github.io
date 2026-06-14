@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <script>
+    (function() {
+        
+        
+        const autoTheme = false;
+        if (autoTheme) {
+            document.documentElement.setAttribute('data-auto-theme', 'true');
+        }
+
+        const theme = localStorage.getItem('cleanwhite-theme') ||
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    </script>
 
     
     <meta property="og:site_name" content="RyukiY&#39;s Blog">
@@ -26,6 +42,8 @@
     <meta property="twitter:description" content="クリティカルな障害対策を専門としているチームで学んだ、緊急案件対応の傾向と対策についてまとめた情報です。" />
     
 
+    <meta property="og:url" content="https://blog.ryukiy.net/post/2022/07/critical-issue/" />
+
     
     <meta property="twitter:card" content="summary" />
     
@@ -39,19 +57,24 @@
     <link rel="canonical" href="/post/2022/07/critical-issue/">
 
     
-    
+
     
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     
-    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.css">
 
     
-    <link rel="stylesheet" href="/css/zanshang.css">
+    <link rel="stylesheet" href="/css/theme-variables.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
 
     
     <link rel="stylesheet" href="/css/font-awesome.all.min.css">
 
+    
+    
     
     <link rel="stylesheet" href="https://blog.ryukiy.net/css/mystyle.css">
 
@@ -70,6 +93,9 @@
     
     
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
+     crossorigin="anonymous"></script>
+
 </head>
 
 
@@ -77,7 +103,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-NSV7HENVSR"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -88,7 +114,6 @@
           gtag('config', 'G-NSV7HENVSR');
         }
       </script>
-
 
 
 
@@ -118,31 +143,56 @@
                     
                         
                         <li>
-                            <a href="/categories/it/">it</a>
+                            <a href="/categories/strategy/">strategy</a>
                         </li>
                         
                         <li>
-                            <a href="/categories/microsoft-azure/">microsoft azure</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/visual-studio/">visual studio</a>
-                        </li>
-                        
-                        <li>
-                            <a href="/categories/windows/">windows</a>
+                            <a href="/categories/technology/">technology</a>
                         </li>
                         
                     
-                    
-		    
+
+		            
                         <li><a href="/archive//">ARCHIVE</a></li>
                     
                         <li><a href="/about//">ABOUT</a></li>
                     
+                    
 		            <li>
-                        <a href="/search"><i class="fa fa-search"></i></a>
+                        <a href="#" id="theme-toggle" title="Toggle dark mode" style="opacity: 0;">
+                            <i class="fa fa-moon"></i>
+                            <i class="fa fa-sun" style="display: none;"></i>
+                        </a>
 		           </li>
+                    <script>
+                    (function() {
+                        
+                        var theme = localStorage.getItem('cleanwhite-theme') ||
+                                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                        var toggleBtn = document.getElementById('theme-toggle');
+                        if (toggleBtn) {
+                            var moonIcon = toggleBtn.querySelector('.fa-moon');
+                            var sunIcon = toggleBtn.querySelector('.fa-sun');
+
+                            if (theme === 'dark') {
+                                if (moonIcon) moonIcon.style.display = 'none';
+                                if (sunIcon) sunIcon.style.display = 'inline';
+                                toggleBtn.setAttribute('title', 'Switch to light mode');
+                            } else {
+                                if (moonIcon) moonIcon.style.display = 'inline';
+                                if (sunIcon) sunIcon.style.display = 'none';
+                                toggleBtn.setAttribute('title', 'Switch to dark mode');
+                            }
+
+                            
+                            requestAnimationFrame(function() {
+                                toggleBtn.style.transition = 'opacity 0.2s ease';
+                                toggleBtn.style.opacity = '1';
+                            });
+                        }
+                    })();
+                    </script>
+                    
                 </ul>
             </div>
         </div>
@@ -177,6 +227,24 @@
             $navbar.className += " in";
         }
     }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var navLinks = document.querySelectorAll('.navbar-collapse a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if ($navbar.className.indexOf('in') > 0) {
+                    
+                    $navbar.className = " ";
+                    setTimeout(function(){
+                        if($navbar.className.indexOf('in') < 0) {
+                            $collapse.style.height = "0px"
+                        }
+                    },400)
+                }
+            });
+        });
+    });
 </script>
 
 
@@ -240,13 +308,6 @@
                 post-container">
 
                 
-
-                
-                    <div class="alert warning">
-                        この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
-                    </div>
-                
-
                 <p>以前、マイクロソフトのサポート部門で緊急性が高い障害対応の専門チームとして活動していた時期がありました。その時の経験から、緊急案件の対応方法についてまとめてみました。</p>
 <h2 id="緊急性が高い障害とは具体的にどのようなケースか">「緊急性が高い障害」とは具体的にどのようなケースか？</h2>
 <p>緊急案件として対応を依頼されるケースとしては、以下のようなパターンが多いと思います。</p>
@@ -344,9 +405,6 @@
 <p>従って、トレーニングでは緊急事態のリアルな空気感を出すことが重要です。そのためには、<b><span style="color: red">経営層に許可を取った上で、現場に内緒でリアルな障害を演出するドッキリ トレーニングを仕掛けるのが有効な手段</span></b>だと考えます。ドッキリ トレーニングをすることで現場には緊張感が走ります。この緊張感、焦燥感、現場の空気を知っておくことが緊急事態への備えとしては重要です。</p>
 <h2 id="最後に">最後に</h2>
 <p>最近、通信会社で大規模な障害がありましたが、その事故の対応内容を評価した記事などを読むことがあります。中には対応について批判的な論調の記事を見かけることもありますが、その批判は冷静な状態で書かれたものです。緊急事態が起こっている瞬間にその現場で何ができるかが重要です。そのような事を意識しながら、万が一の時のために備えておくのが良いのではないかと思います。</p>
-                
-
-
 
                 
 
@@ -509,18 +567,6 @@
             </div>
         </div>
     </div>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8022500513672072"
-        crossorigin="anonymous"></script>
-    
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-8022500513672072"
-        data-ad-slot="4654673600"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </article>
 
 
@@ -582,7 +628,7 @@
             
              </ul>
 		<p class="copyright text-muted">
-                    Copyright &copy; RyukiY&#39;s Blog 2025
+                    Copyright &copy; RyukiY&#39;s Blog 2026
                     
                 </p>
             </div>
@@ -624,11 +670,49 @@
 
 
 <script>
+    (function() {
+        function updateTagcloudColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const startColor = isDark ? '#808080' : '#bbbbee';
+            if($('#tag_cloud').length !== 0 && $.fn.tagcloud) {
+                $.fn.tagcloud.defaults = {
+                    color: {start: startColor, end: '#0085a1'},
+                };
+                $('#tag_cloud a').tagcloud();
+            }
+        }
+
+        
+        $(document).ready(function() {
+            updateTagcloudColors();
+        });
+
+        
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'data-theme') {
+                    updateTagcloudColors();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+    })();
+</script>
+
+
+<script>
     loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
+
+
+<script src="/js/theme-toggle.js"></script>
 
 
 
@@ -691,6 +775,7 @@
         });
     });
 </script>
+
 
 
 

@@ -11,9 +11,6 @@
     <loc>https://blog.ryukiy.net/categories/</loc>
     <lastmod>2023-05-25T06:01:00+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/categories/microsoft-azure/</loc>
-    <lastmod>2023-05-25T06:01:00+09:00</lastmod>
-  </url><url>
     <loc>https://blog.ryukiy.net/post/</loc>
     <lastmod>2023-05-25T06:01:00+09:00</lastmod>
   </url><url>
@@ -23,10 +20,13 @@
     <loc>https://blog.ryukiy.net/tags/</loc>
     <lastmod>2023-05-25T06:01:00+09:00</lastmod>
   </url><url>
+    <loc>https://blog.ryukiy.net/categories/technology/</loc>
+    <lastmod>2023-05-25T06:01:00+09:00</lastmod>
+  </url><url>
     <loc>https://blog.ryukiy.net/tags/%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC%E3%83%9F%E3%82%B9/</loc>
     <lastmod>2023-05-25T06:01:00+09:00</lastmod>
   </url><url>
-    <loc>https://blog.ryukiy.net/categories/it/</loc>
+    <loc>https://blog.ryukiy.net/categories/strategy/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/post/2022/07/critical-issue/</loc>
@@ -37,9 +37,6 @@
   </url><url>
     <loc>https://blog.ryukiy.net/tags/%E9%9A%9C%E5%AE%B3%E5%AF%BE%E5%BF%9C/</loc>
     <lastmod>2022-07-06T12:21:00+09:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/categories/visual-studio/</loc>
-    <lastmod>2020-05-11T15:57:55+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/visual-studio/</loc>
     <lastmod>2020-05-11T15:57:55+09:00</lastmod>
@@ -79,9 +76,6 @@
   </url><url>
     <loc>https://blog.ryukiy.net/tags/sla/</loc>
     <lastmod>2016-11-22T00:57:09+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.ryukiy.net/categories/windows/</loc>
-    <lastmod>2016-11-21T15:42:58+09:00</lastmod>
   </url><url>
     <loc>https://blog.ryukiy.net/tags/windows/</loc>
     <lastmod>2016-11-21T15:42:58+09:00</lastmod>
