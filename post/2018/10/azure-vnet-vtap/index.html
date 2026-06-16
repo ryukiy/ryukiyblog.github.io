@@ -157,7 +157,7 @@
 		            
                         <li><a href="/archive//">ARCHIVE</a></li>
                     
-                        <li><a href="/about//">ABOUT</a></li>
+                        <li><a href="/about/">ABOUT</a></li>
                     
                     
 		            <li>
@@ -322,6 +322,12 @@
                 post-container">
 
                 
+                
+                    <div class="alert warning">
+                        この記事の最終更新日から 1 年以上が経過しています。情報が古い可能性がありますので、ご注意ください。
+                    </div>
+                
+
                 <p>Microsoft Ignite 2018 において、<a href="https://docs.microsoft.com/ja-jp/azure/virtual-network/virtual-network-tap-overview">Azure Virtual Network TAP (VTAP)</a> のプレビューが発表されました。Azure Virtual Network TAP のメリットを解説します。</p>
 <h2 id="tap-とは何か">TAP とは何か？</h2>
 <p>TAP とは Terminal Access Point の略であり、ネットワーク機器がトラフィックを受け取るためのアクセス ポイントを意味します。TAP を利用するメリットは、ネットワークのトラフィックがミラーリングされ、既存のネットワーク構成を変更することなくトラフィックの監視が可能となる点です。ここでは例として、既存のネットワーク環境に対して次世代ファイアウォールを新たに設置し、ネットワーク経由のサイバー攻撃の状況を監視するケースについて考えてみます。<br>
@@ -364,6 +370,57 @@
 <p>また、VTAP はトラフィックをミラーリングする際の方式として VXLAN を採用しています。そのため、NVA の設置を検討する際には、NVA が VXLAN をサポートしているかどうかが要確認事項になります。</p>
 <h2 id="現在のステータス">現在のステータス</h2>
 <p>この記事を執筆している段階（2018 年 10 月 25 日）では、米国中西部リージョンでプレビューが実施されています。VTAP を利用する際には、サブスクリプション ID を指定して事前にプレビューに登録する必要があります。NVA の設置方式にお困りの方は、VTAP のプレビューを試されてみてはいかがでしょうか。</p>
+                
+
+<div class="related-post-title">関連記事</div>
+	
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2016-11-22&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-22</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-vm-sla-update/">
+					Azure VM のシングル インスタンスは SLA が適用されます
+				</a>
+			</div>
+		</div>
+	
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2016-11-21&nbsp;&nbsp;&nbsp;最終更新日: 2016-11-21</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2016/11/azure-windows-vm-administrator/">
+					Azure Windows VM の管理者は Built-in Administrator です
+				</a>
+			</div>
+		</div>
+	
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-07-01&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/07/premium-storage-part4/">
+					ディスクの適切な応答時間の目安を解説 ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
+	
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-18&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part3/">
+					システムが必要とする IOPS の計測方法 ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
+	
+		<div class="postShorten-header">
+			<div class="postShorten-title" itemprop="headline">
+				<small>公開日: 2015-06-12&nbsp;&nbsp;&nbsp;最終更新日: 2019-06-03</small><br>
+				<a class="topmenu-title" href="https://blog.ryukiy.net/post/2015/06/premium-storage-part2/">
+					IOPS とスループットの関係を解説します ～Premium SSD を使ってみよう～
+				</a>
+			</div>
+		</div>
+	
+
+
 
                 
 
